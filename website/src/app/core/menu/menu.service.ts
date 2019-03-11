@@ -22,26 +22,26 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    state: '/',
+    state: 'dashboard',
     name: 'USUARIOS',
     type: 'link',
     icon: 'supervised_user_circle'
   },
   {
-    state: '/training',
+    state: 'training',
     name: 'TRAINING',
     type: 'link',
     icon: 'fitness_center'
   },
   {
-    state: '/exercises',
+    state: 'exercises',
     name: 'EXERCISES',
     type: 'link',
     icon: 'rowing'
   }
   ,
   {
-    state: '/gyms',
+    state: 'gyms',
     name: 'GYMS',
     type: 'link',
     icon: 'account_balance'
