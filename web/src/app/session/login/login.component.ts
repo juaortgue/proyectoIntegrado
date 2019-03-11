@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoginDto } from 'src/app/dto/login-dto';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, public snackBar: MatSnackBar,
-    private ngZone: NgZone) { }
+    private authService: AuthenticationService, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -23,6 +25,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
+ onSubmit() {
+    const loginDto: LoginDto = this.form.value;
+    console.log('OBSUBTMIT')
+    this.authService.login(loginDto).subscribe(loginResp => {
+      console.log('se mete')
+      this.authService.setLoginData(loginResp);
+      this.router.navigate(['/dashboard']);
+    }, error => {
+      this.snackBar.open('There was an error when we were trying to login.', 'Close', {
+        duration: 3000
+      });
+    }
+    );
+  }
+
+ 
   
 
 }
