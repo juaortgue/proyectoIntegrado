@@ -26,12 +26,13 @@ export class LoginComponent implements OnInit {
   }
 
  onSubmit() {
+  this.router.navigate(['/user']);
+
     const loginDto: LoginDto = this.form.value;
     console.log('OBSUBTMIT')
     this.authService.login(loginDto).subscribe(loginResp => {
       console.log('se mete')
       this.authService.setLoginData(loginResp);
-      this.router.navigate(['/dashboard']);
     }, error => {
       this.snackBar.open('There was an error when we were trying to login.', 'Close', {
         duration: 3000

@@ -13,15 +13,14 @@ export const routes: Routes = [{
     loadChildren: './session/session.module#SessionModule'
   }]
 }
-/*,
+,
 {
   path: '',
-  canActivate: [AuthGuard],
   children: [{
-    path: 'home',
+    path: '',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   }]
-},*/
+},
 /*{
   path: '**',
   redirectTo: '404'
