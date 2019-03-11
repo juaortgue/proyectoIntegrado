@@ -25,14 +25,11 @@ export class SigninComponent implements OnInit {
 
  
   onSubmit() {
-    this.router.navigate(['/user']);
-  
       const loginDto: LoginDto = this.form.value;
-      console.log('OBSUBTMIT')
       this.authService.login(loginDto).subscribe(loginResp => {
-        console.log('se mete')
-        console.log(loginResp)
+        
         this.authService.setLoginData(loginResp);
+        
         this.router.navigate ( [ '/dashboard' ] );
 
       }, error => {
