@@ -13,8 +13,8 @@ import { LoginDto } from 'src/app/dto/login-dto';
 export class SigninComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router,snackBar:MatSnackBar
-    private authService: AuthenticationService) {}
+  constructor(private fb: FormBuilder, private router: Router, private snackBar:MatSnackBar
+    ,private authService: AuthenticationService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
