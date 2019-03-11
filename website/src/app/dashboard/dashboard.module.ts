@@ -6,6 +6,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
+import { TrainingComponent } from './training/training.component';
+import { ExercisesComponent } from './exercises/exercises.component';
+import { GymsComponent } from './gyms/gyms.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,7 @@ import { DashboardRoutes } from './dashboard.routing';
     MatMenuModule,
     FlexLayoutModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent ]
 })
 
 export class DashboardModule {}

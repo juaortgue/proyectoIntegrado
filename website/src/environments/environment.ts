@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'https://entreapp.herokuapp.com',
-   apiUrl: 'http://localhost:9000',
+  apiUrl: 'https://guarded-citadel-83682.herokuapp.com',
+   //apiUrl: 'http://localhost:9000',
   masterKey: '{"access_token": "eZbDdICdMMhDPsvsP38p3BP5HTTjel95"}',
 
 };

@@ -23,16 +23,30 @@ export interface Menu {
 const MENUITEMS = [
   {
     state: '/',
-    name: 'HOME',
+    name: 'USUARIOS',
     type: 'link',
-    icon: 'explore'
+    icon: 'supervised_user_circle'
   },
   {
-    state: 'http://primer.nyasha.me/docs',
-    name: 'DOCS',
-    type: 'extTabLink',
-    icon: 'local_library'
+    state: '/training',
+    name: 'TRAINING',
+    type: 'link',
+    icon: 'fitness_center'
+  },
+  {
+    state: '/exercises',
+    name: 'EXERCISES',
+    type: 'link',
+    icon: 'rowing'
   }
+  ,
+  {
+    state: '/gyms',
+    name: 'GYMS',
+    type: 'link',
+    icon: 'account_balance'
+  }
+  
 ];
 
 @Injectable()
