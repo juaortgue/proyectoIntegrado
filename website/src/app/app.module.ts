@@ -4,7 +4,10 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MatTableModule } from '@angular/material'  
 
+import {MatInputModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,6 +21,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AgmCoreModule } from '@agm/core';
 
 import {
+  
   MatSidenavModule,
   MatCardModule,
   MatMenuModule,
@@ -26,6 +30,7 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatTabsModule,
+  
   MatListModule,
   MatSlideToggleModule,
   MatSelectModule,
@@ -77,6 +82,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpClientModule,
@@ -94,6 +100,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatTabsModule,
     MatListModule,

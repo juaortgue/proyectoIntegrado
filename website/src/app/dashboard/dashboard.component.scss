@@ -1,0 +1,47 @@
+.white{
+    background-color: white;
+}
+img {
+    border-radius: 50%;
+    width: 40px;
+  }
+
+  table {
+    margin:auto;
+}
+.w-100{
+    width: 100%;
+}
+.prueba{
+    width: 500px;
+}
+.paginator{
+    margin:auto;
+    /*position: relative;
+    left:7.1%;
+    width: 94.25%;*/
+}
+.container{
+    width: 100vh;
+}
+#titleTable{
+    padding-bottom: 10px;
+}
+#selectFilter{
+    margin-left: 47%;
+}
+
+#addFloatingButton {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    z-index: 9999999;
+    background-color: var(--color-primary-dark);
+
+    .mat-icon {
+        color: white;
+    }
+}
+
+
+
