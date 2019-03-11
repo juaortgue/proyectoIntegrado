@@ -4,6 +4,7 @@ import { LoginDto } from '../dto/login-dto';
 import { LoginResponse } from '../interfaces/login-response';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 const authUrl = `${environment.apiUrl}`;
 @Injectable({
@@ -22,7 +23,7 @@ export class AuthenticationService {
 
     return requestOptions;
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
   login(loginDto: LoginDto): Observable<LoginResponse> {
     const requestOptions = this.request(loginDto.email, loginDto.password);
     return this.http.post<LoginResponse>(`${authUrl}/auth`, environment.masterKey, requestOptions);
@@ -37,6 +38,8 @@ export class AuthenticationService {
   }
   logout() {
     localStorage.clear();
+    this.router.navigate ( [ '/' ] );    
+
   }
 
   getToken(): string {
