@@ -1,0 +1,38 @@
+#container {
+    height: 100vh;
+    width: 100%;
+    z-index: 9999999999;
+}
+
+#fondo {
+    background-image: url('../../../assets/images/login_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.w-100 {
+    width: 100%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.btn {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn-email {
+    color: #fff;
+    background-color: #2672ec;
+    border-color: rgba(0,0,0,0.2);
+}
