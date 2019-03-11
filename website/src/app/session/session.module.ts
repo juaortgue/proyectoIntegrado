@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule, MatCardModule, MatInputModule, MatCheckboxModule, MatButtonModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 import { SessionRoutes } from './session.routing';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,6 +21,7 @@ import { SignupComponent } from './signup/signup.component';
     MatIconModule,
     MatCardModule,
     MatInputModule,
+    MatSnackBarModule,
     MatCheckboxModule,
     MatButtonModule,
     FlexLayoutModule,

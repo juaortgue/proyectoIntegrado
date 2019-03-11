@@ -12,9 +12,9 @@
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
-                  <input matInput placeholder="Email" [formControl]="form.controls['uname']">
+                  <input matInput placeholder="Email" [formControl]="form.controls['email']">
                 </mat-form-field>
-                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
+                <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="mat-text-warn">Email is required.</small>
               </div>
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
