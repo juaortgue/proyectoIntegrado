@@ -3,6 +3,8 @@ import user from './user'
 import auth from './auth'
 import gym from './gym'
 import category from './category'
+import exercise from './exercise'
+import training from './training'
 
 const router = new Router()
 
@@ -33,5 +35,7 @@ router.use('/users', user)
 router.use('/auth', auth)
 router.use('/gyms', gym)
 router.use('/categories', category)
+router.use('/exercises', exercise)
+router.use('/training', training)
 
 export default router
