@@ -5,18 +5,18 @@ export const create = ({ bodymen: { body } }, res, next) =>
   Category.create(body)
     .then((category) => {category.view(true)})
     .then(success(res, 201))
-    .catch(next)
-    /*.catch((err) => {
+    //.catch(next)
+    .catch((err) => {
       if (err.name === 'MongoError' && err.code === 11000) {
         res.status(409).json({
           valid: false,
           param: 'name',
-          message: 'name already registered'
+          message: 'category already registered'
         })
       } else {
         next(err)
       }
-    })*/
+    })
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Category.count(query)
