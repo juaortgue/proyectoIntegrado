@@ -37,6 +37,9 @@ const gymSchema = new Schema({
     type: String,
     required: true,
     trim: true
+  },
+  picture: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -59,6 +62,7 @@ gymSchema.methods = {
       position: this.position,
       price: this.price,
       description: this.description,
+      picture: this.picture,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
