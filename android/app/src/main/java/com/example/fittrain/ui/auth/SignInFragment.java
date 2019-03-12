@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.fittrain.R;
 
@@ -19,6 +20,7 @@ public class SignInFragment extends Fragment {
     private FragmentTransaction fragmentChanger;
     private Fragment signUpFragment;
     private Button btnSignIn, btnGoSignUp;
+    private EditText editTextEmail, editTextPassword;
     private Context ctx;
     public SignInFragment() {
         // Required empty public constructor
@@ -38,7 +40,8 @@ public class SignInFragment extends Fragment {
         signUpFragment = new SignUpFragment();
         btnGoSignUp = v.findViewById(R.id.buttonGoRegister);
         btnSignIn = v.findViewById(R.id.buttonLogin);
-
+        editTextEmail = v.findViewById(R.id.editTextEmail);
+        editTextPassword = v.findViewById(R.id.editTextPassword);
         btnGoSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +58,7 @@ public class SignInFragment extends Fragment {
 
     }
     public void doLogin(){
+
 
     }
 
