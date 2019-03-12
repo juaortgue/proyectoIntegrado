@@ -16,6 +16,11 @@ public class UserResponse {
 
     public UserResponse() {
     }
+    public UserResponse(String email, String password) {
+        this.email = email;
+        this.password = password;
+
+    }
 
     public UserResponse(String id, String email, String password, String name, String role, String picture, int weight, int height, boolean gender, int trainingYears) {
         this.id = id;

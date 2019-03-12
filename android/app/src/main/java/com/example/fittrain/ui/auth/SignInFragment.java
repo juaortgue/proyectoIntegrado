@@ -89,7 +89,7 @@ public class SignInFragment extends Fragment {
                         Log.e("RequestError", response.message());
                         Toast.makeText(ctx, "Error while trying to login", Toast.LENGTH_SHORT).show();
                     } else {
-                        
+
 
                         // exito
                         UtilToken.setToken(ctx, response.body().getToken());
