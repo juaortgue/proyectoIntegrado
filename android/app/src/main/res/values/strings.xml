@@ -16,4 +16,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="loginTitle">SignIn</string>
+    <string name="appName">Fit Train</string>
+    <string name="register">SignUp</string>
+    <string name="login">Login</string>
+    <string name="remember">Remember password.</string>
 </resources>

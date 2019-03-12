@@ -12,10 +12,10 @@ import com.example.fittrain.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUp extends Fragment {
+public class SignUpFragment extends Fragment {
 
 
-    public SignUp() {
+    public SignUpFragment() {
         // Required empty public constructor
     }
 

@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "3cfea25e-f151-46c0-be5e-9575e7d5ea1f",
+		"name": "fitTrainOrtizGuerraJuanAntonio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"email\": \"admin3@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin2\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 2\n}"
+						},
+						"url": {
+							"raw": "{{url}}users?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}users"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}users/me?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"me"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin3@gmail.com",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}auth?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}auth"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}users/5c876c8581b59d1f652f5797?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"5c876c8581b59d1f652f5797"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}users?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}users"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"email\": \"admin2@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin3\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": false,\n\t\"trainingYears\": 5\n}"
+						},
+						"url": {
+							"raw": "{{url}}users/5c8774a4cf8f542719675d69?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"5c8774a4cf8f542719675d69"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "gym",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"mcfit\",\n\t\"address\": \"calle condes de bustillo, 17\",\n\t\"city\": \"sevilla\",\n\t\"province\": \"sevilla\",\n\t\"location\": \"37.3886303, -5.9953171\",\n\t\"zipcode\": \"41010\",\n\t\"price\": 24,\n\t\"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n\t\"position\": \"37.3886303, -5.9953171\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n \n}"
+						},
+						"url": {
+							"raw": "{{url}}gyms?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"mcfit\",\n    \"address\": \"calle condes de bustillo, 17\",\n    \"province\": \"sevilla\",\n    \"city\": \"sevilla\",\n    \"zipcode\": \"41010\",\n    \"position\": \"37.3886303, -5.9953171\",\n    \"price\": 24,\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts",
+							"host": [
+								"{{url}}gyms"
+							],
+							"path": [
+								"5c877bfc45fe8e2b2c2fa046"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"path": [
+								"5c877bfc45fe8e2b2c2fa046"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}gyms/5c877ca7d76a532b6395eced?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"path": [
+								"5c877ca7d76a532b6395eced"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}gyms?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}categories?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}categories"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"aerobico\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}categories?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}categories"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
