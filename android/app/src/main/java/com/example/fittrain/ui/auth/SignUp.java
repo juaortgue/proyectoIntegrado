@@ -1,4 +1,4 @@
-package com.example.fittrain.ui.login;
+package com.example.fittrain.ui.auth;
 
 
 import android.os.Bundle;
