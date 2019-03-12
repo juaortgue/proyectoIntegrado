@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="276dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:background="@drawable/buttonround"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkRecordar" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonGoRegister"
         android:layout_width="276dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
