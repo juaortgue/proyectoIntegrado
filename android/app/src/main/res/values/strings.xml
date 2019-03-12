@@ -23,4 +23,7 @@
     <string name="register">SignUp</string>
     <string name="login">Login</string>
     <string name="remember">Remember password.</string>
+    <string name="cancel">Cancel</string>
+    <string name="repeatPassword">Repeat password</string>
+    <string name="goLogin">Go sign in</string>
 </resources>

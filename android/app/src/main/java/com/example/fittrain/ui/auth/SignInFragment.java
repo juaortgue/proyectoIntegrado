@@ -18,7 +18,7 @@ import com.example.fittrain.R;
 public class SignInFragment extends Fragment {
     private FragmentTransaction fragmentChanger;
     private Fragment signUpFragment;
-    private Button btnSignIn, btnGoSignUp, btnSignUp, btnGoSignIn;
+    private Button btnSignIn, btnGoSignUp;
     private Context ctx;
     public SignInFragment() {
         // Required empty public constructor
@@ -39,7 +39,6 @@ public class SignInFragment extends Fragment {
         btnGoSignUp = v.findViewById(R.id.buttonGoRegister);
         btnSignIn = v.findViewById(R.id.buttonLogin);
 
-
         btnGoSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +46,15 @@ public class SignInFragment extends Fragment {
                 fragmentChanger.commit();
             }
         });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLogin();
+            }
+        });
+
+    }
+    public void doLogin(){
 
     }
 
