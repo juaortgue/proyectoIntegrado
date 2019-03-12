@@ -2,28 +2,41 @@ import mongoose, { Schema } from 'mongoose'
 
 const gymSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    index: true,
+    trim: true,
+    required: true
   },
   address: {
-    type: String
+    type: String,
+    required: true
   },
   province: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   },
   city: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   },
   zipcode: {
-    type: String
+    type: String,
+    required: true
   },
   position: {
-    type: String
+    type: String,
+    required: true
   },
   price: {
-    type: String
+    type: Number,
+    required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   }
 }, {
   timestamps: true,
