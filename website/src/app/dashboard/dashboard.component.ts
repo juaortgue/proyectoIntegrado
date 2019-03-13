@@ -4,6 +4,8 @@ import { AuthenticationService } from '../services/authentication.service';
 import { MatDialog, MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { UserServiceService } from '../services/user-service.service';
+import { UserResponse } from '../interfaces/user-response';
+import { DeleteUserDialogComponent } from '../dialogs/delete-user-dialog/delete-user-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,7 @@ import { UserServiceService } from '../services/user-service.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
-  constructor(private snackBar: MatSnackBar, private router: Router ,private authService: AuthenticationService, private userService: UserServiceService) {}
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar, private router: Router ,private authService: AuthenticationService, private userService: UserServiceService) {}
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSource;
@@ -28,19 +30,24 @@ export class DashboardComponent implements OnInit{
       this.getAllUsers();
     }
   }
+  //it permits clients delete users
+  openDialogDeleteUser(u: UserResponse) {
+    const deleteUserDialogComponent = this.dialog.open(DeleteUserDialogComponent, { data: { user: u } });
+    deleteUserDialogComponent.afterClosed().subscribe(result => {
+      this.getAllUsers();
+    });
+  }
  
   getAllUsers() {
     this.userService.getAllUsers().subscribe(userList => {
       this.dataSource = new MatTableDataSource(userList.rows);
       this.dataSource.paginator = this.paginator;
-      console.log('AQUI')
       console.log(userList.rows)
       this.snackBar.open('Users obtained successfully.', 'Close', {
         duration: 3000,
         verticalPosition: 'top'
       });
     }, error => {
-      console.log('AQUI2')
       console.log(error)
       this.snackBar.open('Error obtaining users', 'Close', {
         duration: 3000,

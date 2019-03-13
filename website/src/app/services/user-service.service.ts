@@ -13,6 +13,8 @@ const userUrl = `${environment.apiUrl}/users`;
 export class UserServiceService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
+  token = `?access_token=${this.authService.getToken()}`;
+  
   getAllUsers(): Observable<UserContainerResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
@@ -21,6 +23,9 @@ export class UserServiceService {
       })
     };
     return this.http.get<UserContainerResponse>(`${userUrl}`, requestOptions);
+  }
+  remove(id: string): Observable<UserResponse[]> {
+    return this.http.delete<UserResponse[]>(`${userUrl}/${id}${this.token}`);
   }
 
 

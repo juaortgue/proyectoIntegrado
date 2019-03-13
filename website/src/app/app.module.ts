@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatTableModule } from '@angular/material'  
 
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
@@ -58,6 +58,7 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
+import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -84,12 +85,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionLinkDirective,
     AccordionDirective,
     LogoutDialogComponent,
+    DeleteUserDialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -128,6 +131,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LogoutDialogComponent]
+  entryComponents: [LogoutDialogComponent, DeleteUserDialogComponent]
 })
 export class AppModule { }
