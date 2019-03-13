@@ -1,4 +1,4 @@
-.white{
+/*.white{
     background-color: white;
 }
 img {
@@ -19,7 +19,7 @@ img {
     margin:auto;
     /*position: relative;
     left:7.1%;
-    width: 94.25%;*/
+    width: 94.25%;
 }
 .container{
     width: 100vh;
@@ -41,7 +41,25 @@ img {
     .mat-icon {
         color: white;
     }
-}
+}*/
 
 
 
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .rojo{
+    color:red;
+    background-color: red;
+  }
+  
+  .container {
+    height: 100vh;
+    width: 100vw;
+    margin-left: 10px;
+  }

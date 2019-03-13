@@ -9,6 +9,8 @@ import { MatTableModule } from '@angular/material'
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 
+
+import {MatDialogModule} from '@angular/material/dialog'; 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -53,6 +55,7 @@ import {
 
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
+import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -78,11 +81,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
+    LogoutDialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpClientModule,
@@ -99,6 +102,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatMenuModule,
     MatCheckboxModule,
     MatIconModule,
+    MatDialogModule,
     MatButtonModule,
     MatTableModule,
     MatInputModule,
@@ -120,6 +124,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LogoutDialogComponent]
 })
 export class AppModule { }

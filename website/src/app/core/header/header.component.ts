@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 import * as screenfull from 'screenfull';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import { LogoutDialogComponent } from 'src/app/dialogs/logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +14,16 @@ export class HeaderComponent {
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleNotificationSidenav = new EventEmitter<void>();
 
-  constructor(private authService: AuthenticationService) {
+  constructor(public dialog: MatDialog) {
   }
-  logout(){
-    console.log('se mete')
-    this.authService.logout();
+  
+  openLogoutDialog() {
+    const dialogConfig = new MatDialogConfig();
+	
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    
+    this.dialog.open(LogoutDialogComponent, dialogConfig);
     
   }
 
