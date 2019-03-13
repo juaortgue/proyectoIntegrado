@@ -21,7 +21,7 @@ const { email, password, name, picture, role, age, weight, height, gender, train
  * @apiError 401 Admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  master(),
   query(),
   index)
 
@@ -46,6 +46,7 @@ router.get('/me',
  * @apiError 404 User not found.
  */
 router.get('/:id',
+  master(),
   show)
 
 /**

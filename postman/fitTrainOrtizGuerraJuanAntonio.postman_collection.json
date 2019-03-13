@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3cfea25e-f151-46c0-be5e-9575e7d5ea1f",
+		"_postman_id": "a46a2cab-758f-42e3-8986-88073eee7007",
 		"name": "fitTrainOrtizGuerraJuanAntonio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,37 +8,6 @@
 		{
 			"name": "users",
 			"item": [
-				{
-					"name": "signup",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\n\t\"email\": \"admin3@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin2\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 2\n}"
-						},
-						"url": {
-							"raw": "{{url}}users?access_token={{MASTER_KEY}}",
-							"host": [
-								"{{url}}users"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{MASTER_KEY}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "me",
 					"protocolProfileBehavior": {
@@ -70,6 +39,37 @@
 								{
 									"key": "access_token",
 									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"email\": \"admin3@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin2\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 2\n}"
+						},
+						"url": {
+							"raw": "{{url}}users?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}users"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
 								}
 							]
 						}
@@ -157,40 +157,6 @@
 					"response": []
 				},
 				{
-					"name": "getAll",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}users?access_token={{ACCESS_TOKEN}}",
-							"host": [
-								"{{url}}users"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "update",
 					"request": {
 						"method": "PUT",
@@ -223,16 +189,14 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "gym",
-			"item": [
+				},
 				{
-					"name": "add",
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -243,23 +207,28 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"mcfit\",\n\t\"address\": \"calle condes de bustillo, 17\",\n\t\"city\": \"sevilla\",\n\t\"province\": \"sevilla\",\n\t\"location\": \"37.3886303, -5.9953171\",\n\t\"zipcode\": \"41010\",\n\t\"price\": 24,\n\t\"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n\t\"position\": \"37.3886303, -5.9953171\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n \n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}gyms?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}users?access_token={{MASTER_KEY}}",
 							"host": [
-								"{{url}}gyms"
+								"{{url}}users"
 							],
 							"query": [
 								{
 									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
+									"value": "{{MASTER_KEY}}"
 								}
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "gym",
+			"item": [
 				{
 					"name": "update",
 					"request": {
@@ -295,6 +264,37 @@
 					"response": []
 				},
 				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"mcfit\",\n\t\"address\": \"calle condes de bustillo, 17\",\n\t\"city\": \"sevilla\",\n\t\"province\": \"sevilla\",\n\t\"location\": \"37.3886303, -5.9953171\",\n\t\"zipcode\": \"41010\",\n\t\"price\": 24,\n\t\"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n\t\"position\": \"37.3886303, -5.9953171\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n \n}"
+						},
+						"url": {
+							"raw": "{{url}}gyms?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
@@ -315,6 +315,30 @@
 								{
 									"key": "access_token",
 									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}gyms?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
 								}
 							]
 						}
@@ -347,9 +371,14 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
 				{
-					"name": "getAll",
+					"name": "getOne",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -358,25 +387,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}gyms?access_token={{MASTER_KEY}}",
-							"host": [
-								"{{url}}gyms"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{MASTER_KEY}}"
-								}
-							]
+							"raw": ""
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "category",
-			"item": [
+				},
 				{
 					"name": "getAll",
 					"request": {
@@ -428,21 +443,6 @@
 									"value": "{{ACCESS_TOKEN}}"
 								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getOne",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": ""
 						}
 					},
 					"response": []

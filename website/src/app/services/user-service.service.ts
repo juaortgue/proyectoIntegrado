@@ -14,7 +14,8 @@ export class UserServiceService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
   token = `?access_token=${this.authService.getToken()}`;
-  
+  masterKey = `?access_token=${environment.masterKey}`;
+
   getAllUsers(): Observable<UserContainerResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
@@ -22,7 +23,7 @@ export class UserServiceService {
         'Authorization': `Bearer ${this.authService.getToken()}`
       })
     };
-    return this.http.get<UserContainerResponse>(`${userUrl}`, requestOptions);
+    return this.http.get<UserContainerResponse>(`${userUrl}${this.masterKey}`);
   }
   remove(id: string): Observable<UserResponse[]> {
     return this.http.delete<UserResponse[]>(`${userUrl}/${id}${this.token}`);
