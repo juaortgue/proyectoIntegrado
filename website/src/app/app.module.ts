@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 
 
+
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import {MatDialogModule} from '@angular/material/dialog'; 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -100,6 +102,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatSidenavModule,
     MatCardModule,
     MatMenuModule,
+    MatSnackBarModule,
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
