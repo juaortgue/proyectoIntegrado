@@ -10,7 +10,9 @@ import { DashboardRoutes } from './dashboard.routing';
 import { TrainingComponent } from './training/training.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { GymsComponent } from './gyms/gyms.component';
-import { MatTableModule } from '@angular/material'  
+import { MatTableModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { MatTableModule } from '@angular/material'
     FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent ]
 })

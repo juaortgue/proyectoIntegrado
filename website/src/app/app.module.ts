@@ -3,11 +3,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { MatTableModule } from '@angular/material'  
 
+
+import { MatPaginatorModule } from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
-
+import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -111,6 +112,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDialogModule,
     MatButtonModule,
     MatTableModule,
+    MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,
