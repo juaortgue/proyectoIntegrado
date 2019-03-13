@@ -41,13 +41,7 @@ export class DashboardComponent implements OnInit{
     this.userService.getAllUsers().subscribe(userList => {
       this.dataSource = new MatTableDataSource(userList.rows);
       this.dataSource.paginator = this.paginator;
-      console.log(userList.rows);
-      this.snackBar.open('Users obtained successfully.', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top'
-      });
     }, error => {
-      console.log(error);
       this.snackBar.open('Error obtaining users', 'Close', {
         duration: 3000,
         verticalPosition: 'top'

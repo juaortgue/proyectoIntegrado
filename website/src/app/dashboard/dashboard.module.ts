@@ -12,6 +12,7 @@ import { ExercisesComponent } from './exercises/exercises.component';
 import { GymsComponent } from './gyms/gyms.component';
 import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { MatPaginatorModule } from '@angular/material';
     MatTableModule,
     MatPaginatorModule
   ],
-  declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent ]
+  declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent, CategoryComponent ]
 })
 
 export class DashboardModule {}

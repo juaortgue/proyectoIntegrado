@@ -60,6 +60,8 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
+import { DeleteCategoryDialogComponent } from './dialogs/delete-category-dialog/delete-category-dialog.component';
+import { CreateCategoryDialogComponent } from './dialogs/create-category-dialog/create-category-dialog.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -87,6 +89,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionDirective,
     LogoutDialogComponent,
     DeleteUserDialogComponent,
+    DeleteCategoryDialogComponent,
+    CreateCategoryDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,6 +137,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LogoutDialogComponent, DeleteUserDialogComponent]
+  entryComponents: [DeleteCategoryDialogComponent, CreateCategoryDialogComponent, LogoutDialogComponent, DeleteUserDialogComponent]
 })
 export class AppModule { }

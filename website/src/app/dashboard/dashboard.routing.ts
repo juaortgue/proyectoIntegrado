@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { TrainingComponent } from './training/training.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { GymsComponent } from './gyms/gyms.component';
+import { CategoryComponent } from './category/category.component';
 
 export const DashboardRoutes: Routes = [{
   path: 'dashboard',
@@ -20,7 +21,12 @@ export const DashboardRoutes: Routes = [{
 {
   path: 'gyms',
   component: GymsComponent
-}/*,
+},
+{
+  path: 'categories',
+  component: CategoryComponent
+}
+/*,
 {
   path: 'usuario',
   component: ListausuarioComponent

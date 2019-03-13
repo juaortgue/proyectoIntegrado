@@ -45,8 +45,13 @@ const MENUITEMS = [
     name: 'GYMS',
     type: 'link',
     icon: 'account_balance'
+  },
+  {
+    state: 'categories',
+    name: 'CATEGORIES',
+    type: 'link',
+    icon: 'category'
   }
-  
 ];
 
 @Injectable()
