@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { CategoryContainerResponse } from '../interfaces/categoryContainer-response';
 import { AuthenticationService } from './authentication.service';
 import { environment } from 'src/environments/environment';
+import { CategoryResponse } from 'src/app/interfaces/category-response';
+import { CategoryCreateDto } from '../dto/create-category.dto';
 const categoryUrl = `${environment.apiUrl}/categories`;
 
 @Injectable({
@@ -19,15 +21,15 @@ export class CategoryService {
     return this.http.get<CategoryContainerResponse>(`${categoryUrl}${this.masterKey}`);
   }
 
-  /*createCategory(categoryCreateDto: CategoryCreateDto): Observable<Category> {
-    return this.http.post<Category>(`${categoryUrl}${this.token}`, categoryCreateDto);
+  createCategory(categoryCreateDto: CategoryCreateDto): Observable<CategoryResponse> {
+    return this.http.post<CategoryResponse>(`${categoryUrl}${this.token}`, categoryCreateDto);
   }
 
-  updateCategory(id: string, resource: CategoryCreateDto): Observable<Category> {
-    return this.http.put<Category>(`${categoryUrl}/${id}${this.token}`, resource);
+  updateCategory(id: string, resource: CategoryCreateDto): Observable<CategoryResponse> {
+    return this.http.put<CategoryResponse>(`${categoryUrl}/${id}${this.token}`, resource);
   }
 
-  deleteCategory(id: number): Observable<Category> {
-    return this.http.delete<Category>(`${categoryUrl}/${id}${this.token}`);
-  }*/
+  deleteCategory(id: number): Observable<CategoryResponse> {
+    return this.http.delete<CategoryResponse>(`${categoryUrl}/${id}${this.token}`);
+  }
 }
