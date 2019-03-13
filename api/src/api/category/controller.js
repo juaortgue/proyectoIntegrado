@@ -1,6 +1,22 @@
 import { success, notFound } from '../../services/response/'
 import { Category } from '.'
-
+export const create = ({ bodymen: { body } }, res, next) => {
+  Category.create(body)
+    .then((category) => category.view(true))
+    .then(success(res, 201))
+    .catch((err) => {
+      if (err.name === 'MongoError' && err.code === 11000) {
+        res.status(409).json({
+          valid: false,
+          param: 'name',
+          message: 'category already registered'
+        })
+      } else {
+        next(err)
+      }
+    })
+    .catch(next)
+}/*
 export const create = ({ bodymen: { body } }, res, next) =>
   Category.create(body)
     .then((category) => {category.view(true)})
@@ -17,7 +33,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
         next(err)
       }
     })
-
+*/
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Category.count(query)
     .then(count => Category.find(query, select, cursor)
