@@ -28,11 +28,11 @@ export class DeleteCategoryDialogComponent implements OnInit {
       return false;
     }
   }
-  // delete category
+  // delete gym
   delete() {
     this.categoryService.deleteCategory(this.data.category.id).subscribe(result => {
       this.dialogRef.close('confirm');
-    }, error => this.snackBar.open('There was an error when trying to delete this user.', 'Close', { duration: 3000 }));
+    }, error => this.snackBar.open('There was an error when trying to delete this gym.', 'Close', { duration: 3000 }));
   }
 
 }

@@ -62,6 +62,8 @@ import { LogoutDialogComponent } from './dialogs/logout-dialog/logout-dialog.com
 import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
 import { DeleteCategoryDialogComponent } from './dialogs/delete-category-dialog/delete-category-dialog.component';
 import { CreateCategoryDialogComponent } from './dialogs/create-category-dialog/create-category-dialog.component';
+import { DeleteGymDialogComponent } from './dialogs/delete-gym-dialog/delete-gym-dialog.component';
+import { CreateGymDialogComponent } from './dialogs/create-gym-dialog/create-gym-dialog.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -91,6 +93,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DeleteUserDialogComponent,
     DeleteCategoryDialogComponent,
     CreateCategoryDialogComponent,
+    DeleteGymDialogComponent,
+    CreateGymDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,6 +141,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteCategoryDialogComponent, CreateCategoryDialogComponent, LogoutDialogComponent, DeleteUserDialogComponent]
+  entryComponents: [CreateGymDialogComponent, DeleteGymDialogComponent,DeleteCategoryDialogComponent, CreateCategoryDialogComponent, LogoutDialogComponent, DeleteUserDialogComponent]
 })
 export class AppModule { }

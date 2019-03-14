@@ -9,10 +9,11 @@ import { CategoryResponse } from '../interfaces/category-response';
 import { GymCreateDto } from '../dto/gym-create.dto';
 import { GymResponse } from '../interfaces/gym-response';
 
+
+const gymUrl = `${environment.apiUrl}/gyms`;
 @Injectable({
   providedIn: 'root'
 })
-const gymUrl = `${environment.apiUrl}/gyms`;
 export class GymService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
@@ -23,15 +24,15 @@ export class GymService {
     return this.http.get<GymContainerResponse>(`${gymUrl}${this.masterKey}`);
   }
 
-  createCategory(gymCreateDto: GymCreateDto): Observable<GymResponse> {
+  createGym(gymCreateDto: GymCreateDto): Observable<GymResponse> {
     return this.http.post<GymResponse>(`${gymUrl}${this.token}`, gymCreateDto);
   }
 
-  updateCategory(id: string, resource: GymCreateDto): Observable<GymResponse> {
+  updateGym(id: string, resource: GymCreateDto): Observable<GymResponse> {
     return this.http.put<GymResponse>(`${gymUrl}/${id}${this.token}`, resource);
   }
 
-  deleteCategory(id: number): Observable<GymResponse> {
+  deleteGym(id: number): Observable<GymResponse> {
     return this.http.delete<GymResponse>(`${gymUrl}/${id}${this.token}`);
   }
 }
