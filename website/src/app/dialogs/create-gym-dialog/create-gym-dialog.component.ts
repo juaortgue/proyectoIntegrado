@@ -14,12 +14,13 @@ export class CreateGymDialogComponent implements OnInit {
   form: FormGroup;
   categoryId: string;
   allProvinces;
+  allCitiesFiltered:any[] = [];
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
   private gymService: GymService, public dialogRef: MatDialogRef<CreateGymDialogComponent>) { }
 
   ngOnInit() {
     this.allProvinces = Pselect.provincesData;
-    console.log(this.allProvinces)
+    
     this.createForm();
     if (this.data) {
       this.edit = true;
@@ -27,6 +28,34 @@ export class CreateGymDialogComponent implements OnInit {
     } else {
       this.edit = false;
     }
+  }
+  /*onProvinceSelected = function (event) {
+    var province = event.target.value;
+    // Remove current municipe elements
+    this._munElement.innerHTML = '';
+  
+    // Append new municipes list filtered by selected province
+    for (var i = 0; i < municipesData.length; i++) {
+      var municipe = municipesData[i];
+      if (municipe.id.indexOf(province) === 0) {
+        _addOption(this._munElement, municipe.nm, municipe.id);
+      }
+    }
+  };*/
+  filterCities(){
+    var allCities = Pselect.municipesData;
+    var province = this.form.get('province').value;
+    for (var i = 0; i < allCities.length; i++) {
+      console.log('se mete')
+      var municipe = allCities[i]
+
+      if (municipe.id.indexOf(province) === 0) {
+        this.allCitiesFiltered.push(municipe);
+      }
+    }
+    
+    this.form.controls['city'].setValue(this.allCitiesFiltered);
+    console.log(this.allCitiesFiltered)
   }
   createForm() {
     if (this.data) {

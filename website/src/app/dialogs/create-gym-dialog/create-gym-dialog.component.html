@@ -11,10 +11,15 @@
           <input matInput placeholder="Zipcode" type="text" [formControl]="form.controls['zipcode']" required>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Province" [formControl]="form.controls['province']" multiple>
+          <mat-select (selectionChange)="filterCities()" placeholder="Province" [formControl]="form.controls['province']">
             <mat-option *ngFor="let province of allProvinces" [value]="province.id">{{province.nm}}</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="City" [formControl]="form.controls['city']" >
+              <mat-option *ngFor="let city of allCitiesFiltered" [value]="city.id">{{city.nm}}</mat-option>
+            </mat-select>
+          </mat-form-field>
     
   </div>
   <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
