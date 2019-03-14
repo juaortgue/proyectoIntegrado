@@ -24,6 +24,7 @@ export class CreateCategoryDialogComponent implements OnInit {
       this.edit = true;
       this.categoryId = this.data.category.id;
     } else {
+      
       this.edit = false;
     }
   }

@@ -2,7 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { GymService } from 'src/app/services/gym.service';
-const Pselect = require('../create-gym-dialog/pselect.js');
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs';
+import * as SampleJson from '../../../assets/province.json';
+import * as Cities from '../../../assets/cities.json';
+
+//const Pselect = require('../create-gym-dialog/pselect.js');
 @Component({
   selector: 'app-create-gym-dialog',
   templateUrl: './create-gym-dialog.component.html',
@@ -14,13 +19,14 @@ export class CreateGymDialogComponent implements OnInit {
   form: FormGroup;
   categoryId: string;
   allProvinces;
-  allCitiesFiltered:any[] = [];
+  allCitiesFiltered: any[] = [];
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
   private gymService: GymService, public dialogRef: MatDialogRef<CreateGymDialogComponent>) { }
 
   ngOnInit() {
-    this.allProvinces = Pselect.provincesData;
-    
+    // this.allProvinces = Pselect.provincesData;
+    this.allProvinces = SampleJson;
+    this.allProvinces = this.transform(this.allProvinces);
     this.createForm();
     if (this.data) {
       this.edit = true;
@@ -29,6 +35,16 @@ export class CreateGymDialogComponent implements OnInit {
       this.edit = false;
     }
   }
+  transform(objects: any = []) {
+    return Object.values(objects);
+  }
+
+  /*public getJSON(): Observable<any> {
+    return this.http.get('../../util/province.json')
+                    .map((res: any) => res.json())
+                    .catch((error: any) => console.log(error));
+
+}*/
   /*onProvinceSelected = function (event) {
     var province = event.target.value;
     // Remove current municipe elements
@@ -43,14 +59,15 @@ export class CreateGymDialogComponent implements OnInit {
     }
   };*/
   filterCities(){
-    var allCities = Pselect.municipesData;
+    var allCities = this.transform(Cities);
     var province = this.form.get('province').value;
     for (var i = 0; i < allCities.length; i++) {
-      console.log('se mete')
-      var municipe = allCities[i]
+      var municipe = allCities[i];
 
       if (municipe.id.indexOf(province) === 0) {
         this.allCitiesFiltered.push(municipe);
+        console.log('LEL')
+        console.log('')
       }
     }
     
