@@ -1,3 +1,49 @@
-<p>
-  create-gym-dialog works!
-</p>
+<h1 mat-dialog-title><ng-template [ngIf]="!edit">New</ng-template><ng-template [ngIf]="edit">Edit</ng-template> Gym</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!edit;else edit_form">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
+      <mat-form-field class="w-100">
+          <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
+        </mat-form-field>
+      <mat-form-field class="w-100">
+          <input matInput placeholder="Address" type="text" [formControl]="form.controls['address']" required>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Zipcode" type="text" [formControl]="form.controls['zipcode']" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Province" [formControl]="form.controls['province']" multiple>
+            <mat-option *ngFor="let province of allProvinces" [value]="province.id">{{province.nm}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+  </div>
+  <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">ADD</button>
+  </div>
+</form>
+<ng-template #edit_form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
+        <mat-form-field class="w-100">
+            <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
+          </mat-form-field>
+        <mat-form-field class="w-100">
+            <input matInput placeholder="Address" type="text" [formControl]="form.controls['address']" required>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Zipcode" type="text" [formControl]="form.controls['zipcode']" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Province" [formControl]="form.controls['province']" multiple>
+              <mat-option *ngFor="let province of allProvinces" [value]="province.nm">{{poi.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+      
+      
+    </div>
+    <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">EDIT</button>
+    </div>
+  </form>
+</ng-template>
