@@ -5,6 +5,8 @@ import { GymService } from 'src/app/services/gym.service';
 import { MatDialog, MatSnackBar, MatPaginator, MatTableDataSource } from '@angular/material';
 import { GymResponse } from 'src/app/interfaces/gym-response';
 import { DeleteGymDialogComponent } from 'src/app/dialogs/delete-gym-dialog/delete-gym-dialog.component';
+import { CreateGymDialogComponent } from 'src/app/dialogs/create-gym-dialog/create-gym-dialog.component';
+import { GymCreateDto } from 'src/app/dto/gym-create.dto';
 
 @Component({
   selector: 'app-gyms',
@@ -50,6 +52,17 @@ export class GymsComponent implements OnInit {
   openDialogDeleteGym(g: GymResponse) {
     const dialogDeleteGym = this.dialog.open(DeleteGymDialogComponent, { data: { gym: g } });
     dialogDeleteGym.afterClosed().subscribe(result => {
+      this.getAllGyms();
+    });
+  }
+  openDialogNewGym() {
+    const dialogNewGym = this.dialog.open(CreateGymDialogComponent, { width: '500px' });
+    dialogNewGym.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,
+      err => this.snackBar.open('There was an error when we were creating a new Gym.', 'Close', { duration: 3000 }));
+  }
+  openDialogEditGym(gymCreateDto: GymCreateDto) {
+    const dialogUpdateGym = this.dialog.open(CreateGymDialogComponent, { width: '500px', data: { gym: GymCreateDto } });
+    dialogUpdateGym.afterClosed().subscribe(result => {
       this.getAllGyms();
     });
   }
