@@ -51,6 +51,8 @@ const gymSchema = new Schema({
 
 gymSchema.methods = {
   view (full) {
+
+  /*view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -70,8 +72,19 @@ gymSchema.methods = {
     return full ? {
       ...view
       // add properties for a full view
-    } : view
+    } : view*/
+    let view = {}
+    let fields = ['id', 'name', 'address', 'price', 'picture' ]
+
+    if (full) {
+      fields = [...fields, 'province', 'city', 'zipcode', 'position', 'description']
+    }
+
+    fields.forEach((field) => { view[field] = this[field] })
+
+    return view
   }
+
 }
 
 const model = mongoose.model('Gym', gymSchema)

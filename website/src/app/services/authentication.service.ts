@@ -5,6 +5,7 @@ import { LoginResponse } from '../interfaces/login-response';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+const masterKey= '{"access_token": "eZbDdICdMMhDPsvsP38p3BP5HTTjel95"}';
 
 const authUrl = `${environment.apiUrl}`;
 @Injectable({
@@ -26,7 +27,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient,private router: Router) { }
   login(loginDto: LoginDto): Observable<LoginResponse> {
     const requestOptions = this.request(loginDto.email, loginDto.password);
-    return this.http.post<LoginResponse>(`${authUrl}/auth`, environment.masterKey, requestOptions);
+    return this.http.post<LoginResponse>(`${authUrl}/auth`, masterKey, requestOptions);
   }
   setLoginData(loginResponse: LoginResponse) {
     localStorage.setItem('token', loginResponse.token);
