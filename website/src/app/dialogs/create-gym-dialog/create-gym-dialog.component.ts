@@ -6,6 +6,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import * as SampleJson from '../../../assets/province.json';
 import * as Cities from '../../../assets/cities.json';
+import { GymCreateDto } from 'src/app/dto/gym-create.dto';
 
 //const Pselect = require('../create-gym-dialog/pselect.js');
 @Component({
@@ -16,8 +17,9 @@ import * as Cities from '../../../assets/cities.json';
 export class CreateGymDialogComponent implements OnInit {
   edit: boolean;
   name: string;
+  
   form: FormGroup;
-  categoryId: string;
+  gymId: string;
   allProvinces;
   allCitiesFiltered: any[] = [];
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,7 +32,7 @@ export class CreateGymDialogComponent implements OnInit {
     this.createForm();
     if (this.data) {
       this.edit = true;
-      this.categoryId = this.data.category.id;
+      this.gymId = this.data.gym.id;
     } else {
       this.edit = false;
     }
@@ -63,16 +65,13 @@ export class CreateGymDialogComponent implements OnInit {
     var province = this.form.get('province').value;
     for (var i = 0; i < allCities.length; i++) {
       var municipe = allCities[i];
-
+      
       if (municipe.id.indexOf(province) === 0) {
         this.allCitiesFiltered.push(municipe);
-        console.log('LEL')
-        console.log('')
       }
     }
     
     this.form.controls['city'].setValue(this.allCitiesFiltered);
-    console.log(this.allCitiesFiltered)
   }
   createForm() {
     if (this.data) {
@@ -84,7 +83,7 @@ export class CreateGymDialogComponent implements OnInit {
         city: [this.data.gym.city, Validators.compose ([ Validators.required ])],
         price: [this.data.gym.price, Validators.compose ([ Validators.required ])],
         description: [this.data.gym.description, Validators.compose ([ Validators.required ])]
-
+        
 
 
       });
@@ -102,5 +101,14 @@ export class CreateGymDialogComponent implements OnInit {
       this.form = newForm;
     }
   }
+  /*addGym() {
+    const categoryCreateDto = new GymCreateDto(this.form.get('name'), this.form.get('address'), this.form.get('price'),'foto',
+    this.form.get('city'), this.form.get('zipcode'), this.form.get('description'), this.form.get('position'), this.form.get('province'));
+    this.categoryService.createCategory(categoryCreateDto).subscribe(
+      category => {
+        this.dialogRef.close('confirm');
+      }
+    );
+  }*/
 
 }
