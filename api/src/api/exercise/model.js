@@ -2,25 +2,39 @@ import mongoose, { Schema } from 'mongoose'
 
 const exerciseSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true
   },
   categoryId: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
   },
   series: {
-    type: String
+    type: Number,
+    required: true
   },
   repetitions: {
-    type: String
+    type: Number,
+    required: true
   },
   finishTime: {
-    type: String
+    type: String,
+    required: true
   },
   restTime: {
-    type: String
+    type: String,
+    required: true
   },
   gif: {
-    type: String
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
@@ -31,7 +45,7 @@ const exerciseSchema = new Schema({
 })
 
 exerciseSchema.methods = {
-  view (full) {
+  /*view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -50,7 +64,20 @@ exerciseSchema.methods = {
       ...view
       // add properties for a full view
     } : view
-  }
+  }*/
+  view (full) {
+
+      let view = {}
+      let fields = ['id', 'name', 'series', 'repetitions']
+  
+      if (full) {
+        fields = [...fields, 'finishTime', 'restTime','gif', 'categoryId', 'description']
+      }
+  
+      fields.forEach((field) => { view[field] = this[field] })
+  
+      return view
+    }
 }
 
 const model = mongoose.model('Exercise', exerciseSchema)
