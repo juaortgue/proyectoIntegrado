@@ -2,19 +2,26 @@ import mongoose, { Schema } from 'mongoose'
 
 const trainingSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    index: true,
+    trim: true,
+    required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   target: {
-    type: String
+    type: String,
+    required: true
   },
   time: {
-    type: String
+    type: String,
+    required: true
   },
   picture: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,
@@ -25,7 +32,7 @@ const trainingSchema = new Schema({
 })
 
 trainingSchema.methods = {
-  view (full) {
+  /*view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -42,7 +49,22 @@ trainingSchema.methods = {
       ...view
       // add properties for a full view
     } : view
-  }
+  }*/
+  view (full) {
+
+      let view = {}
+      let fields = ['id', 'name', 'target', 'time']
+  
+      if (full) {
+        fields = [...fields, 'description', 'city', 'picture']
+      }
+  
+      fields.forEach((field) => { view[field] = this[field] })
+  
+      return view
+    }
+  
+  
 }
 
 const model = mongoose.model('Training', trainingSchema)
