@@ -7,7 +7,7 @@ import { schema } from './model'
 export Gym, { schema } from './model'
 
 const router = new Router()
-const { name, address, province, city, zipcode, position, price, description, picture, deleteHash } = schema.tree
+const { name, address, province, city, zipcode, position, price, description, picture} = schema.tree
 
 /**
  * @api {post} /gyms Create gym

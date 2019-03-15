@@ -40,9 +40,6 @@ const gymSchema = new Schema({
   },
   picture: {
     type: String
-  },
-  deleteHash: {
-    type: String
   }
 }, {
   timestamps: true,
@@ -80,7 +77,7 @@ gymSchema.methods = {
     let fields = ['id', 'name', 'address', 'price', 'picture' ]
 
     if (full) {
-      fields = [...fields, 'province', 'city', 'zipcode', 'position', 'description', 'deleteHash']
+      fields = [...fields, 'province', 'city', 'zipcode', 'position', 'description',]
     }
 
     fields.forEach((field) => { view[field] = this[field] })
