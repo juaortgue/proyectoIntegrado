@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpRequest, HttpHeaders, HttpEventType, HttpResponse } from '@angular/common/http';
+import { GymCreateDto } from '../dto/gym-create.dto';
+const gymUrl = `${environment.apiUrl}/gyms`;
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +15,32 @@ export class UploadService {
   uploadUrl: string;
   token = `?access_token=${this.authService.getToken()}`;
   masterKey = `?access_token=${environment.masterKey}`;
-  public upload(files: Set<File>, idCanto: number): { [key: string]: Observable<number> } {
+  
+  public upload(files: Set<File>, newGym: GymCreateDto): { [key: string]: Observable<number> } {
     // this will be the our resulting map
-    this.uploadUrl = `https://infinite-hollows-38239.herokuapp.com/productos?access_token=${this.token}`;
+    
+    this.uploadUrl = `${gymUrl}${this.token}`;
     const status = {};
 
     files.forEach(file => {
       // create a new multipart-form for every file
       const formData: FormData = new FormData();
       formData.append('foto', file, file.name);
-      formData.append('nombre', 'Correa');
-      formData.append('codReferencia', '59127512');
-      formData.append('descripcion', 'Correa HAS de traccion 8');
-      formData.append('dimensiones', '3m x 60mm');
-      formData.append('distribuidor', '5c8a1d524b8399345d1bfbd1');
-      formData.append('categoria', '5c88fff7551c6100224c4cc3');
+      formData.append('name', newGym.name);
+      formData.append('address', newGym.address);
+      formData.append('city', newGym.city);
+      formData.append('description', newGym.description);
+      formData.append('position', newGym.position);
+      formData.append('price', newGym.price.toString());
+      formData.append('province', newGym.province);
+      formData.append('zipcode', newGym.zipcode);
+      
+
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
+      console.log('aquiii')
+      console.log(newGym)
       const req = new HttpRequest('POST', this.uploadUrl, formData, {
         reportProgress: true,
       });

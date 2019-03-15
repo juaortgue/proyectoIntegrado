@@ -55,6 +55,22 @@ export class GymsComponent implements OnInit {
       this.getAllGyms();
     });
   }
+  public openUploadDialog() {
+    const dialogRef = this.dialog.open(CreateGymDialogComponent,
+      {
+        width: '50%',
+        height: '50%',
+        data: { id: 1 }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.snackBar.open(
+        'El fichero se subió correctamente', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+    });
+  }
   openDialogNewGym() {
     const dialogNewGym = this.dialog.open(CreateGymDialogComponent, { width: '500px' });
     dialogNewGym.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,

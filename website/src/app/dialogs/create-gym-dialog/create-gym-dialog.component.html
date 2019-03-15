@@ -37,47 +37,12 @@
     
           </mat-list-item>
         </mat-list>
-        <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+        
     
   </div>
-  <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
+  <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+  <!--<div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
     <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">ADD</button>
-  </div>
+  </div>-->
 </form>
-<ng-template #edit_form>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
-      </mat-form-field>
-    <mat-form-field class="w-100">
-        <input matInput placeholder="Address" type="text" [formControl]="form.controls['address']" required>
-      </mat-form-field>
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Zipcode" type="text" [formControl]="form.controls['zipcode']" required>
-      </mat-form-field>
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Price" type="number" [formControl]="form.controls['price']" required>
-      </mat-form-field>
-      <mat-form-field class="w-100">
-        <input matInput placeholder="Province" type="text" [formControl]="form.controls['province']" required>
-      </mat-form-field>
-      <mat-form-field class="w-100">
-        <input matInput placeholder="City" type="text" [formControl]="form.controls['city']" required>
-      </mat-form-field>
-      
-        <mat-form-field class="example-full-width">
-          <input matInput #message maxlength="256" placeholder="Description" [formControl]="form.controls['description']" required>
-          <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-        </mat-form-field>
-      
-      
-      
-    </div>
-    <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">EDIT</button>
-    </div>
-  </form>
-</ng-template>

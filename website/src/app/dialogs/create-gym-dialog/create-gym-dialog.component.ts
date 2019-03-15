@@ -40,12 +40,13 @@ export class CreateGymDialogComponent implements OnInit {
     // this.allProvinces = Pselect.provincesData;
     
     this.createForm();
-    if (this.data) {
+    /*if (this.data) {
       this.edit = true;
       this.gymId = this.data.gym.id;
     } else {
       this.edit = false;
-    }
+    }*/
+    this.edit=false;
   }
 
 
@@ -69,7 +70,10 @@ export class CreateGymDialogComponent implements OnInit {
     this.uploading = true;
 
     // start the upload and save the progress map
-    this.progress = this.uploadService.upload(this.files, this.data.id);
+    const gymCreateDto = <GymCreateDto> this.form.value;
+
+    
+    this.progress = this.uploadService.upload(this.files,  <GymCreateDto> this.form.value);
     
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
@@ -112,7 +116,7 @@ export class CreateGymDialogComponent implements OnInit {
   
  
   createForm() {
-    if (this.data) {
+   /* if (this.data) {
       const editForm: FormGroup = this.fb.group ({
         name: [this.data.gym.name, Validators.compose ([ Validators.required ])],
         address: [this.data.gym.address, Validators.compose ([ Validators.required ])],
@@ -137,7 +141,17 @@ export class CreateGymDialogComponent implements OnInit {
         description: [null, Validators.compose ([ Validators.required ])]
       });
       this.form = newForm;
-    }
+    }*/
+    const newForm: FormGroup = this.fb.group ({
+      name: [null, Validators.compose ([ Validators.required ])],
+      address: [null, Validators.compose ([ Validators.required ])],
+      zipcode: [null, Validators.compose ([ Validators.required ])],
+      province: [null, Validators.compose ([ Validators.required ])],
+      city: [null, Validators.compose ([ Validators.required ])],
+      price: [null, Validators.compose ([ Validators.required ])],
+      description: [null, Validators.compose ([ Validators.required ])]
+    });
+    this.form = newForm;
   }
   addGym() {
     /*const gymCreateDto = new GymCreateDto(this.form.get('name'), this.form.get('address'), this.form.get('price'),'foto',
@@ -161,7 +175,7 @@ export class CreateGymDialogComponent implements OnInit {
     );
   }
   onSubmit() {
-    if (this.edit) {
+    /*if (this.edit) {
       const editGym: GymCreateDto = <GymCreateDto>this.form.value;
       console.log('aki kaxo pixa')
       console.log(this.gymId);
@@ -179,7 +193,23 @@ export class CreateGymDialogComponent implements OnInit {
       
       this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
-    }
+    }*/
+    let newGym: GymCreateDto = <GymCreateDto>this.form.value;
+      newGym = this.getPosition(newGym);
+      let position = '';
+      this.geoService.getLocation(newGym.address).subscribe(r => {
+      
+        position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+        position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+        newGym.position = position;
+        newGym.picture='foto'
+      
+      this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
+      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
+  
+      })
+      
+      
   }
   getPosition(newGym: GymCreateDto){
     let position ='';
