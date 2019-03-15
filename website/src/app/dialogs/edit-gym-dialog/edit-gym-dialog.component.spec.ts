@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditGymComponent } from './edit-gym.component';
+import { EditGymDialogComponent } from './edit-gym-dialog.component';
 
-describe('EditGymComponent', () => {
-  let component: EditGymComponent;
-  let fixture: ComponentFixture<EditGymComponent>;
+describe('EditGymDialogComponent', () => {
+  let component: EditGymDialogComponent;
+  let fixture: ComponentFixture<EditGymDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditGymComponent ]
+      declarations: [ EditGymDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditGymComponent);
+    fixture = TestBed.createComponent(EditGymDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,6 +8,7 @@ import { CategoryCreateDto } from '../dto/create-category.dto';
 import { CategoryResponse } from '../interfaces/category-response';
 import { GymCreateDto } from '../dto/gym-create.dto';
 import { GymResponse } from '../interfaces/gym-response';
+import { GymOneResponse } from '../interfaces/gym-one-response';
 
 
 const gymUrl = `${environment.apiUrl}/gyms`;
@@ -34,5 +35,8 @@ export class GymService {
 
   deleteGym(id: number): Observable<GymResponse> {
     return this.http.delete<GymResponse>(`${gymUrl}/${id}${this.token}`);
+  }
+  getOneGym(id:string): Observable<GymOneResponse> {
+    return this.http.get<GymOneResponse>(`${gymUrl}/${id}${this.masterKey}`);
   }
 }

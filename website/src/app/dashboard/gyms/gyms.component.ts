@@ -7,6 +7,7 @@ import { GymResponse } from 'src/app/interfaces/gym-response';
 import { DeleteGymDialogComponent } from 'src/app/dialogs/delete-gym-dialog/delete-gym-dialog.component';
 import { CreateGymDialogComponent } from 'src/app/dialogs/create-gym-dialog/create-gym-dialog.component';
 import { GymCreateDto } from 'src/app/dto/gym-create.dto';
+import { EditGymDialogComponent } from '../../dialogs/edit-gym-dialog/edit-gym-dialog.component';
 
 @Component({
   selector: 'app-gyms',
@@ -38,10 +39,8 @@ export class GymsComponent implements OnInit {
   }
   getAllGyms() {
     this.gymService.getAllGyms().subscribe(gymList => {
-      console.log('aqui')
       this.dataSource = new MatTableDataSource(gymList.rows);
       this.dataSource.paginator = this.paginator;
-      console.log(gymList.rows);
     }, error => {
       this.snackBar.open('Error obtaining gyms', 'Close', {
         duration: 3000,
@@ -76,8 +75,10 @@ export class GymsComponent implements OnInit {
     dialogNewGym.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,
       err => this.snackBar.open('There was an error when we were creating a new Gym.', 'Close', { duration: 3000 }));
   }
-  openDialogEditGym(gymCreateDto: GymCreateDto) {
-    const dialogUpdateGym = this.dialog.open(CreateGymDialogComponent, { width: '500px', data: { gym: GymCreateDto } });
+  openDialogEditGym(gymResponse: GymResponse) {
+    console.log('open dialog')
+    console.log(gymResponse)
+    const dialogUpdateGym = this.dialog.open(EditGymDialogComponent, { width: '500px', data: { gym: gymResponse } });
     dialogUpdateGym.afterClosed().subscribe(result => {
       this.getAllGyms();
     });
