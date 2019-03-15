@@ -1,7 +1,7 @@
 export interface GymResponse {
-    id: String;
-    name: String;
-    price: Number;
-    address: String;
-    picture: String;
+    id: string;
+    name: string;
+    price: number;
+    address: string;
+    picture: string;
 }

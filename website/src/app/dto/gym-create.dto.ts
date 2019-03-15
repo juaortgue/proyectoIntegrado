@@ -1,7 +1,7 @@
 export class GymCreateDto {
     name: string;
     address: string;
-    price: Number;
+    price: number;
     picture: string;
     province: string;
     city: string;
@@ -9,7 +9,7 @@ export class GymCreateDto {
     description: string;
     position: string;
 
-    constructor(name: string, address: string, price: Number, picture: string, city: string, zipcode: string,
+    constructor(name: string, address: string, price: number, picture: string, city: string, zipcode: string,
         description: string, position: string, province: string) {
         this.name = name;
         this.address = address;
