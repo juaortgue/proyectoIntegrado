@@ -155,7 +155,7 @@ export class CreateGymDialogComponent implements OnInit {
       }
     );
   }
-  editCategory() {
+  /*editCategory() {
     const gymCreateDto = <GymCreateDto> this.form.value;
     this.gymService.updateGym(this.gymId, gymCreateDto).subscribe(
       gym => {
@@ -164,7 +164,7 @@ export class CreateGymDialogComponent implements OnInit {
         this.dialogRef.close('confirm');
       }
     );
-  }
+  }*/
   onSubmit() {
         let newGym: GymCreateDto = <GymCreateDto>this.form.value;
       //newGym = this.getPosition(newGym);
