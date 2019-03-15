@@ -20,6 +20,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Training.findById(params.id)
+    .populate('exercises')
     .then(notFound(res))
     .then((training) => training ? training.view(true) : null)
     .then(success(res))

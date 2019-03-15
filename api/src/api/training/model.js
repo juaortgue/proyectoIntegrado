@@ -22,7 +22,10 @@ const trainingSchema = new Schema({
   picture: {
     type: String,
     required: true
-  }
+  },
+  exercises:[{ 
+    type: Schema.ObjectId, 
+    ref: 'Exercise' }]
 }, {
   timestamps: true,
   toJSON: {
@@ -56,7 +59,7 @@ trainingSchema.methods = {
       let fields = ['id', 'name', 'target', 'time']
   
       if (full) {
-        fields = [...fields, 'description', 'city', 'picture']
+        fields = [...fields, 'description', 'city', 'picture', 'exercises']
       }
   
       fields.forEach((field) => { view[field] = this[field] })
