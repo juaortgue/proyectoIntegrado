@@ -107,32 +107,7 @@ export class CreateGymDialogComponent implements OnInit {
   
  
   createForm() {
-   /* if (this.data) {
-      const editForm: FormGroup = this.fb.group ({
-        name: [this.data.gym.name, Validators.compose ([ Validators.required ])],
-        address: [this.data.gym.address, Validators.compose ([ Validators.required ])],
-        zipcode: [this.data.gym.zipcode, Validators.compose ([ Validators.required ])],
-        province: [this.data.gym.province, Validators.compose ([ Validators.required ])],
-        city: [this.data.gym.city, Validators.compose ([ Validators.required ])],
-        price: [this.data.gym.price, Validators.compose ([ Validators.required ])],
-        description: [this.data.gym.description, Validators.compose ([ Validators.required ])]
-        
-
-
-      });
-      this.form = editForm;
-    } else {
-      const newForm: FormGroup = this.fb.group ({
-        name: [null, Validators.compose ([ Validators.required ])],
-        address: [null, Validators.compose ([ Validators.required ])],
-        zipcode: [null, Validators.compose ([ Validators.required ])],
-        province: [null, Validators.compose ([ Validators.required ])],
-        city: [null, Validators.compose ([ Validators.required ])],
-        price: [null, Validators.compose ([ Validators.required ])],
-        description: [null, Validators.compose ([ Validators.required ])]
-      });
-      this.form = newForm;
-    }*/
+   
     const newForm: FormGroup = this.fb.group ({
       name: [null, Validators.compose ([ Validators.required ])],
       address: [null, Validators.compose ([ Validators.required ])],
@@ -145,8 +120,7 @@ export class CreateGymDialogComponent implements OnInit {
     this.form = newForm;
   }
   addGym() {
-    /*const gymCreateDto = new GymCreateDto(this.form.get('name'), this.form.get('address'), this.form.get('price'),'foto',
-    this.form.get('city'), this.form.get('zipcode'), this.form.get('description'), this.form.get('position'), this.form.get('province'));*/
+    
     const gymCreateDto = <GymCreateDto> this.form.value;
 
     this.gymService.createGym(gymCreateDto).subscribe(
@@ -155,16 +129,7 @@ export class CreateGymDialogComponent implements OnInit {
       }
     );
   }
-  /*editCategory() {
-    const gymCreateDto = <GymCreateDto> this.form.value;
-    this.gymService.updateGym(this.gymId, gymCreateDto).subscribe(
-      gym => {
-        console.log('se actualiza')
-        console.log(gym)
-        this.dialogRef.close('confirm');
-      }
-    );
-  }*/
+ 
   onSubmit() {
         let newGym: GymCreateDto = <GymCreateDto>this.form.value;
       //newGym = this.getPosition(newGym);

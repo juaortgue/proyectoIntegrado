@@ -1,3 +1,21 @@
-<p>
-  create-training-dialog works!
-</p>
+
+<h1 mat-dialog-title>New Training</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-select placeholder="Target">
+        <mat-option *ngFor="let target of targets" [value]="target">
+          {{target}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </div>
+  <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">ADD</button>
+  </div>
+</form>
