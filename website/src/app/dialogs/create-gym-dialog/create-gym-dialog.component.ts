@@ -25,11 +25,9 @@ export class CreateGymDialogComponent implements OnInit {
   uploading = false;
   uploadSuccessful = false;
   public files: Set<File> = new Set();
-  
-  edit: boolean;
-  name: string;
+ 
   form: FormGroup;
-  gymId: string;
+ 
 
   
  
@@ -37,16 +35,9 @@ export class CreateGymDialogComponent implements OnInit {
   private gymService: GymService, public dialogRef: MatDialogRef<CreateGymDialogComponent>) { }
 
   ngOnInit() {
-    // this.allProvinces = Pselect.provincesData;
     
     this.createForm();
-    /*if (this.data) {
-      this.edit = true;
-      this.gymId = this.data.gym.id;
-    } else {
-      this.edit = false;
-    }*/
-    this.edit=false;
+    
   }
 
 
@@ -175,34 +166,17 @@ export class CreateGymDialogComponent implements OnInit {
     );
   }
   onSubmit() {
-    /*if (this.edit) {
-      const editGym: GymCreateDto = <GymCreateDto>this.form.value;
-      console.log('aki kaxo pixa')
-      console.log(this.gymId);
-      console.log(editGym);
-      this.gymService.updateGym(this.gymId, editGym).subscribe(r => {
-        this.dialogRef.close('confirm');
-      }, e => {
-        this.snackBar.open('Failed to edit.', 'Close', {duration: 3000});
-      });
-    } else {
-      let newGym: GymCreateDto = <GymCreateDto>this.form.value;
-      newGym = this.getPosition(newGym);
-      
-      newGym.picture='foto'
-      
-      this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
-    }*/
-    let newGym: GymCreateDto = <GymCreateDto>this.form.value;
-      newGym = this.getPosition(newGym);
+        let newGym: GymCreateDto = <GymCreateDto>this.form.value;
+      //newGym = this.getPosition(newGym);
       let position = '';
+
+      //obtain geolocation
       this.geoService.getLocation(newGym.address).subscribe(r => {
       
         position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
         position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
         newGym.position = position;
-        newGym.picture='foto'
+        //newGym.picture='foto'
       
       this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
@@ -211,7 +185,7 @@ export class CreateGymDialogComponent implements OnInit {
       
       
   }
-  getPosition(newGym: GymCreateDto){
+  /*getPosition(newGym: GymCreateDto){
     let position ='';
     this.geoService.getLocation(newGym.address).subscribe(r => {
       
@@ -222,6 +196,6 @@ export class CreateGymDialogComponent implements OnInit {
 
     })
     return newGym;
-  }
+  }*/
 
 }
