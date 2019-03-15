@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a46a2cab-758f-42e3-8986-88073eee7007",
+		"_postman_id": "72acf341-5382-4d3b-9423-3d75c40675f2",
 		"name": "fitTrainOrtizGuerraJuanAntonio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -84,7 +84,7 @@
 							"basic": [
 								{
 									"key": "username",
-									"value": "admin3@gmail.com",
+									"value": "admin@gmail.com",
 									"type": "string"
 								},
 								{
@@ -366,6 +366,50 @@
 								{
 									"key": "access_token",
 									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtainPosition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://geocoder.api.here.com/6.2/geocode.json?searchtext=sevilla&app_id=fFZERUHIPjyqbU0O1rQy&app_code=I7_Oke0z4blb2pr1V7zp3Q&gen=8 ",
+							"protocol": "https",
+							"host": [
+								"geocoder",
+								"api",
+								"here",
+								"com"
+							],
+							"path": [
+								"6.2",
+								"geocode.json"
+							],
+							"query": [
+								{
+									"key": "searchtext",
+									"value": "sevilla"
+								},
+								{
+									"key": "app_id",
+									"value": "fFZERUHIPjyqbU0O1rQy"
+								},
+								{
+									"key": "app_code",
+									"value": "I7_Oke0z4blb2pr1V7zp3Q"
+								},
+								{
+									"key": "gen",
+									"value": "8 "
 								}
 							]
 						}

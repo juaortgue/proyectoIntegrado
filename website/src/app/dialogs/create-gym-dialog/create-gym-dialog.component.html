@@ -25,6 +25,20 @@
             <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
           </mat-form-field>
+          <div>
+            <input type="file" accept="*" #file (change)="onFilesAdded()" [disabled]="uploading || uploadSuccessful" value="Seleccionar fichero" />
+        </div>
+        <mat-list>
+          <mat-list-item *ngFor="let file of files">
+    
+            <h4 mat-line>{{file.name}}</h4>
+    
+            <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async"></mat-progress-bar>
+    
+          </mat-list-item>
+        </mat-list>
+        <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
     
   </div>
   <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
