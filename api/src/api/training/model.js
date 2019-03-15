@@ -3,9 +3,10 @@ import mongoose, { Schema } from 'mongoose'
 const trainingSchema = new Schema({
   name: {
     type: String,
-    index: true,
+    required: true,
+    unique: true,
     trim: true,
-    required: true
+    lowercase: true
   },
   description: {
     type: String,
