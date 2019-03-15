@@ -1,0 +1,42 @@
+img {
+    border-radius: 50%;
+  }
+
+table {
+    margin:auto;
+}
+#container{
+    width: 100vh;
+    margin-left: 10px;
+}
+img {
+    border-radius: 50%;
+    width: 40px;
+  }
+.paginator{
+    margin:auto;
+    position: relative;
+    left:7.1%;
+    width: 94.25%;
+}
+#titleTable{
+    padding-bottom: 10px;
+    
+}
+#selectFilter{
+    margin-left: 47%;
+}
+#addFloatingButton {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    z-index: 9999999;
+    background-color: var(--color-primary-dark);
+
+    .mat-icon {
+        color: #FF6D38;
+    }
+}
+.w-100{
+    width: 100%;
+}
