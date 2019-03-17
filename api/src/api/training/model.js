@@ -24,6 +24,10 @@ const trainingSchema = new Schema({
     type: String,
     required: true
   },
+  level:{
+    type: Number,
+    required: true
+  },
   exercises:[{ 
     type: Schema.ObjectId, 
     ref: 'Exercise' }]
@@ -60,7 +64,7 @@ trainingSchema.methods = {
       let fields = ['id', 'name', 'target', 'time', 'picture']
   
       if (full) {
-        fields = [...fields, 'description', 'city', 'exercises']
+        fields = [...fields, 'description', 'city', 'exercises', 'level']
       }
   
       fields.forEach((field) => { view[field] = this[field] })

@@ -7,7 +7,7 @@ import { schema } from './model'
 export Training, { schema } from './model'
 
 const router = new Router()
-const { name, description, target, time, picture, exercises } = schema.tree
+const { name, description, target, time, picture, exercises, level } = schema.tree
 
 /**
  * @api {post} /training Create training
@@ -27,7 +27,7 @@ const { name, description, target, time, picture, exercises } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, target, time, picture, exercises }),
+  body({ name, description, target, time, picture, exercises, level }),
   create)
 
 /**
@@ -80,7 +80,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, target, time, picture, exercises }),
+  body({ name, description, target, time, picture, exercises, level }),
   update)
 
 /**
