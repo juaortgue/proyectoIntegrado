@@ -60,8 +60,7 @@ export class TrainingComponent implements OnInit {
       err => this.snackBar.open('There was an error when we were creating a new training.', 'Close', { duration: 3000 }));
   }
   openDialogEdit(trainingResponse: TrainingResponse) {
-    console.log('open dialog')
-    console.log(trainingResponse)
+    
     const dialogUpdate = this.dialog.open(EditTrainingDialogComponent, { width: '500px', data: { training: trainingResponse } });
     dialogUpdate.afterClosed().subscribe(result => {
       this.getAll();

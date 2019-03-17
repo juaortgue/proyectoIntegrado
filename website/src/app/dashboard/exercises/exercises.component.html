@@ -36,11 +36,11 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="openDialogEditGym(element)">
+          <button mat-menu-item (click)="openDialogEdit(element)">
             <mat-icon>border_color</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="openDialogDeleteGym(element)">
+          <button mat-menu-item (click)="openDialogDelete(element)">
             <mat-icon>delete</mat-icon>
             <span>Delete</span>
           </button>
@@ -48,10 +48,10 @@
         <!-- Mobile actions -->
 
         <!-- Actions in normal size-->
-        <button mat-icon-button fxHide.lt-md (click)="openDialogEditGym(element)">
+        <button mat-icon-button fxHide.lt-md (click)="openDialogEdit(element)">
           <mat-icon>border_color</mat-icon>
         </button>
-        <button mat-icon-button fxHide.lt-md (click)="openDialogDeleteGym(element)">
+        <button mat-icon-button fxHide.lt-md (click)="openDialogDelete(element)">
           <mat-icon>delete</mat-icon>
         </button>
         <!-- Actions in normal size-->
@@ -64,6 +64,6 @@
 
   <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-<button mat-fab id="addFloatingButton" (click)="openUploadDialog()">
+<button mat-fab id="addFloatingButton" (click)="openDialogNew()">
   <mat-icon>add</mat-icon>
 </button>

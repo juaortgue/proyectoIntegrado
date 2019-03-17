@@ -55,8 +55,6 @@ export class CreateTrainingDialogComponent implements OnInit {
   getAllExercises() {
     this.exerciseService.getAll().subscribe(list => {
       this.exercises=list.rows;
-      console.log('exito')
-      console.log(list)
     }, error => {
       this.snackBar.open('Error obtaining training', 'Close', {
         duration: 3000,

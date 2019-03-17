@@ -8,5 +8,6 @@ export interface TrainingOneResponse {
     description: string;
     picture: string;
     exercises: ExerciseResponse[];
+    level: number;
     
 }

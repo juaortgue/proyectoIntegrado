@@ -68,6 +68,9 @@ import { EditGymDialogComponent } from './dialogs/edit-gym-dialog/edit-gym-dialo
 import { DeleteTrainingDialogComponent } from './dialogs/delete-training-dialog/delete-training-dialog.component';
 import { EditTrainingDialogComponent } from './dialogs/edit-training-dialog/edit-training-dialog.component';
 import { CreateTrainingDialogComponent } from './dialogs/create-training-dialog/create-training-dialog.component';
+import { DeleteExerciseDialogComponent } from './dialogs/delete-exercise-dialog/delete-exercise-dialog.component';
+import { CreateExerciseDialogComponent } from './dialogs/create-exercise-dialog/create-exercise-dialog.component';
+import { EditExerciseDialogComponent } from './dialogs/edit-exercise-dialog/edit-exercise-dialog.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -103,7 +106,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EditGymDialogComponent,
     DeleteTrainingDialogComponent,
     EditTrainingDialogComponent,
-    CreateTrainingDialogComponent
+    CreateTrainingDialogComponent,
+    DeleteExerciseDialogComponent,
+    CreateExerciseDialogComponent,
+    EditExerciseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +156,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteTrainingDialogComponent, EditTrainingDialogComponent, CreateTrainingDialogComponent, EditGymDialogComponent,CreateGymDialogComponent, DeleteGymDialogComponent,DeleteCategoryDialogComponent, CreateCategoryDialogComponent, LogoutDialogComponent, DeleteUserDialogComponent]
+  entryComponents: [DeleteExerciseDialogComponent, CreateExerciseDialogComponent, EditExerciseDialogComponent, DeleteTrainingDialogComponent, EditTrainingDialogComponent, CreateTrainingDialogComponent, EditGymDialogComponent,CreateGymDialogComponent, DeleteGymDialogComponent,DeleteCategoryDialogComponent, CreateCategoryDialogComponent, LogoutDialogComponent, DeleteUserDialogComponent]
 })
 export class AppModule { }

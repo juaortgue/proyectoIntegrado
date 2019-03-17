@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar, MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ExerciseService } from 'src/app/services/exercise.service';
+import { ExerciseResponse } from 'src/app/interfaces/exercise-response';
+import { DeleteExerciseDialogComponent } from '../../dialogs/delete-exercise-dialog/delete-exercise-dialog.component';
+import { CreateExerciseDialogComponent } from '../../dialogs/create-exercise-dialog/create-exercise-dialog.component';
+import { ExerciseCreateDto } from 'src/app/dto/exercise-create.dto';
+import { EditExerciseDialogComponent } from '../../dialogs/edit-exercise-dialog/edit-exercise-dialog.component';
 
 @Component({
   selector: 'app-exercises',
@@ -13,7 +18,7 @@ export class ExercisesComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthenticationService, private exerciseService: ExerciseService,
     public snackBar: MatSnackBar, public dialog: MatDialog) { }
-  displayedColumns: string[] = ['name', 'series', 'repetitions'];
+  displayedColumns: string[] = ['name', 'series', 'repetitions', 'actions'];
 
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,43 +43,28 @@ getAll() {
     this.dataSource.paginator = this.paginator;
     console.log(list.rows);
   }, error => {
-    this.snackBar.open('Error obtaining gyms', 'Close', {
+    this.snackBar.open('Error obtaining exercises', 'Close', {
       duration: 3000,
       verticalPosition: 'top'
     });
   });
 }
-/*openDialogDeleteGym(g: GymResponse) {
-  const dialogDeleteGym = this.dialog.open(DeleteGymDialogComponent, { data: { gym: g } });
-  dialogDeleteGym.afterClosed().subscribe(result => {
-    this.getAllGyms();
+openDialogDelete(e: ExerciseResponse) {
+  const dialogDelete = this.dialog.open(DeleteExerciseDialogComponent, { data: { exercise: e } });
+  dialogDelete.afterClosed().subscribe(result => {
+    this.getAll();
   });
 }
-public openUploadDialog() {
-  const dialogRef = this.dialog.open(CreateGymDialogComponent,
-    {
-      width: '50%',
-      height: '50%',
-      data: { id: 1 }
-    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    this.snackBar.open(
-      'El fichero se subió correctamente', 'Cerrar', {
-      duration: 3000,
-      verticalPosition: 'top'
-    });
+openDialogNew() {
+  const dialogNew = this.dialog.open(CreateExerciseDialogComponent, { width: '500px' });
+  dialogNew.afterClosed().subscribe(res => (res === 'confirm') ? this.getAll() : null,
+    err => this.snackBar.open('There was an error when we were creating a new exercise.', 'Close', { duration: 3000 }));
+}
+openDialogEdit(exerciseCreateDto: ExerciseCreateDto) {
+  const dialogUpdate = this.dialog.open(EditExerciseDialogComponent, { width: '500px', data: { exercise: exerciseCreateDto } });
+  dialogUpdate.afterClosed().subscribe(result => {
+    this.getAll();
   });
 }
-openDialogNewGym() {
-  const dialogNewGym = this.dialog.open(CreateGymDialogComponent, { width: '500px' });
-  dialogNewGym.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,
-    err => this.snackBar.open('There was an error when we were creating a new Gym.', 'Close', { duration: 3000 }));
-}
-openDialogEditGym(gymCreateDto: GymCreateDto) {
-  const dialogUpdateGym = this.dialog.open(CreateGymDialogComponent, { width: '500px', data: { gym: GymCreateDto } });
-  dialogUpdateGym.afterClosed().subscribe(result => {
-    this.getAllGyms();
-  });
-}*/
 }
