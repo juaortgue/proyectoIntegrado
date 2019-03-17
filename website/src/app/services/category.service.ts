@@ -32,4 +32,7 @@ export class CategoryService {
   deleteCategory(id: number): Observable<CategoryResponse> {
     return this.http.delete<CategoryResponse>(`${categoryUrl}/${id}${this.token}`);
   }
+  getOne(id:string): Observable<CategoryResponse> {
+    return this.http.get<CategoryResponse>(`${categoryUrl}/${id}${this.masterKey}`);
+  }
 }

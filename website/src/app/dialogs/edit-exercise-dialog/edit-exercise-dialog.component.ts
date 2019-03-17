@@ -20,6 +20,7 @@ export class EditExerciseDialogComponent implements OnInit {
   private exerciseService: ExerciseService,public dialogRef: MatDialogRef<CreateExerciseDialogComponent>, private categoryService: CategoryService) { }
   categories:CategoryResponse[];
   exercise:ExerciseOneResponse;
+  categoryExercise: CategoryResponse;
   ngOnInit() {
     console.log(this.data.exercise.id)
     this.getOneExercise();
@@ -64,6 +65,18 @@ export class EditExerciseDialogComponent implements OnInit {
       this.exerciseService.update(this.data.exercise.id, editExercise).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
     
+  }
+  getOneCategory(){
+    console.log(this.exercise)
+    this.categoryService.getOne(this.exercise.categoryId).subscribe(one => {
+      this.categoryExercise=one;
+     console.log('se obtiene la categoria')
+    }, error => {
+      this.snackBar.open('Error obtaining one category', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+    });
   }
   getAllCategories() {
     this.categoryService.getAllCategories().subscribe(list => {
