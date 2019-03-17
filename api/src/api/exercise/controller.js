@@ -7,6 +7,11 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
+export const createWithPhoto = ({ bodymen: { body } }, res, next) =>
+    Exercise.create(body)
+      .then((exercise) => exercise.view(true))
+      .then(success(res, 201))
+      .catch(next)
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Exercise.count(query)
     .then(count => Exercise.find(query, select, cursor)

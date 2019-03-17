@@ -5,6 +5,7 @@ import { token, master } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Exercise, { schema } from './model'
+const uploadService = require('../../services/upload/')
 
 const router = new Router()
 const { name, categoryId, series, repetitions, finishTime, restTime, gif, description } = schema.tree
@@ -32,6 +33,11 @@ router.post('/',
   body({ name, categoryId, series, repetitions, finishTime, restTime, gif, description }),
   create)
 
+/*router.post('/photo',
+  token({ required: true }),
+  //body({foto, nombre, codReferencia, descripcion, dimensiones }),
+  upload.single('foto'),
+  create)*/
 /**
  * @api {get} /exercises Retrieve exercises
  * @apiName RetrieveExercises
