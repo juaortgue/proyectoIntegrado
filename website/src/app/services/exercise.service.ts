@@ -6,6 +6,7 @@ import { ExerciseContainerResponse } from '../interfaces/exerciseContainer-respo
 import { HttpClient } from '@angular/common/http';
 import { ExerciseResponse } from '../interfaces/exercise-response';
 import { ExerciseCreateDto } from '../dto/exercise-create.dto';
+import { ExerciseOneResponse } from '../interfaces/exercise-one-response';
 const exerciseUrl = `${environment.apiUrl}/exercises`;
 
 @Injectable({
@@ -31,5 +32,8 @@ export class ExerciseService {
 
   delete(id: number): Observable<ExerciseResponse> {
     return this.http.delete<ExerciseResponse>(`${exerciseUrl}/${id}${this.token}`);
+  }
+  getOne(id:string): Observable<ExerciseOneResponse> {
+    return this.http.get<ExerciseOneResponse>(`${exerciseUrl}/${id}${this.masterKey}`);
   }
 }
