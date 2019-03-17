@@ -42,6 +42,7 @@ export class AuthenticationService {
     this.router.navigate ( [ '/' ] );    
 
   }
+  
 
   getToken(): string {
     return localStorage.getItem('token');

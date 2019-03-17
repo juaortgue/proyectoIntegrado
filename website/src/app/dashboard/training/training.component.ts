@@ -24,7 +24,7 @@ export class TrainingComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.authService.getToken() == null) {
+    if (this.authService.getToken()==null || !this.authService.isAdmin()) {
       this.router.navigate(['/']);
     } else {
       this.getAll();

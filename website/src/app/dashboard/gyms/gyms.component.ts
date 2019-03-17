@@ -17,7 +17,7 @@ import { EditGymDialogComponent } from '../../dialogs/edit-gym-dialog/edit-gym-d
 export class GymsComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthenticationService, private gymService: GymService,
-    public snackBar: MatSnackBar, public dialog: MatDialog) { }
+    public snackBar: MatSnackBar, public dialog: MatDialog, private snackbar:MatSnackBar) { }
   displayedColumns: string[] = ['picture', 'name', 'address', 'actions'];
 
   dataSource;
@@ -25,8 +25,12 @@ export class GymsComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.authService.getToken() == null) {
+    if (this.authService.getToken()==null || !this.authService.isAdmin()) {      
       this.router.navigate(['/']);
+      this.snackBar.open('You must be admin', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
     } else {
       this.getAllGyms();
     }

@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    if (this.authService.getToken() == null) {
+    if (this.authService.getToken()==null || !this.authService.isAdmin()) {
       this.router.navigate ( [ '/' ] );
     } else {
       this.getAllCategories();

@@ -24,8 +24,12 @@ export class DashboardComponent implements OnInit{
 
 
   ngOnInit() {
-    if (this.authService.getToken() == null) {
+    if (this.authService.getToken()==null || !this.authService.isAdmin()) {
       this.router.navigate ( [ '/' ] );
+      this.snackBar.open('You must be admin', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
     } else {
       this.getAllUsers();
     }
