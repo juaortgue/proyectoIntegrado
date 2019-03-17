@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "72acf341-5382-4d3b-9423-3d75c40675f2",
-		"name": "fitTrainOrtizGuerraJuanAntonio",
+		"_postman_id": "20e430a3-b314-4f1d-9b75-e0d4c3ff06e4",
+		"name": "fitTrainOrtizGuerraJuanAntonio copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -382,7 +382,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://geocoder.api.here.com/6.2/geocode.json?searchtext=sevilla&app_id=fFZERUHIPjyqbU0O1rQy&app_code=I7_Oke0z4blb2pr1V7zp3Q&gen=8 ",
+							"raw": "https://geocoder.api.here.com/6.2/geocode.json?searchtext=sevilla&app_id=fFZERUHIPjyqbU0O1rQy&app_code=I7_Oke0z4blb2pr1V7zp3Q&gen=8",
 							"protocol": "https",
 							"host": [
 								"geocoder",
@@ -510,6 +510,305 @@
 					"name": "delete",
 					"request": {
 						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "training",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}training?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}training"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}training/5c8e06df62274718e10cdac5?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}training"
+							],
+							"path": [
+								"5c8e06df62274718e10cdac5"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"pecho muscular\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Perder peso\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}training/5c8bff61ebb0de695b7cc80f?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}training"
+							],
+							"path": [
+								"5c8bff61ebb0de695b7cc80f"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}training/5c8c0000721bf36a26af94a9?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}training"
+							],
+							"path": [
+								"5c8c0000721bf36a26af94a9"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"curisisimor\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Perder peso\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\",\n\t\"exercises\": [\n\t\t\n\t\t\"5c8c0607721bf36a26af94ab\",\"5c8b9fe75ef5b833aa1a6135\"\n\t\t],\n\t\"level\": 2\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}training?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}training"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "exercise",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}exercises?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}exercises"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}exercises/5c8b9fe75ef5b833aa1a6135?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"5c8b9fe75ef5b833aa1a6135"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ejercicio332\",\n\t\"categoryId\": \"5c89380bd94eaf4530b1fb2d\",\n\t\"series\": 1,\n\t\"repetitions\": 10,\n\t\"finishTime\": \"10\",\n\t\"restTime\": \"35\",\n\t\"gif\": \"https://media.tenor.com/images/c674ba98c40f6793eaf10a1356c1c36a/tenor.gif\",\n\t\"description\": \"descripcion del ejercicio\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}exercises/5c8c0607721bf36a26af94ab?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"5c8c0607721bf36a26af94ab"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"ejercicio2\",\n\t\"categoryId\": \"5c89380bd94eaf4530b1fb2d\",\n\t\"series\": 1,\n\t\"repetitions\": 10,\n\t\"finishTime\": \"10\",\n\t\"restTime\": \"35\",\n\t\"gif\": \"https://media.tenor.com/images/c674ba98c40f6793eaf10a1356c1c36a/tenor.gif\",\n\t\"description\": \"descripcion del ejercicio\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}exercises?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}exercises"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addOneWithPhoto",
+					"request": {
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
