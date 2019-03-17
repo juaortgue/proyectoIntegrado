@@ -14,6 +14,8 @@ import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { CategoryComponent } from './category/category.component';
 
+
+import {MatSelectModule} from '@angular/material/select'; 
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { CategoryComponent } from './category/category.component';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatSelectModule,
     MatPaginatorModule
   ],
   declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent, CategoryComponent ]

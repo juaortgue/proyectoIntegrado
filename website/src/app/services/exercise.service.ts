@@ -6,7 +6,7 @@ import { ExerciseContainerResponse } from '../interfaces/exerciseContainer-respo
 import { HttpClient } from '@angular/common/http';
 import { ExerciseResponse } from '../interfaces/exercise-response';
 import { ExerciseCreateDto } from '../dto/exercise-create.dto';
-const exerciseUrl = `${environment.apiUrl}/gyms`;
+const exerciseUrl = `${environment.apiUrl}/exercises`;
 
 @Injectable({
   providedIn: 'root'
