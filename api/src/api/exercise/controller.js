@@ -20,6 +20,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Exercise.findById(params.id)
+    .populate('categoryId', 'name')
     .then(notFound(res))
     .then((exercise) => exercise ? exercise.view(true) : null)
     .then(success(res))
