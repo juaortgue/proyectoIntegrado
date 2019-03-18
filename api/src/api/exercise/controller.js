@@ -71,7 +71,8 @@ export const createWithPhoto = (req, res, next) => {
     
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Exercise.count(query)
-    .then(count => Exercise.find(query, select, cursor)
+    
+    .then(count => Exercise.find(query, select, cursor).populate('categoryId', 'name')
       .then((exercises) => ({
         count,
         rows: exercises.map((exercise) => exercise.view())

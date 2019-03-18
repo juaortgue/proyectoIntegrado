@@ -6,14 +6,7 @@ import android.support.annotation.RequiresApi;
 import java.util.Objects;
 
 public class ExerciseResponse {
-    /*"id": "5c8e4588ba5fd858d40c4a7e",
-    "name": "img",
-    "series": 1,
-    "repetitions": 1,
-    "finishTime": "1",
-    "restTime": "1",
-    "gif": "https://i.imgur.com/nzPe3Qo.jpg",
-    "description": "img"*/
+
     private String id;
     private String name;
     private int series;

@@ -68,10 +68,10 @@ exerciseSchema.methods = {
   view (full) {
 
       let view = {}
-      let fields = ['id', 'name', 'series', 'repetitions']
+      let fields = ['id', 'name', 'series', 'repetitions', 'categoryId']
   
       if (full) {
-        fields = [...fields, 'finishTime', 'restTime','gif', 'categoryId', 'description']
+        fields = [...fields, 'finishTime', 'restTime','gif', 'description']
       }
   
       fields.forEach((field) => { view[field] = this[field] })
