@@ -47,6 +47,17 @@ public class UtilToken {
     }
 
 
+    /*public static String getToken(Context mContext) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(
+                mContext.getString(R.string.sharedpreferences_filename),
+                Context.MODE_PRIVATE
+        );
+
+        String jwt = sharedPreferences
+                .getString(mContext.getString(R.string.jwt_key), null);
+
+        return jwt;
+    }*/
     public static String getToken(Context mContext) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(
                 mContext.getString(R.string.sharedpreferences_filename),
