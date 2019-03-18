@@ -16,53 +16,63 @@ import com.example.fittrain.ui.training.TrainingFragment;
 
 public class DashboardActivity extends AppCompatActivity {
 
-
+    private Fragment fragmentGym, fragmentTraining, fragmentProfile;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        Fragment f = null;
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
                 case R.id.navigation_training:
-                    f = new TrainingFragment();
                     getSupportActionBar().setTitle(R.string.title_training);
+                    goToFragment(fragmentTraining);
                     return true;
                 case R.id.navigation_gym:
-                    f = new GymFragment();
                     getSupportActionBar().setTitle(R.string.title_gym);
+                    goToFragment(fragmentGym);
                     return true;
                 case R.id.navigation_profile:
-                    f = new ProfileFragment();
                     getSupportActionBar().setTitle(R.string.title_profile);
+                    goToFragment(fragmentProfile);
 
                     return true;
             }
-            if (f != null) {
-                getSupportActionBar().setTitle(R.string.title_training);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contenedor, f)
-                        .commit();
-                return true;
-            }
-
             return false;
+           /* if (f != null) {
+                goToFragment(f);
+                return true;
+            }else{
+                goToFragment(new TrainingFragment());
+                return false;
+
+            }*/
+
         }
         //en oncreate fragment
         /*mViewModel = ViewModelProviders.of(getActivity()).get(ColorViewModel.class);
         mViewModel.getSelectedColor().observe(getActivity(),
                 color -> layout.setBackgroundColor(Color.parseColor(color)));*/
     };
+    public void goToFragment(Fragment f){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contenedor, f)
+                .commit();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         getSupportActionBar().setTitle(R.string.title_training);
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        fragmentTraining = new TrainingFragment();
+        fragmentGym = new GymFragment();
+        fragmentProfile = new ProfileFragment();
+        goToFragment(fragmentTraining);
 
 
 

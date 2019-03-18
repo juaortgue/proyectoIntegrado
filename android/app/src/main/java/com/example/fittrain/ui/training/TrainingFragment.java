@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.fittrain.R;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.TrainingResponse;
+import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.training.dummy.DummyContent;
@@ -84,7 +85,7 @@ public class TrainingFragment extends Fragment {
             }
 
             //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
-            //loadTraining();
+            loadTraining(recyclerView);
         }
         return view;
     }
