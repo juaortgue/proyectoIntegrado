@@ -7,40 +7,47 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fittrain.R;
+import com.example.fittrain.model.ResponseContainer;
+import com.example.fittrain.model.TrainingResponse;
+import com.example.fittrain.retrofit.generator.ServiceGenerator;
+import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.training.dummy.DummyContent;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.ViewModelUser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class TrainingFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private ViewModelUser mViewModel;
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    Context ctx;
+    String token;
+    MyTrainingRecyclerViewAdapter adapter;
+    List<TrainingResponse> trainingList = new ArrayList<>();
+    private TrainingService trainingService;
+    private final int FAV_CODE=0;
+    Map<String, String> options = new HashMap<>();
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public TrainingFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static TrainingFragment newInstance(int columnCount) {
         TrainingFragment fragment = new TrainingFragment();
@@ -68,48 +75,71 @@ public class TrainingFragment extends Fragment {
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
+            ctx = getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
-            recyclerView.setAdapter(new MyTrainingRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
+            //loadTraining();
         }
         return view;
     }
 
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
+        /*if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        //mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+    }
+
+
+    public void loadTraining(RecyclerView recyclerView){
+        trainingService= ServiceGenerator.createService(TrainingService.class);
+        Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll();
+        call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
+            @Override
+            public void onResponse(Call<ResponseContainer<TrainingResponse>> call, Response<ResponseContainer<TrainingResponse>> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("error response", "code error");
+                    Toast.makeText(getActivity(), "Error in request", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("successful response", "code error");
+
+                    trainingList = response.body().getRows();
+
+                    adapter = new MyTrainingRecyclerViewAdapter(
+                            ctx,
+                            trainingList);
+                    recyclerView.setAdapter(adapter);
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseContainer<TrainingResponse>> call, Throwable t) {
+                Log.e("failure", "failure in petition");
+            }
+        });
     }
 }

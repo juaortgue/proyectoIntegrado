@@ -1,19 +1,19 @@
 package com.example.fittrain.retrofit.services;
 
-
-import com.example.fittrain.model.UserResponse;
+import com.example.fittrain.model.ResponseContainer;
+import com.example.fittrain.model.TrainingResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface UserService {
-    final String BASE_URL = "/user";
+public interface TrainingService {
+
+    final String BASE_URL = "/training";
+    @GET(BASE_URL)
+    Call<ResponseContainer<TrainingResponse>> listAll();
 
 
-    @GET("/me")
-   Call<UserResponse> getMe();
-
-   /* @GET(BASE_URL)
+    /* @GET(BASE_URL)
     Call<ResponseContainer<PropertyResponse>> listProperties();
     @GET(BASE_URL + "/auth")
     Call<ResponseContainer<PropertyResponse>> listFavsProperties();
