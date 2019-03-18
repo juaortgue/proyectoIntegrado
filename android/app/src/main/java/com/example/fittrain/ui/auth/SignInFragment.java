@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -56,6 +57,12 @@ public class SignInFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
+    }
+
     public void loadItems(View v) {
         ctx = getContext();
         signUpFragment = new SignUpFragment();
@@ -78,6 +85,7 @@ public class SignInFragment extends Fragment {
         });
 
     }
+
 
     public void doLogin() {
         String email = editTextEmail.getText().toString();
@@ -117,19 +125,7 @@ public class SignInFragment extends Fragment {
 
     }
     public void setViewModel(UserResponse u){
-        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
-
-        mViewModel.selectEmail(u.getEmail());
-        mViewModel.selectAge(u.getAge());
-        mViewModel.selectGender(u.isGender());
-        mViewModel.selectWeight(u.getWeight());
-        mViewModel.selectHeight(u.getHeight());
-        mViewModel.selectName(u.getName());
-        mViewModel.selectRole(u.getRole());
-        mViewModel.selectTrainingYears(u.getTrainingYears());
-
-
-
+        mViewModel.setUser(u);
 
     }
     public boolean validate(){

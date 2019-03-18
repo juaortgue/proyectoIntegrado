@@ -4,19 +4,28 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.fittrain.model.UserResponse;
+
 public class ViewModelUser extends ViewModel {
-    private final MutableLiveData<String> emailSelected = new MutableLiveData<String>();
+    /*private final MutableLiveData<String> emailSelected = new MutableLiveData<String>();
     private final MutableLiveData<String> roleSelected = new MutableLiveData<String>();
     private final MutableLiveData<String> nameSelected = new MutableLiveData<String>();
     private final MutableLiveData<Integer> ageSelected = new MutableLiveData<Integer>();
     private final MutableLiveData<Integer> weightSelected = new MutableLiveData<Integer>();
     private final MutableLiveData<Integer> heightSelected = new MutableLiveData<Integer>();
     private final MutableLiveData<Boolean> genderSelected = new MutableLiveData<Boolean>();
-    private final MutableLiveData<Integer> trainingYearsSelected = new MutableLiveData<Integer>();
+    private final MutableLiveData<Integer> trainingYearsSelected = new MutableLiveData<Integer>();*/
+    private final MutableLiveData<UserResponse> userSelected = new MutableLiveData<UserResponse>();
 
+    public void setUser(UserResponse user) {
+        userSelected.setValue(user);
+    }
+    public LiveData<UserResponse> getUserSelected() {
+        return userSelected;
+    }
 
     // Master > Detail (comunicación del dato)
-    public void selectEmail(String email) {
+    /*public void selectEmail(String email) {
         emailSelected.setValue(email);
     }
 
@@ -76,9 +85,9 @@ public class ViewModelUser extends ViewModel {
         trainingYearsSelected.setValue(years);
     }
 
-    public LiveData<Boolean> getSelectedTrainingYears() {
+    public LiveData<Integer> getSelectedTrainingYears() {
         return getSelectedTrainingYears();
-    }
+    }*/
 
 
 

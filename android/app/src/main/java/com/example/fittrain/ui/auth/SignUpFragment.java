@@ -75,14 +75,8 @@ public class SignUpFragment extends Fragment {
         });
     }
     public void setViewModel(UserResponse u){
-        mViewModel.selectEmail(u.getEmail());
-        mViewModel.selectAge(u.getAge());
-        mViewModel.selectGender(u.isGender());
-        mViewModel.selectWeight(u.getWeight());
-        mViewModel.selectHeight(u.getHeight());
-        mViewModel.selectName(u.getName());
-        mViewModel.selectRole(u.getRole());
-        mViewModel.selectTrainingYears(u.getTrainingYears());
+
+        mViewModel.setUser(u);
 
     }
     private void doSignUp() {

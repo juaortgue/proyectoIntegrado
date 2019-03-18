@@ -23,25 +23,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public void loadItems(){
-        //btnGoSignIn = findViewById(R.id.);
-        /*btnGoSignUp = findViewById(R.id.buttonGoRegister);
-        btnSignIn = findViewById(R.id.buttonLogin);*/
-        //btnSignUp = ;
+
         signInFragment = new SignInFragment();
         signUpFragment = new SignUpFragment();
 
-        /*btnGoSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goSignUp();
-            }
-        });*/
-        /*btnGoSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goSignIn();
-            }
-        });*/
+
     }
     public void loadDefaultFragment(){
         fragmentChanger = getSupportFragmentManager().beginTransaction().replace(R.id.containerLogin, signInFragment);

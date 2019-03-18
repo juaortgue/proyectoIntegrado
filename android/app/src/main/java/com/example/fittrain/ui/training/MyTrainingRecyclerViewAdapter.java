@@ -37,20 +37,25 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
         holder.mItem = mValues.get(position);
         jwt = UtilToken.getToken(ctx);
         if (holder.mItem.getPicture()!=null){
             Glide
                     .with(ctx)
                     .load(holder.mItem.getPicture())
+                    .centerCrop()
                     .into(holder.imageViewPicture);
         }else{
             Glide
                     .with(ctx)
+
                     .load("https://www.eecs.utk.edu/wp-content/uploads/2016/02/Symonds_EECS.jpg")
+                    .centerCrop()
                     .into(holder.imageViewPicture);
         }
-        holder.textViewTotalExercises.setText(holder.mItem.getExercises().size());
+        String size = String.valueOf(holder.mItem.getExercises().size());
+        holder.textViewTotalExercises.setText(String.valueOf(holder.mItem.getExercises().size()));
         holder.textViewTitle.setText(holder.mItem.getName());
         holder.textViewTarget.setText(holder.mItem.getTarget());
 

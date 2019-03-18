@@ -1,8 +1,11 @@
 package com.example.fittrain.ui.training;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +19,12 @@ import android.widget.Toast;
 import com.example.fittrain.R;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.TrainingResponse;
+import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
+import com.example.fittrain.ui.auth.LoginActivity;
+import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.ui.training.dummy.DummyContent;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.ViewModelUser;
@@ -40,10 +46,11 @@ public class TrainingFragment extends Fragment {
     private int mColumnCount = 1;
     Context ctx;
     String token;
+    private UserResponse user;
+    private int height, weight, trainingYears;
     MyTrainingRecyclerViewAdapter adapter;
     List<TrainingResponse> trainingList = new ArrayList<>();
     private TrainingService trainingService;
-    private final int FAV_CODE=0;
     Map<String, String> options = new HashMap<>();
 
     public TrainingFragment() {
@@ -62,8 +69,15 @@ public class TrainingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*mViewModel.getSelectedRole().observe(getActivity(),
-                color -> layout.setBackgroundColor(Color.parseColor(color)));*/
+        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
+        mViewModel.getUserSelected().observe(getActivity(),
+                userReceived -> {
+                    user = userReceived;
+                });
+
+        user = mViewModel.getUserSelected().getValue();
+
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -85,10 +99,28 @@ public class TrainingFragment extends Fragment {
             }
 
             //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
-            loadTraining(recyclerView);
+            //double result = calculateImc();
+
         }
         return view;
     }
+    public double calculateImc(){
+        int comparative=0, divisor=100;
+        double heighReceived=0.0;
+
+     double imc=0;
+     if (height!=comparative && weight!=comparative ){
+         heighReceived = height/divisor;
+         heighReceived = heighReceived*heighReceived;
+         imc = weight / heighReceived;
+     }
+
+
+     return imc;
+    }
+
+
+
 
 
 
@@ -142,5 +174,12 @@ public class TrainingFragment extends Fragment {
                 Log.e("failure", "failure in petition");
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
     }
 }
