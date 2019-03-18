@@ -31,4 +31,8 @@
     <string name="userId">userId</string>
     <string name="incorrect_email">Incorrect email.</string>
     <string name="size_password">Size between 6 and 15</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

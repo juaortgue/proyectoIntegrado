@@ -2,6 +2,7 @@ package com.example.fittrain.ui.auth;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,8 +19,10 @@ import com.example.fittrain.model.AuthResponse;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.LoginService;
+import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.Validator;
+import com.example.fittrain.util.ViewModelUser;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -32,6 +35,7 @@ public class SignUpFragment extends Fragment {
     private Fragment signInFragment;
     private Button btnSignUp, btnGoSignIn;
     private EditText editTextEmail, editTextPassword, editTextpasswordTwoRegister;
+    private ViewModelUser mViewModel;
 
     private Context ctx;
 
@@ -70,6 +74,17 @@ public class SignUpFragment extends Fragment {
             }
         });
     }
+    public void setViewModel(UserResponse u){
+        mViewModel.selectEmail(u.getEmail());
+        mViewModel.selectAge(u.getAge());
+        mViewModel.selectGender(u.isGender());
+        mViewModel.selectWeight(u.getWeight());
+        mViewModel.selectHeight(u.getHeight());
+        mViewModel.selectName(u.getName());
+        mViewModel.selectRole(u.getRole());
+        mViewModel.selectTrainingYears(u.getTrainingYears());
+
+    }
     private void doSignUp() {
         String email = editTextEmail.getText().toString();
         String password= editTextPassword.getText().toString();
@@ -87,7 +102,9 @@ public class SignUpFragment extends Fragment {
                         UtilToken.setToken(ctx, response.body().getToken());
                         UtilToken.setId(ctx, response.body().getUser().getId());
                         UtilToken.setToken(ctx, response.body().getToken());
-                        //startActivity(new Intent(ctx, DashboardActivity.class));
+                        startActivity(new Intent(ctx, DashboardActivity.class));
+                        setViewModel(response.body().getUser());
+
                     } else {
                         // error
                         Toast.makeText(ctx, "Error while signing up.", Toast.LENGTH_LONG).show();

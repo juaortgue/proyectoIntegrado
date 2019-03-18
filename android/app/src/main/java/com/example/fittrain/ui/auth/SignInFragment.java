@@ -1,7 +1,9 @@
 package com.example.fittrain.ui.auth;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,7 @@ import com.example.fittrain.model.AuthResponse;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.LoginService;
+import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.Validator;
 import com.example.fittrain.util.ViewModelUser;
@@ -92,13 +95,14 @@ public class SignInFragment extends Fragment {
                         Log.e("RequestError", response.message());
                         Toast.makeText(ctx, "Error while trying to login", Toast.LENGTH_SHORT).show();
                     } else {
-
+                        //set view model user
+                        setViewModel(response.body().getUser());
 
                         // exito
                         UtilToken.setToken(ctx, response.body().getToken());
                         UtilToken.setId(ctx, response.body().getUser().getId());
 
-                        //startActivity(new Intent(ctx, DashboardActivity.class));
+                        startActivity(new Intent(ctx, DashboardActivity.class));
                     }
                 }
 
@@ -113,7 +117,10 @@ public class SignInFragment extends Fragment {
 
     }
     public void setViewModel(UserResponse u){
+        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
+
         mViewModel.selectEmail(u.getEmail());
+
         mViewModel.selectAge(u.getAge());
         mViewModel.selectGender(u.isGender());
         mViewModel.selectWeight(u.getWeight());
