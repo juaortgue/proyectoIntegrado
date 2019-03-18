@@ -29,27 +29,28 @@
         app:layout_constraintTop_toTopOf="@+id/textViewTitleDetail"
         app:srcCompat="@drawable/logo"
         android:layout_marginLeft="24dp" />
+
     <TextView
         android:id="@+id/textViewTitleRegister"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/register"
+
         android:textSize="18sp"
         android:textStyle="bold"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTitleDetail"
+        app:layout_constraintStart_toStartOf="@+id/textViewTitleDetail"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleDetail" />
 
     <EditText
         android:id="@+id/editTextEmailRegister"
-        android:layout_width="260dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -63,17 +64,18 @@
 
     <EditText
         android:id="@+id/editTextPasswordOneRegister"
-        android:layout_width="260dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="@string/password"
-        android:inputType="textPersonName"
         android:textAlignment="textStart"
+        android:inputType="textPassword"
+
         android:textColor="#fa870c"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,24 +83,23 @@
 
     <EditText
         android:id="@+id/editTextPasswordTwoRegister"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_width="260dp"
+        android:layout_marginStart="32dp"
 
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/repeatPassword"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordOneRegister"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordOneRegister" />
 
     <Button
         android:id="@+id/buttonRegisterOnRegisterFragment"
 
-        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordTwoRegister"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordTwoRegister"
-        android:layout_width="276dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
@@ -108,12 +109,15 @@
         android:paddingRight="15dp"
         android:text="@string/register"
         android:textColor="@android:color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordTwoRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordTwoRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordTwoRegister" />
 
     <Button
         android:id="@+id/button_cancel"
 
-        android:layout_width="276dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"

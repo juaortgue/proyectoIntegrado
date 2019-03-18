@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.fittrain.R;
 import com.example.fittrain.ui.gym.GymFragment;
@@ -15,27 +16,30 @@ import com.example.fittrain.ui.training.TrainingFragment;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
                 case R.id.navigation_training:
                     f = new TrainingFragment();
+                    getSupportActionBar().setTitle(R.string.title_training);
                     return true;
                 case R.id.navigation_gym:
                     f = new GymFragment();
+                    getSupportActionBar().setTitle(R.string.title_gym);
                     return true;
                 case R.id.navigation_profile:
                     f = new ProfileFragment();
+                    getSupportActionBar().setTitle(R.string.title_profile);
+
                     return true;
             }
             if (f != null) {
+                getSupportActionBar().setTitle(R.string.title_training);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contenedor, f)
@@ -55,9 +59,11 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+
     }
 
 }

@@ -142,7 +142,12 @@ public class SignUpFragment extends Fragment {
 
             Validator.setError(editTextpasswordTwoRegister, incorrectPassword);
         }
-        if (!Validator.isSamePassword(editTextpasswordTwoRegister, editTextpasswordTwoRegister)){
+        if (Validator.isLessThan(editTextPassword, passMinSize) || Validator.isGreaterThan(editTextPassword, passMaxSize)){
+            isValid=false;
+
+            Validator.setError(editTextPassword, incorrectPassword);
+        }
+        if (!Validator.isSamePassword(editTextpasswordTwoRegister, editTextPassword)){
             isValid=false;
             Validator.setError(editTextpasswordTwoRegister, samePassword);
         }

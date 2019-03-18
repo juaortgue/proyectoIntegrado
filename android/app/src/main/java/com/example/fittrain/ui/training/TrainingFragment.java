@@ -1,5 +1,6 @@
 package com.example.fittrain.ui.training;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.fittrain.R;
 import com.example.fittrain.ui.training.dummy.DummyContent;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
+import com.example.fittrain.util.ViewModelUser;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ import java.util.List;
 public class TrainingFragment extends Fragment {
 
     // TODO: Customize parameter argument names
+    private ViewModelUser mViewModel;
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
@@ -51,6 +54,8 @@ public class TrainingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*mViewModel.getSelectedRole().observe(getActivity(),
+                color -> layout.setBackgroundColor(Color.parseColor(color)));*/
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }

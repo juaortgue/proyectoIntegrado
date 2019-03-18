@@ -8,12 +8,13 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="260dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
+
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="@string/email"
@@ -23,22 +24,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleLogin" />
+
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="260dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:gravity="start"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+
+
         app:layout_constraintStart_toStartOf="@+id/editTextEmail"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        android:gravity="start" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <CheckBox
         android:id="@+id/checkRecordar"
@@ -51,8 +53,8 @@
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="276dp"
-        android:layout_height="46dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:background="@drawable/buttonround"
@@ -68,7 +70,7 @@
 
     <Button
         android:id="@+id/buttonGoRegister"
-        android:layout_width="276dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
@@ -89,9 +91,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textColor="@color/orange"
+
         android:gravity="center"
         android:text="@string/appName"
-        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,15 +102,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewTitleLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="@string/login"
-        android:textSize="18sp"
+        android:text="@string/loginTitle"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textViewTitleDetail"
         app:layout_constraintStart_toStartOf="@+id/textViewTitleDetail"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleDetail" />

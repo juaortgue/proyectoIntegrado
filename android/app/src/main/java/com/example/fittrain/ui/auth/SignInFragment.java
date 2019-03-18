@@ -120,7 +120,6 @@ public class SignInFragment extends Fragment {
         mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
 
         mViewModel.selectEmail(u.getEmail());
-
         mViewModel.selectAge(u.getAge());
         mViewModel.selectGender(u.isGender());
         mViewModel.selectWeight(u.getWeight());
@@ -128,6 +127,9 @@ public class SignInFragment extends Fragment {
         mViewModel.selectName(u.getName());
         mViewModel.selectRole(u.getRole());
         mViewModel.selectTrainingYears(u.getTrainingYears());
+
+
+
 
     }
     public boolean validate(){
