@@ -46,6 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
                         .commit();
                 return true;
             }
+
             return false;
         }
         //en oncreate fragment
@@ -58,6 +59,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        getSupportActionBar().setTitle(R.string.title_training);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
