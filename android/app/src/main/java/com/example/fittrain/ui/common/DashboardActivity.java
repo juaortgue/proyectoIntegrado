@@ -22,15 +22,22 @@ public class DashboardActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_training:
+                    mTextMessage.setText(R.string.title_training);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_gym:
+                    mTextMessage.setText(R.string.title_gym);
+                    return true;
+                case R.id.navigation_profile:
+                    mTextMessage.setText(R.string.title_profile);
                     return true;
             }
             return false;
         }
+        //en oncreate fragment
+        /*mViewModel = ViewModelProviders.of(getActivity()).get(ColorViewModel.class);
+        mViewModel.getSelectedColor().observe(getActivity(),
+                color -> layout.setBackgroundColor(Color.parseColor(color)));*/
     };
 
     @Override
