@@ -1,4 +1,4 @@
-package com.example.fittrain.ui.model;
+package com.example.fittrain.model;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;

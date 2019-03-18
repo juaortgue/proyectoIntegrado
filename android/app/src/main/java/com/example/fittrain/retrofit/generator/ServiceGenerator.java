@@ -1,4 +1,4 @@
-package com.example.fittrain.ui.retrofit.generator;
+package com.example.fittrain.retrofit.generator;
 
 import java.io.IOException;
 

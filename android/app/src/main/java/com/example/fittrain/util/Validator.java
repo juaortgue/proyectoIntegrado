@@ -1,4 +1,4 @@
-package com.example.fittrain.ui.util;
+package com.example.fittrain.util;
 
 import android.widget.EditText;
 import android.widget.TextView;

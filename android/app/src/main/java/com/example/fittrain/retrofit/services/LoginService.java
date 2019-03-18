@@ -1,9 +1,9 @@
-package com.example.fittrain.ui.retrofit.services;
+package com.example.fittrain.retrofit.services;
 
 
 
-import com.example.fittrain.ui.model.AuthResponse;
-import com.example.fittrain.ui.model.UserResponse;
+import com.example.fittrain.model.AuthResponse;
+import com.example.fittrain.model.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

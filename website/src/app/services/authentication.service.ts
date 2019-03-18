@@ -18,7 +18,8 @@ export class AuthenticationService {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${emailPass}`
+        'Authorization': `Basic ${emailPass}`,
+        'Access-control-Allow-Origin':'*'
       })
     };
 

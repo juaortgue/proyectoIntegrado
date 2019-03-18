@@ -2,7 +2,6 @@ package com.example.fittrain.ui.auth;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,12 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fittrain.R;
-import com.example.fittrain.ui.model.AuthResponse;
-import com.example.fittrain.ui.model.UserResponse;
-import com.example.fittrain.ui.retrofit.generator.ServiceGenerator;
-import com.example.fittrain.ui.retrofit.services.LoginService;
-import com.example.fittrain.ui.util.UtilToken;
-import com.example.fittrain.ui.util.Validator;
+import com.example.fittrain.model.AuthResponse;
+import com.example.fittrain.model.UserResponse;
+import com.example.fittrain.retrofit.generator.ServiceGenerator;
+import com.example.fittrain.retrofit.services.LoginService;
+import com.example.fittrain.util.UtilToken;
+import com.example.fittrain.util.Validator;
 
 import retrofit2.Call;
 import retrofit2.Response;

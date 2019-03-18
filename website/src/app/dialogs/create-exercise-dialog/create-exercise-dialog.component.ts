@@ -85,7 +85,10 @@ export class CreateExerciseDialogComponent implements OnInit {
   closeDialog() {
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
-      return this.dialogRef.close();
+      return this.dialogRef.close('confirm');
+
+      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
+      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
     }
 
     // set the component state to "uploading"
