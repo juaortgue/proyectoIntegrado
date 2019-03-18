@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+
 
     <item
         android:id="@+id/navigation_training"
         android:icon="@drawable/ic_stretching_exercises"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_training" />
 
     <item
         android:id="@+id/navigation_gym"
         android:icon="@drawable/ic_gym"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_gym" />
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_avatar"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_profile" />
 </menu>

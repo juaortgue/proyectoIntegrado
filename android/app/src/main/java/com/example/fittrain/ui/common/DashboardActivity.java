@@ -3,11 +3,15 @@ package com.example.fittrain.ui.common;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.fittrain.R;
+import com.example.fittrain.ui.gym.GymFragment;
+import com.example.fittrain.ui.profile.ProfileFragment;
+import com.example.fittrain.ui.training.TrainingFragment;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -15,22 +19,28 @@ public class DashboardActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        Fragment f = null;
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+
                 case R.id.navigation_training:
-                    mTextMessage.setText(R.string.title_training);
+                    f = new TrainingFragment();
                     return true;
                 case R.id.navigation_gym:
-                    mTextMessage.setText(R.string.title_gym);
+                    f = new GymFragment();
                     return true;
                 case R.id.navigation_profile:
-                    mTextMessage.setText(R.string.title_profile);
+                    f = new ProfileFragment();
                     return true;
+            }
+            if (f != null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contenedor, f)
+                        .commit();
+                return true;
             }
             return false;
         }
