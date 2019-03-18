@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import com.example.fittrain.R;
 import com.example.fittrain.model.AuthResponse;
+import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.LoginService;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.Validator;
+import com.example.fittrain.util.ViewModelUser;
 
 import okhttp3.Credentials;
 import retrofit2.Call;
@@ -34,6 +36,8 @@ public class SignInFragment extends Fragment {
     private Button btnSignIn, btnGoSignUp;
     private EditText editTextEmail, editTextPassword;
     private Context ctx;
+    private ViewModelUser mViewModel;
+
 
     public SignInFragment() {
         // Required empty public constructor
@@ -106,6 +110,17 @@ public class SignInFragment extends Fragment {
             });
         }
 
+
+    }
+    public void setViewModel(UserResponse u){
+        mViewModel.selectEmail(u.getEmail());
+        mViewModel.selectAge(u.getAge());
+        mViewModel.selectGender(u.isGender());
+        mViewModel.selectWeight(u.getWeight());
+        mViewModel.selectHeight(u.getHeight());
+        mViewModel.selectName(u.getName());
+        mViewModel.selectRole(u.getRole());
+        mViewModel.selectTrainingYears(u.getTrainingYears());
 
     }
     public boolean validate(){

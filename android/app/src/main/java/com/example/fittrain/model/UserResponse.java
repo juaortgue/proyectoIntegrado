@@ -1,5 +1,8 @@
 package com.example.fittrain.model;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.Objects;
 
 public class UserResponse {
@@ -13,6 +16,8 @@ public class UserResponse {
     private int height;
     private boolean gender;
     private int trainingYears;
+    private int age;
+
 
     public UserResponse() {
     }
@@ -22,7 +27,7 @@ public class UserResponse {
 
     }
 
-    public UserResponse(String id, String email, String password, String name, String role, String picture, int weight, int height, boolean gender, int trainingYears) {
+    public UserResponse(String id, String email, String password, String name, String role, String picture, int weight, int height, boolean gender, int trainingYears, int age) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -33,6 +38,7 @@ public class UserResponse {
         this.height = height;
         this.gender = gender;
         this.trainingYears = trainingYears;
+        this.age = age;
     }
 
     public String getId() {
@@ -115,6 +121,14 @@ public class UserResponse {
         this.trainingYears = trainingYears;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,6 +138,7 @@ public class UserResponse {
                 height == that.height &&
                 gender == that.gender &&
                 trainingYears == that.trainingYears &&
+                age == that.age &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(password, that.password) &&
@@ -132,9 +147,10 @@ public class UserResponse {
                 Objects.equals(picture, that.picture);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, name, role, picture, weight, height, gender, trainingYears);
+        return Objects.hash(id, email, password, name, role, picture, weight, height, gender, trainingYears, age);
     }
 
     @Override
@@ -150,6 +166,8 @@ public class UserResponse {
                 ", height=" + height +
                 ", gender=" + gender +
                 ", trainingYears=" + trainingYears +
+                ", age=" + age +
                 '}';
     }
+
 }
