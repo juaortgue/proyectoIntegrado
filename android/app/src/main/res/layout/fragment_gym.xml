@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:layout_marginStart="8dp"
@@ -29,64 +29,57 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/blueFond"
-            android:layout_width="match_parent"
+            android:layout_width="343dp"
             android:layout_height="100dp"
             android:background="@color/blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewCover"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCover"
             app:layout_constraintTop_toBottomOf="@+id/imageViewCover">
 
+            <ImageView
+                android:id="@+id/imageViewLocation"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/imageViewAddress"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewAddress"
+                app:srcCompat="@drawable/ic_map_location" />
+
             <TextView
-                android:id="@+id/textViewName"
+                android:id="@+id/textViewTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewAddress"
+                app:layout_constraintTop_toTopOf="@+id/imageViewAddress" />
 
             <TextView
-                android:id="@+id/textViewObjetive"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewAddress"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewLocation"
+                app:layout_constraintTop_toTopOf="@+id/imageViewLocation" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewAddress"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/textViewName"
-                app:layout_constraintTop_toBottomOf="@+id/textViewName"
-                app:srcCompat="@drawable/ic_objetive" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_address" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="32dp"
-                app:layout_constraintStart_toEndOf="@+id/textViewObjetive"
-                app:layout_constraintTop_toTopOf="@+id/textViewObjetive"
-                app:srcCompat="@drawable/ic_woman" />
-
-            <TextView
-                android:id="@+id/textViewTotalExercises"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

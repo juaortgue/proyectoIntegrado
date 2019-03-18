@@ -1,7 +1,6 @@
 package com.example.fittrain.ui.training;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
 import com.example.fittrain.model.TrainingResponse;
-import com.example.fittrain.ui.training.TrainingFragment.OnListFragmentInteractionListener;
-import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.UtilToken;
 
 import java.util.List;
@@ -76,8 +73,8 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
             super(view);
             mView = view;
             imageViewPicture = mView.findViewById(R.id.imageViewCover);
-            textViewTarget = mView.findViewById(R.id.textViewObjetive);
-            textViewTitle = mView.findViewById(R.id.textViewName);
+            textViewTarget = mView.findViewById(R.id.textViewAddress);
+            textViewTitle = mView.findViewById(R.id.textViewTitle);
             textViewTotalExercises = mView.findViewById(R.id.textViewTotalExercises);
 
         }
