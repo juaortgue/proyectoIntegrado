@@ -117,7 +117,8 @@ public class TrainingFragment extends Fragment {
 
             if (level!=0){
                 //consulta que te devuelva solo los training de cierto nivel
-                loadTraining(recyclerView, level);
+                options.put("level", String.valueOf(level));
+                loadTraining(recyclerView);
             }else{
                 loadTraining(recyclerView);
 
@@ -225,7 +226,7 @@ public class TrainingFragment extends Fragment {
     }
 
 
-    public void loadTraining(RecyclerView recyclerView){
+    /*public void loadTraining(RecyclerView recyclerView){
         trainingService= ServiceGenerator.createService(TrainingService.class);
         Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll();
         call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
@@ -253,10 +254,10 @@ public class TrainingFragment extends Fragment {
                 Log.e("failure", "failure in petition");
             }
         });
-    }
-    public void loadTraining(RecyclerView recyclerView, int level){
+    }*/
+    public void loadTraining(RecyclerView recyclerView){
         trainingService= ServiceGenerator.createService(TrainingService.class);
-        Call<ResponseContainer<TrainingResponse>> call = trainingService.listAllFilterByLevel(level);
+        Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll(options);
         call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
             @Override
             public void onResponse(Call<ResponseContainer<TrainingResponse>> call, Response<ResponseContainer<TrainingResponse>> response) {
@@ -377,6 +378,8 @@ public class TrainingFragment extends Fragment {
                 .setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        options.put("name", editTextTitleTraining.getText().toString());
+                        options.put("target", spinnerTarget.getSelectedItem().toString());
 
                     }
                 })
