@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/lessBlue">
+    >
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintSearch"
         android:layout_width="match_parent"
@@ -12,38 +12,43 @@
         >
 
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:text="@string/filterTrainingDialog"
-            android:textColor="@color/orange"
-            android:textSize="24sp"
-
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.537"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/filterTrainingDialog" />
-
         <EditText
             android:id="@+id/editTextTitleTraining"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textColor="@android:color/white"
-            android:background="@android:color/white"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/trainingTitleDialog"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitleSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/target"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTitleTraining"
+            app:layout_constraintStart_toStartOf="@+id/editTextTitleTraining"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitleTraining" />
+
+        <Spinner
+            android:id="@+id/spinnerTarget"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:entries="@array/targets"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTitleSpinner"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitleSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleSpinner" />
+
 
     </android.support.constraint.ConstraintLayout>
 

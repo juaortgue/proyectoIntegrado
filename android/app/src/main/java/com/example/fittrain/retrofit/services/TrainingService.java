@@ -6,14 +6,15 @@ import com.example.fittrain.model.TrainingResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface TrainingService {
 
     final String BASE_URL = "/training";
     @GET(BASE_URL)
     Call<ResponseContainer<TrainingResponse>> listAll();
-    @GET(BASE_URL+"&level={level}")
-    Call<ResponseContainer<TrainingResponse>> listAllFilterByLevel(@Path("level") int level);
+    @GET(BASE_URL)
+    Call<ResponseContainer<TrainingResponse>> listAllFilterByLevel(@Query("level") int level);
 
     /* @GET(BASE_URL)
     Call<ResponseContainer<PropertyResponse>> listProperties();

@@ -21,6 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fittrain.R;
@@ -49,7 +51,7 @@ import retrofit2.Response;
 
 public class TrainingFragment extends Fragment {
     private FragmentTransaction fragmentChanger;
-
+    private Spinner spinnerTarget;
     private ViewModelUser mViewModel;
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
@@ -84,6 +86,7 @@ public class TrainingFragment extends Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             userReceived = (UserResponse) getArguments().getSerializable("user");
             userReceived.getTrainingYears();
+
         }
 
 
@@ -97,6 +100,8 @@ public class TrainingFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             ctx = getContext();
+            spinnerTarget=getActivity().findViewById(R.id.spinnerTarget);
+
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
@@ -107,12 +112,13 @@ public class TrainingFragment extends Fragment {
             int level =0;
             level = putLevelAlgorimt();
             if (level!=0){
-                System.out.println("AQUI CABESA" +level);
-                loadTraining(recyclerView);
-                createAndShowUserDates();
-            }else{
                 //consulta que te devuelva solo los training de cierto nivel
                 loadTraining(recyclerView, level);
+            }else{
+                loadTraining(recyclerView);
+                createAndShowUserDates();
+
+
             }
 
 
@@ -177,7 +183,8 @@ public class TrainingFragment extends Fragment {
         //sobrepeso
         else if (imc<=overweightMin && imc>=overweightMax){
             level=2;
-        }else{
+        }
+        else{
             level=0;
 
         }
@@ -354,9 +361,11 @@ public class TrainingFragment extends Fragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
+
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.activity_search, null))
+                .setTitle(R.string.filterTrainingDialog)
                 // Add action buttons
                 .setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
                     @Override

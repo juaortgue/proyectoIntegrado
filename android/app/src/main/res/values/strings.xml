@@ -48,4 +48,13 @@
     <string name="logout">Logout</string>
     <string name="filterTrainingDialog">Filter training</string>
     <string name="trainingTitleDialog">Training title</string>
+    <string name="fillDialog">Fill gaps</string>
+    <string name="target">Select target</string>
+
+    <string-array name="targets">
+            <item>Lost weight</item>
+            <item>Keep in weight</item>
+            <item>Gaining muscle</item>
+
+        </string-array>
 </resources>
