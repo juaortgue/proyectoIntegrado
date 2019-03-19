@@ -93,6 +93,15 @@ public class TrainingFragment extends Fragment {
             }
 
             //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
+            int level =0;
+            level = putLevelAlgorimt();
+            if (level!=0){
+                System.out.println("AQUI CABESA" +level);
+                loadTraining(recyclerView);
+            }else{
+                //loadPersonalTraining(recyclerView);
+                //consulta que te devuelva solo los training de cierto nivel
+            }
 
 
         }
@@ -113,12 +122,58 @@ public class TrainingFragment extends Fragment {
 
          return imc;
     }
-    public int putLevel(){
-        int level=0;
+    public int putLevelAlgorimt(){
+        int level=0, levelToAument=2;
+        userReceived.setWeight(0);
+        userReceived.setHeight(0);
+        userReceived.setTrainingYears(0);
         double imc = calculateImc();
         double insuficiency=18.4, normalMin=18.5, normalMax=24.9, overweightMin = 25,
                 overweightMax=29.9, obesityIMin=30, obesityIMax=34.9, obesityIIMin=35,
                 obesityIIMax = 39.9, obesityIIIMax=40;
+
+            //aument level with training years
+        if (userReceived.getTrainingYears()>=1 && userReceived.getTrainingYears()<=2){
+            level=level+1;
+        }else if (userReceived.getTrainingYears()==3){
+            level=level+2;
+        }else if (userReceived.getTrainingYears()>3)
+            level=level+3;
+
+
+        //desnutricion
+        if (imc<=insuficiency){
+
+            level=1;
+        }
+        //obesidad 2
+        else if ((imc>=obesityIIMin && imc <=obesityIIMax)){
+            level=1;
+
+        }
+        //obesidad 3
+        else if (imc>=obesityIIMax && imc<=obesityIIIMax){
+            level=1;
+
+        }
+        //obesidad 1
+        else if (imc>=obesityIMin && imc<=obesityIMax){
+            level=2;
+        }
+        //normo peso
+        else if (imc>=normalMin && imc<= normalMax){
+            level=2;
+        }
+        //sobrepeso
+        else if (imc<=overweightMin && imc>=overweightMax){
+            level=2;
+        }else{
+            level=0;
+
+        }
+
+
+
         return level;
     }
 
