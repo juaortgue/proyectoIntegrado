@@ -44,7 +44,13 @@ router.post('/',
  */
 router.get('/',
   master(),
-  query(),
+  query({
+    level: {
+     type: Number,
+     paths: ['level'],
+     operator: '$eq'
+   }
+ }),
   index)
 
 /**

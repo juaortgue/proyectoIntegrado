@@ -61,7 +61,7 @@ trainingSchema.methods = {
   view (full) {
 
       let view = {}
-      let fields = ['id', 'name', 'target', 'time', 'picture', 'exercises']
+      let fields = ['id', 'name', 'target', 'time', 'picture', 'exercises', 'level']
   
       if (full) {
         fields = [...fields, 'description', 'city',  'level']

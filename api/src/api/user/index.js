@@ -22,7 +22,13 @@ const { email, password, name, picture, role, age, weight, height, gender, train
  */
 router.get('/',
   master(),
-  query(),
+  query({
+    level: {
+     type: Number,
+     paths: ['level'],
+     operator: '$eq'
+   }
+ }),
   index)
 
 /**
