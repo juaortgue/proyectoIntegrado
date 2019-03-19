@@ -1,7 +1,6 @@
 package com.example.fittrain.ui.training;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,15 +19,12 @@ import com.example.fittrain.R;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.TrainingResponse;
 import com.example.fittrain.model.UserResponse;
-import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
-import com.example.fittrain.ui.auth.LoginActivity;
-import com.example.fittrain.ui.common.DashboardActivity;
-import com.example.fittrain.ui.training.dummy.DummyContent;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.ViewModelUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,15 +42,17 @@ public class TrainingFragment extends Fragment {
     private int mColumnCount = 1;
     Context ctx;
     String token;
-    private UserResponse user;
-    private int height, weight, trainingYears;
+    private UserResponse userReceived;
+
     MyTrainingRecyclerViewAdapter adapter;
     List<TrainingResponse> trainingList = new ArrayList<>();
     private TrainingService trainingService;
     Map<String, String> options = new HashMap<>();
 
+    @SuppressLint("ValidFragment")
     public TrainingFragment() {
     }
+
 
     @SuppressWarnings("unused")
     public static TrainingFragment newInstance(int columnCount) {
@@ -69,18 +67,14 @@ public class TrainingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
-        mViewModel.getUserSelected().observe(getActivity(),
-                userReceived -> {
-                    user = userReceived;
-                });
-
-        user = mViewModel.getUserSelected().getValue();
-
-
+        System.out.print(1);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            userReceived = (UserResponse) getArguments().getSerializable("user");
+            userReceived.getTrainingYears();
         }
+
+
     }
 
     @Override
@@ -99,7 +93,7 @@ public class TrainingFragment extends Fragment {
             }
 
             //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
-            //double result = calculateImc();
+
 
         }
         return view;
@@ -108,15 +102,24 @@ public class TrainingFragment extends Fragment {
         int comparative=0, divisor=100;
         double heighReceived=0.0;
 
-     double imc=0;
-     if (height!=comparative && weight!=comparative ){
-         heighReceived = height/divisor;
-         heighReceived = heighReceived*heighReceived;
-         imc = weight / heighReceived;
-     }
+         double imc=0;
+         if (userReceived.getHeight()!=comparative && userReceived.getWeight()!=comparative ){
+             heighReceived = userReceived.getHeight();
+             heighReceived = heighReceived/divisor;
+             heighReceived = heighReceived*heighReceived;
+             imc = userReceived.getWeight() / heighReceived;
+         }
 
 
-     return imc;
+         return imc;
+    }
+    public int putLevel(){
+        int level=0;
+        double imc = calculateImc();
+        double insuficiency=18.4, normalMin=18.5, normalMax=24.9, overweightMin = 25,
+                overweightMax=29.9, obesityIMin=30, obesityIMax=34.9, obesityIIMin=35,
+                obesityIIMax = 39.9, obesityIIIMax=40;
+        return level;
     }
 
 

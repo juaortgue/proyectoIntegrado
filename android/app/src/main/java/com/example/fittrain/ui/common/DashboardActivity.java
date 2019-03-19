@@ -1,5 +1,7 @@
 package com.example.fittrain.ui.common;
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,13 +12,16 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.fittrain.R;
+import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.ui.gym.GymFragment;
 import com.example.fittrain.ui.profile.ProfileFragment;
 import com.example.fittrain.ui.training.TrainingFragment;
+import com.example.fittrain.util.ViewModelUser;
 
 public class DashboardActivity extends AppCompatActivity {
-
+    private ViewModelUser mViewModel;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
+    UserResponse uPass;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,14 +73,21 @@ public class DashboardActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.title_training);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        UserResponse userToPass =   (UserResponse) getIntent().getExtras().getSerializable("user");
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", userToPass);
 
         fragmentTraining = new TrainingFragment();
         fragmentGym = new GymFragment();
         fragmentProfile = new ProfileFragment();
+        fragmentTraining.setArguments(bundle);
+
         goToFragment(fragmentTraining);
 
 
 
     }
+
 
 }

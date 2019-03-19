@@ -60,7 +60,6 @@ public class SignInFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(ViewModelUser.class);
     }
 
     public void loadItems(View v) {
@@ -104,13 +103,17 @@ public class SignInFragment extends Fragment {
                         Toast.makeText(ctx, "Error while trying to login", Toast.LENGTH_SHORT).show();
                     } else {
                         //set view model user
-                        setViewModel(response.body().getUser());
 
                         // exito
                         UtilToken.setToken(ctx, response.body().getToken());
                         UtilToken.setId(ctx, response.body().getUser().getId());
 
-                        startActivity(new Intent(ctx, DashboardActivity.class));
+                        Intent i =new Intent(getActivity(), DashboardActivity.class);
+                        i.putExtra("user", response.body().getUser());
+
+
+                        startActivity(i);
+
                     }
                 }
 

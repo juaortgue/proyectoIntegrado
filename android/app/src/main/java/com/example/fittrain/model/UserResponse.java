@@ -3,9 +3,10 @@ package com.example.fittrain.model;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class UserResponse {
+public class UserResponse implements Serializable {
     private String id;
     private String email;
     private String password;
@@ -129,6 +130,7 @@ public class UserResponse {
         this.age = age;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
