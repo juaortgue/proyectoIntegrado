@@ -53,8 +53,8 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
         }
         String size = String.valueOf(holder.mItem.getExercises().size());
         holder.textViewTotalExercises.setText(String.valueOf(holder.mItem.getExercises().size()));
-        holder.textViewTitle.setText(holder.mItem.getName());
-        holder.textViewTarget.setText(holder.mItem.getTarget());
+        holder.textViewTitle.setText(holder.mItem.getName().toUpperCase());
+        holder.textViewTarget.setText(holder.mItem.getTarget().toUpperCase());
 
     }
 

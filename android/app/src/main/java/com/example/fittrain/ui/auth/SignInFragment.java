@@ -107,7 +107,10 @@ public class SignInFragment extends Fragment {
                         // exito
                         UtilToken.setToken(ctx, response.body().getToken());
                         UtilToken.setId(ctx, response.body().getUser().getId());
-
+                        UtilToken.setEmail(ctx, response.body().getUser().getEmail());
+                        UtilToken.setWeight(ctx, response.body().getUser().getWeight());
+                        UtilToken.setHeight(ctx, response.body().getUser().getHeight());
+                        UtilToken.setTrainingYears(ctx, response.body().getUser().getTrainingYears());
                         Intent i =new Intent(getActivity(), DashboardActivity.class);
                         i.putExtra("user", response.body().getUser());
 

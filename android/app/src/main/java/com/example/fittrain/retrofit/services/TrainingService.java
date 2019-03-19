@@ -1,6 +1,7 @@
 package com.example.fittrain.retrofit.services;
 
 import com.example.fittrain.model.ResponseContainer;
+import com.example.fittrain.model.TrainingOneResponse;
 import com.example.fittrain.model.TrainingResponse;
 
 import java.util.Map;
@@ -14,12 +15,11 @@ import retrofit2.http.QueryMap;
 public interface TrainingService {
 
     final String BASE_URL = "/training";
-    /*@GET(BASE_URL)
-    Call<ResponseContainer<TrainingResponse>> listAll();*/
-    /*@GET(BASE_URL)
-    Call<ResponseContainer<TrainingResponse>> listAll(@Query("level") int level);*/
+
     @GET(BASE_URL)
     Call<ResponseContainer<TrainingResponse>> listAll(@QueryMap Map<String, String> options);
+    @GET(BASE_URL + "/{id}")
+    Call<TrainingOneResponse> getOne(@Path("id") String id);
     /* @GET(BASE_URL)
     Call<ResponseContainer<PropertyResponse>> listProperties();
     @GET(BASE_URL + "/auth")

@@ -1,17 +1,28 @@
 package com.example.fittrain.retrofit.services;
 
 
+import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.UserResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface UserService {
     final String BASE_URL = "/user";
 
-
     @GET("/me")
    Call<UserResponse> getMe();
+    @GET(BASE_URL)
+    Call<ResponseContainer<UserResponse>> listAll();
+    @GET(BASE_URL + "/{id}")
+    Call<UserResponse> getOne(@Path("id") String id);
+    @PUT(BASE_URL + "/{id}")
+    Call<UserResponse> edit(@Path("id") String id, @Body UserResponse edited);
+
+    /* @GET(BASE_URL)
 
    /* @GET(BASE_URL)
     Call<ResponseContainer<PropertyResponse>> listProperties();

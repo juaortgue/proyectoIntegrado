@@ -13,12 +13,11 @@
 
 
         <EditText
-            android:id="@+id/editTextTitleTraining"
+            android:id="@+id/editTextSearchTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:gravity="center"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/trainingTitleDialog"
@@ -33,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/target"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTitleTraining"
-            app:layout_constraintStart_toStartOf="@+id/editTextTitleTraining"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTitleTraining" />
+            app:layout_constraintEnd_toEndOf="@+id/editTextSearchTitle"
+            app:layout_constraintStart_toStartOf="@+id/editTextSearchTitle"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSearchTitle" />
 
         <Spinner
             android:id="@+id/spinnerTarget"

@@ -3,7 +3,6 @@ package com.example.fittrain.ui.training;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,12 +15,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -33,13 +28,10 @@ import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.auth.LoginActivity;
-import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.ui.profile.ProfileFragment;
-import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.ViewModelUser;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +60,9 @@ public class TrainingFragment extends Fragment {
     Map<String, String> options = new HashMap<>();
 
     @SuppressLint("ValidFragment")
+    public TrainingFragment(Map<String,String> options) {
+        this.options = options;
+    }
     public TrainingFragment() {
     }
 
@@ -84,11 +79,12 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             userReceived = (UserResponse) getArguments().getSerializable("user");
             userReceived.getTrainingYears();
+            //options = getArguments().get("options");
 
         }
 
@@ -99,12 +95,12 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training_list, container, false);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         // Set the adapter
         if (view instanceof RecyclerView) {
             ctx = getContext();
             spinnerTarget=getActivity().findViewById(R.id.spinnerTarget);
-            editTextTitleTraining=getActivity().findViewById(R.id.editTextTitleTraining);
+            editTextTitleTraining=getActivity().findViewById(R.id.editTextSearchTitle);
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
@@ -222,39 +218,11 @@ public class TrainingFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(DummyItem item);
+        //void onListFragmentInteraction(DummyItem item);
     }
 
 
-    /*public void loadTraining(RecyclerView recyclerView){
-        trainingService= ServiceGenerator.createService(TrainingService.class);
-        Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll();
-        call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
-            @Override
-            public void onResponse(Call<ResponseContainer<TrainingResponse>> call, Response<ResponseContainer<TrainingResponse>> response) {
-                if (!response.isSuccessful()) {
-                    Log.e("error response", "code error");
-                    Toast.makeText(getActivity(), "Error in request", Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.e("successful response", "code error");
 
-                    trainingList = response.body().getRows();
-
-                    adapter = new MyTrainingRecyclerViewAdapter(
-                            ctx,
-                            trainingList);
-                    recyclerView.setAdapter(adapter);
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseContainer<TrainingResponse>> call, Throwable t) {
-                Log.e("failure", "failure in petition");
-            }
-        });
-    }*/
     public void loadTraining(RecyclerView recyclerView){
         trainingService= ServiceGenerator.createService(TrainingService.class);
         Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll(options);
@@ -340,13 +308,13 @@ public class TrainingFragment extends Fragment {
         startActivity(iLogin);
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_items, menu);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
@@ -363,7 +331,7 @@ public class TrainingFragment extends Fragment {
                 break;
         }
         return false;
-    }
+    }*/
     public void searchOptions () {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater

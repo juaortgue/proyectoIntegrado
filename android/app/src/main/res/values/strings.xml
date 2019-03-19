@@ -51,6 +51,10 @@
     <string name="fillDialog">Fill gaps</string>
     <string name="target">Select target</string>
     <string name="exercises">Exercises</string>
+    <string name="height">height</string>
+    <string name="emailS">email</string>
+    <string name="weight">weight</string>
+    <string name="trainingYears">trainingYears</string>
 
     <string-array name="targets">
             <item>Lost weight</item>
