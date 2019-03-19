@@ -42,6 +42,8 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 master access only.
  */
+
+ /*nombrecito2*/
 router.get('/',
   master(),
   query({
@@ -49,9 +51,35 @@ router.get('/',
      type: Number,
      paths: ['level'],
      operator: '$eq'
-   }
+   },
+   name: {
+    type: String,
+    paths: ['name']
+  },
+  target: {
+    type: String,
+    paths: ['target']
+  }
  }),
   index)
+
+  /*const schema = new Schema({
+  active: Boolean, // shorthand to { type: Boolean }
+  sort: '-createdAt', // shorthand to { type: String, default: '-createdAt' }
+  term: {
+    type: RegExp,
+    paths: ['title', 'description'],
+    bindTo: 'search' // default was 'query'
+  },
+  with_picture: {
+    type: Boolean,
+    paths: ['picture'],
+    operator: '$exists'
+  }
+}, {
+  page: false, // disable default parameter `page`
+  limit: 'max_items' // change name of default parameter `limit` to `max_items`
+}); */
 
 /**
  * @api {get} /training/:id Retrieve training
