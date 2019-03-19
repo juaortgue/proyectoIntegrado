@@ -46,4 +46,6 @@
     <string name="userDatesMessage">If you want personal training, fill in your dates in Profile.</string>
     <string name="filter">Filter</string>
     <string name="logout">Logout</string>
+    <string name="filterTrainingDialog">Filter training</string>
+    <string name="trainingTitleDialog">Training title</string>
 </resources>

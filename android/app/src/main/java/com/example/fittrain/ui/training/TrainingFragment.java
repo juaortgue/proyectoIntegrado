@@ -340,7 +340,7 @@ public class TrainingFragment extends Fragment {
                 searchOptions();
                 return false;
             case R.id.action_logout:
-
+                createAndShowLogoutDialog();
 
                 return true;
 

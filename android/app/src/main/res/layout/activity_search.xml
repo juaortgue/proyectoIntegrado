@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lessBlue">
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="DIALOGO"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:text="@string/filterTrainingDialog"
+            android:textColor="@color/orange"
+            android:textSize="24sp"
+
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/filterTrainingDialog" />
+
+        <EditText
+            android:id="@+id/editTextTitleTraining"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint="@string/trainingTitleDialog"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     </android.support.constraint.ConstraintLayout>
 
