@@ -158,7 +158,7 @@ public class TrainingFragment extends Fragment {
 
 
         //desnutricion
-        if (imc<=insuficiency){
+        if (imc<=insuficiency && imc>0){
 
             level=1;
         }
