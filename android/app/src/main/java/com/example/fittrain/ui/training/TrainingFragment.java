@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,9 +53,11 @@ import retrofit2.Response;
 public class TrainingFragment extends Fragment {
     private FragmentTransaction fragmentChanger;
     private Spinner spinnerTarget;
+    int level;
     private ViewModelUser mViewModel;
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
+    private EditText editTextTitleTraining;
     Context ctx;
     String token;
     private UserResponse userReceived;
@@ -101,7 +104,7 @@ public class TrainingFragment extends Fragment {
         if (view instanceof RecyclerView) {
             ctx = getContext();
             spinnerTarget=getActivity().findViewById(R.id.spinnerTarget);
-
+            editTextTitleTraining=getActivity().findViewById(R.id.editTextTitleTraining);
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
@@ -109,14 +112,15 @@ public class TrainingFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
 
-            int level =0;
+
             level = putLevelAlgorimt();
+
             if (level!=0){
                 //consulta que te devuelva solo los training de cierto nivel
                 loadTraining(recyclerView, level);
             }else{
                 loadTraining(recyclerView);
-                createAndShowUserDates();
+
 
 
             }
@@ -282,7 +286,10 @@ public class TrainingFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
         super.onActivityCreated(savedInstanceState);
+        if (level==0)
+            createAndShowUserDates();
 
 
     }
@@ -312,7 +319,7 @@ public class TrainingFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int id) {
                         getFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.contenedor, new ProfileFragment())
+                                .detach(TrainingFragment.this).attach(new ProfileFragment())
                                 .commit();
                     }
                 })

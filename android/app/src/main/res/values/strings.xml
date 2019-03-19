@@ -50,6 +50,7 @@
     <string name="trainingTitleDialog">Training title</string>
     <string name="fillDialog">Fill gaps</string>
     <string name="target">Select target</string>
+    <string name="exercises">Exercises</string>
 
     <string-array name="targets">
             <item>Lost weight</item>
