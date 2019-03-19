@@ -44,4 +44,6 @@
     <string name="accept">Accept</string>
     <string name="userDates">Fill in your dates</string>
     <string name="userDatesMessage">If you want personal training, fill in your dates in Profile.</string>
+    <string name="filter">Filter</string>
+    <string name="logout">Logout</string>
 </resources>

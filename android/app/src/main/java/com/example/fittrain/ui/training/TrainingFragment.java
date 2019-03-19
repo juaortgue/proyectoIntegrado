@@ -2,6 +2,7 @@ package com.example.fittrain.ui.training;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.auth.LoginActivity;
+import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.ui.profile.ProfileFragment;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
 import com.example.fittrain.util.UtilToken;
@@ -74,8 +79,7 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        System.out.print(1);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             userReceived = (UserResponse) getArguments().getSerializable("user");
@@ -89,7 +93,7 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training_list, container, false);
-
+        setHasOptionsMenu(true);
         // Set the adapter
         if (view instanceof RecyclerView) {
             ctx = getContext();
@@ -319,5 +323,56 @@ public class TrainingFragment extends Fragment {
         UtilToken.clearAll(ctx);
         Intent iLogin = new Intent(ctx, LoginActivity.class);
         startActivity(iLogin);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_items, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+
+            case R.id.action_filter:
+                searchOptions();
+                return false;
+            case R.id.action_logout:
+
+
+                return true;
+
+            default:
+                break;
+        }
+        return false;
+    }
+    public void searchOptions () {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // Get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.activity_search, null))
+                // Add action buttons
+                .setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                       dialog.cancel();
+                    }
+                });
+        Dialog d =builder.create();
+        d.show();
+
+
+
     }
 }
