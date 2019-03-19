@@ -1,25 +1,28 @@
 import { Router } from 'express'
-import { middleware as query } from 'querymen'
+import { middleware as query, Schema } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token, master } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
-import { Schema } from 'mongoose';
 export Gym, { schema } from './model'
 
 const router = new Router()
 const { name, address, province, city, zipcode, position, price, description, picture} = schema.tree
 const gymsSchema = new Schema({
   name: {
-    type: [String], 
+    type: String, 
     paths: ['name']
   },
-  name: {
-    type: [String], 
+  address: {
+    type: String, 
     paths: ['address']
   },
-  near: { paths: ['position'] }
-},{near: true})
+  near: {
+    paths: ['loc']    
+  }
+  
+  
+}, {near: true})
 
 /**
  * @api {post} /gyms Create gym
@@ -59,7 +62,7 @@ router.post('/',
  */
 router.get('/',
   master(),
-  query(),
+  query(gymsSchema),
   index)
 
 /**
