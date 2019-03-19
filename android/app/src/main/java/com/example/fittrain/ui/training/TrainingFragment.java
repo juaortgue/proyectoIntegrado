@@ -1,11 +1,15 @@
 package com.example.fittrain.ui.training;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +25,10 @@ import com.example.fittrain.model.TrainingResponse;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
+import com.example.fittrain.ui.auth.LoginActivity;
+import com.example.fittrain.ui.profile.ProfileFragment;
 import com.example.fittrain.ui.training.dummy.DummyContent.DummyItem;
+import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.ViewModelUser;
 
 import java.io.Serializable;
@@ -36,6 +43,7 @@ import retrofit2.Response;
 
 
 public class TrainingFragment extends Fragment {
+    private FragmentTransaction fragmentChanger;
 
     private ViewModelUser mViewModel;
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -92,14 +100,13 @@ public class TrainingFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
 
-            //TODO AQUI SE HARIA UNA PETICION U OTRA DEPENDIENDO DE SUS DATOS
             int level =0;
             level = putLevelAlgorimt();
             if (level!=0){
                 System.out.println("AQUI CABESA" +level);
                 loadTraining(recyclerView);
+                createAndShowUserDates();
             }else{
-                //loadPersonalTraining(recyclerView);
                 //consulta que te devuelva solo los training de cierto nivel
                 loadTraining(recyclerView, level);
             }
@@ -267,5 +274,50 @@ public class TrainingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
+    }
+    public void createAndShowLogoutDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle(R.string.logoutDialog)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        logout();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+        // Create the AlertDialog object and return it
+        builder.create();
+        builder.show();
+    }
+    public void createAndShowUserDates(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle(R.string.userDates)
+                .setMessage(R.string.userDatesMessage)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.contenedor, new ProfileFragment())
+                                .commit();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+        // Create the AlertDialog object and return it
+        builder.create();
+        builder.show();
+    }
+    public  void logout(){
+        UtilToken.clearAll(ctx);
+        Intent iLogin = new Intent(ctx, LoginActivity.class);
+        startActivity(iLogin);
     }
 }
