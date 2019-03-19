@@ -101,6 +101,7 @@ public class TrainingFragment extends Fragment {
             }else{
                 //loadPersonalTraining(recyclerView);
                 //consulta que te devuelva solo los training de cierto nivel
+                loadTraining(recyclerView, level);
             }
 
 
@@ -123,10 +124,8 @@ public class TrainingFragment extends Fragment {
          return imc;
     }
     public int putLevelAlgorimt(){
-        int level=0, levelToAument=2;
-        userReceived.setWeight(0);
-        userReceived.setHeight(0);
-        userReceived.setTrainingYears(0);
+        int level=0;
+
         double imc = calculateImc();
         double insuficiency=18.4, normalMin=18.5, normalMax=24.9, overweightMin = 25,
                 overweightMax=29.9, obesityIMin=30, obesityIMax=34.9, obesityIIMin=35,
@@ -207,6 +206,35 @@ public class TrainingFragment extends Fragment {
     public void loadTraining(RecyclerView recyclerView){
         trainingService= ServiceGenerator.createService(TrainingService.class);
         Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll();
+        call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
+            @Override
+            public void onResponse(Call<ResponseContainer<TrainingResponse>> call, Response<ResponseContainer<TrainingResponse>> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("error response", "code error");
+                    Toast.makeText(getActivity(), "Error in request", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("successful response", "code error");
+
+                    trainingList = response.body().getRows();
+
+                    adapter = new MyTrainingRecyclerViewAdapter(
+                            ctx,
+                            trainingList);
+                    recyclerView.setAdapter(adapter);
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseContainer<TrainingResponse>> call, Throwable t) {
+                Log.e("failure", "failure in petition");
+            }
+        });
+    }
+    public void loadTraining(RecyclerView recyclerView, int level){
+        trainingService= ServiceGenerator.createService(TrainingService.class);
+        Call<ResponseContainer<TrainingResponse>> call = trainingService.listAllFilterByLevel(level);
         call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
             @Override
             public void onResponse(Call<ResponseContainer<TrainingResponse>> call, Response<ResponseContainer<TrainingResponse>> response) {
