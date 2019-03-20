@@ -16,13 +16,13 @@ const gymsSchema = new Schema({
   address: {
     type: String, 
     paths: ['address']
-  },
+  }/*,
   near: {
     paths: ['loc']    
-  }
+  }*/
   
   
-}, {near: true})
+}, /*{near: true}*/)
 
 /**
  * @api {post} /gyms Create gym

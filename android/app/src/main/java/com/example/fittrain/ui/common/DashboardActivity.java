@@ -32,10 +32,11 @@ import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
     private ViewModelUser mViewModel;
+    private int fragmentSelected=0;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
     UserResponse uPass;
     Map<String, String> options = new HashMap<>();
-    private EditText editTextTitleTraining;
+    private EditText editTextTitleTraining, editTextTitleGym, editTextAddress;
     private Spinner spinnerTarget;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -46,16 +47,19 @@ public class DashboardActivity extends AppCompatActivity {
             switch (item.getItemId()) {
 
                 case R.id.navigation_training:
+                    fragmentSelected=0;
                     getSupportActionBar().setTitle(R.string.title_training);
                     goToFragment(fragmentTraining);
                     return true;
                 case R.id.navigation_gym:
                     getSupportActionBar().setTitle(R.string.title_gym);
                     goToFragment(fragmentGym);
+                    fragmentSelected=1;
                     return true;
                 case R.id.navigation_profile:
                     getSupportActionBar().setTitle(R.string.title_profile);
                     goToFragment(fragmentProfile);
+                    fragmentSelected=2;
 
                     return true;
             }
@@ -131,7 +135,10 @@ public class DashboardActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_filter:
-                searchOptions();
+                if (fragmentSelected==0)
+                    searchOptions();
+                if (fragmentSelected==1)
+                    searchGymOptions();
                 return false;
             case R.id.action_logout:
                 createAndShowLogoutDialog();
@@ -150,12 +157,49 @@ public class DashboardActivity extends AppCompatActivity {
         return true;
 
     }
+    public void searchGymOptions () {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("ResourceType")
+        View dialogLayout = inflater.inflate(R.layout.activity_gym_search, null);
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setTitle("Gym filter");
+
+        builder.setView(dialogLayout);
+        //find items
+        editTextTitleGym=dialogLayout.findViewById(R.id.editTextSearchNameGym);
+        editTextAddress = dialogLayout.findViewById(R.id.editTextSearchAddressGym);
+        //find items
+
+
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setPositiveButton(R.string.accept, (dialog, which) -> {
+            options = new HashMap<>();
+            if (!editTextTitleGym.getText().toString().equals("") || !editTextTitleGym.getText().toString().isEmpty())
+                options.put("name", editTextTitleGym.getText().toString());
+            if (!editTextAddress.getText().toString().equals("") || !editTextAddress.getText().toString().isEmpty())
+                options.put("address", editTextAddress.getText().toString());
+
+                goToFragment(new GymFragment(options));
+
+
+        });
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
+            Log.d("Back", "Going back");
+        });
+        android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+    }
     public void searchOptions () {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ResourceType")
         View dialogLayout = inflater.inflate(R.layout.activity_search, null);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-
+        builder.setTitle("Training filter");
 
         builder.setView(dialogLayout);
         //find items

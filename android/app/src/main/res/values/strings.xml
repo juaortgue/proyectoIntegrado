@@ -59,6 +59,8 @@
     <string name="watchExercises">Watch exercises</string>
     <string name="listExercisesActivity">Exercises list</string>
     <string name="trainingDetailsTitle">Training details</string>
+    <string name="gymTitleDialog">Name</string>
+    <string name="AddressDialog">Address</string>
 
     <string-array name="targets">
         <item>Lost weight</item>

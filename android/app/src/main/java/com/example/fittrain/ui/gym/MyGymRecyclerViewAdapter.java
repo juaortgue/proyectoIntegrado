@@ -1,6 +1,7 @@
 package com.example.fittrain.ui.gym;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,12 @@ public class MyGymRecyclerViewAdapter extends RecyclerView.Adapter<MyGymRecycler
         }
         holder.textViewNamePrice.setText(holder.mItem.getName()+", "+holder.mItem.getPrice());
         holder.textViewAddress.setText(holder.mItem.getAddress());
+        holder.gymConstraintLayaout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //IR A DETAIL DE GYM
+            }
+        });
 
 
     }
@@ -75,13 +82,14 @@ public class MyGymRecyclerViewAdapter extends RecyclerView.Adapter<MyGymRecycler
         public GymResponse mItem;
         public ImageView imageViewCover;
         public TextView textViewNamePrice, textViewAddress ;
-
+        public ConstraintLayout gymConstraintLayaout;
         public ViewHolder(View view) {
             super(view);
             mView = view;
             imageViewCover = mView.findViewById(R.id.imageViewPictureGym);
             textViewAddress = mView.findViewById(R.id.textViewAddressGym);
             textViewNamePrice = mView.findViewById(R.id.textViewTitleNamePriceGym);
+            gymConstraintLayaout = mView.findViewById(R.id.constraintGym);
         }
 
         @Override
