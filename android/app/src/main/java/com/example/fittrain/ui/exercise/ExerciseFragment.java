@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.fittrain.R;
 import com.example.fittrain.model.ExerciseResponse;
-import com.example.fittrain.ui.exercise.dummy.DummyContent;
-import com.example.fittrain.ui.exercise.dummy.DummyContent.DummyItem;
-import com.example.fittrain.ui.training.MyTrainingRecyclerViewAdapter;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +113,6 @@ public class ExerciseFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        //void onListFragmentInteraction(DummyItem item);
     }
 }

@@ -16,7 +16,6 @@ import com.example.fittrain.R;
 import com.example.fittrain.model.TrainingOneResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
-import com.example.fittrain.ui.exercise.ExerciseFragment;
 import com.example.fittrain.ui.exercise.ListExercisesActivity;
 
 import java.io.Serializable;
@@ -45,10 +44,10 @@ public class TrainingDetailsActivity extends AppCompatActivity {
     }
 
     public void loadItems() {
-        imageViewPicture=findViewById(R.id.imageViewPicture);
-        textViewName=findViewById(R.id.textViewTitleExercise);
+        imageViewPicture=findViewById(R.id.imageViewPictureGym);
+        textViewName=findViewById(R.id.textViewTitleNamePriceGym);
         textViewMinutes=findViewById(R.id.textViewMinutes);
-        textViewTarget=findViewById(R.id.textViewTarget);
+        textViewTarget=findViewById(R.id.textViewAddressGym);
         textViewTotalExercises=findViewById(R.id.textViewTotalExercises);
 
         intent = getIntent();

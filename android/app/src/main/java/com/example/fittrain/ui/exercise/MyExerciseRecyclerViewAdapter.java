@@ -12,16 +12,10 @@ import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
 import com.example.fittrain.model.ExerciseResponse;
 import com.example.fittrain.ui.exercise.ExerciseFragment.OnListFragmentInteractionListener;
-import com.example.fittrain.ui.exercise.dummy.DummyContent.DummyItem;
-import com.example.fittrain.util.UtilToken;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerciseRecyclerViewAdapter.ViewHolder> {
 
     private final List<ExerciseResponse> mValues;
@@ -110,7 +104,7 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            textViewTitle=mView.findViewById(R.id.textViewTitleExercise);
+            textViewTitle=mView.findViewById(R.id.textViewTitleNamePriceGym);
             textViewSeriesRepetitions=mView.findViewById(R.id.textViewSeriesRepetitions);
             imageViewGif=mView.findViewById(R.id.imageViewGif);
             textViewDescription=mView.findViewById(R.id.textViewDescriptionDetail);

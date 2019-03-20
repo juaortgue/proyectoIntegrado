@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageViewPicture"
+            android:id="@+id/imageViewPictureGym"
             android:layout_width="0dp"
             android:layout_height="250dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,12 +29,12 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/lessBlue"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewPicture"
-            app:layout_constraintStart_toStartOf="@+id/imageViewPicture"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPicture">
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPictureGym"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPictureGym"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPictureGym">
 
             <TextView
-                android:id="@+id/textViewTitleExercise"
+                android:id="@+id/textViewTitleNamePriceGym"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewTarget"
+                android:id="@+id/textViewAddressGym"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -63,8 +63,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/textViewTitleExercise"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitleExercise"
+                app:layout_constraintStart_toStartOf="@+id/textViewTitleNamePriceGym"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleNamePriceGym"
 
                 app:srcCompat="@drawable/ic_objetive" />
 
@@ -73,8 +73,8 @@
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="32dp"
-                app:layout_constraintStart_toEndOf="@+id/textViewTarget"
-                app:layout_constraintTop_toTopOf="@+id/textViewTarget"
+                app:layout_constraintStart_toEndOf="@+id/textViewAddressGym"
+                app:layout_constraintTop_toTopOf="@+id/textViewAddressGym"
                 app:srcCompat="@drawable/ic_woman" />
 
             <TextView

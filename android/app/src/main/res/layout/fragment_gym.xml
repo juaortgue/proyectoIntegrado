@@ -18,7 +18,7 @@
 
 
         <ImageView
-            android:id="@+id/imageViewPicture"
+            android:id="@+id/imageViewPictureGym"
             android:layout_width="0dp"
             android:layout_height="156dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,9 +32,9 @@
             android:layout_width="343dp"
             android:layout_height="100dp"
             android:background="@color/blue"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewPicture"
-            app:layout_constraintStart_toStartOf="@+id/imageViewPicture"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPicture">
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPictureGym"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPictureGym"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPictureGym">
 
             <ImageView
                 android:id="@+id/imageViewLocation"
@@ -46,7 +46,7 @@
                 app:srcCompat="@drawable/ic_map_location" />
 
             <TextView
-                android:id="@+id/textViewTitleExercise"
+                android:id="@+id/textViewTitleNamePriceGym"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageViewAddress" />
 
             <TextView
-                android:id="@+id/textViewTarget"
+                android:id="@+id/textViewAddressGym"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

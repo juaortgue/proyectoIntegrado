@@ -57,6 +57,8 @@
     <string name="trainingYears">trainingYears</string>
     <string name="description">Description</string>
     <string name="watchExercises">Watch exercises</string>
+    <string name="listExercisesActivity">Exercises list</string>
+    <string name="trainingDetailsTitle">Training details</string>
 
     <string-array name="targets">
         <item>Lost weight</item>

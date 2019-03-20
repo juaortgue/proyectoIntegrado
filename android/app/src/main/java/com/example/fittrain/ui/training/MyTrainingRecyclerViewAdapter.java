@@ -83,9 +83,9 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            imageViewPicture = mView.findViewById(R.id.imageViewPicture);
-            textViewTarget = mView.findViewById(R.id.textViewTarget);
-            textViewTitle = mView.findViewById(R.id.textViewTitleExercise);
+            imageViewPicture = mView.findViewById(R.id.imageViewPictureGym);
+            textViewTarget = mView.findViewById(R.id.textViewAddressGym);
+            textViewTitle = mView.findViewById(R.id.textViewTitleNamePriceGym);
             textViewTotalExercises = mView.findViewById(R.id.textViewTotalExercises);
             contraintProperty = mView.findViewById(R.id.constraintProperty);
 

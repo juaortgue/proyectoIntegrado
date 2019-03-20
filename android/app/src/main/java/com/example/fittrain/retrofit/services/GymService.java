@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface GymService {
-    final String BASE_URL = "/gym";
+    final String BASE_URL = "/gyms";
 
     @GET(BASE_URL)
     Call<ResponseContainer<GymResponse>> listAll(@QueryMap Map<String, String> options);

@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.exercise.ListExercisesActivity"></activity>
-        <activity android:name=".ui.training.TrainingDetailsActivity">
+        <activity android:name=".ui.exercise.ListExercisesActivity"
+            android:label="@string/listExercisesActivity"></activity>
+        <activity android:name=".ui.training.TrainingDetailsActivity"
+            android:label="@string/trainingDetailsTitle">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fittrain.ui.common.DashboardActivity" />

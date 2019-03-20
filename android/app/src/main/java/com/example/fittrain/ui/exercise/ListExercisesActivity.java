@@ -22,6 +22,7 @@ public class ListExercisesActivity extends AppCompatActivity {
         frameLayoutListExercises = findViewById(R.id.frameListExercises);
 
         list=(List<ExerciseResponse>)getIntent().getExtras().getSerializable("exercisesList");
+
         eFrament = new ExerciseFragment(list);
         goToFragment(eFrament);
     }

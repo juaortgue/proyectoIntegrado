@@ -1,44 +1,65 @@
 package com.example.fittrain.ui.gym;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.fittrain.R;
+import com.example.fittrain.model.GymResponse;
+import com.example.fittrain.model.ResponseContainer;
+import com.example.fittrain.model.TrainingResponse;
+import com.example.fittrain.model.UserResponse;
+import com.example.fittrain.retrofit.generator.ServiceGenerator;
+import com.example.fittrain.retrofit.services.GymService;
+import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.gym.dummy.DummyContent;
 import com.example.fittrain.ui.gym.dummy.DummyContent.DummyItem;
+import com.example.fittrain.ui.training.MyTrainingRecyclerViewAdapter;
+import com.example.fittrain.util.ViewModelUser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class GymFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    Context ctx;
+    String token;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+    MyGymRecyclerViewAdapter adapter;
+    List<GymResponse> gymsList = new ArrayList<>();
+    private GymService gymService;
+    Map<String, String> options = new HashMap<>();
     public GymFragment() {
+
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
+    @SuppressLint("ValidFragment")
+    public GymFragment(Map<String,String> options) {
+        this.options = options;
+    }
+
+
     public static GymFragment newInstance(int columnCount) {
         GymFragment fragment = new GymFragment();
         Bundle args = new Bundle();
@@ -70,9 +91,39 @@ public class GymFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyGymRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            loadGyms(recyclerView);
         }
         return view;
+    }
+    public void loadGyms(RecyclerView recyclerView){
+        gymService= ServiceGenerator.createService(GymService.class);
+
+        Call<ResponseContainer<GymResponse>> call = gymService.listAll(options);
+        call.enqueue(new Callback<ResponseContainer<GymResponse>>() {
+            @Override
+            public void onResponse(Call<ResponseContainer<GymResponse>> call, Response<ResponseContainer<GymResponse>> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("error response", "code error");
+                    Toast.makeText(ctx, "Error in request", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("successful response", "code error");
+
+                    gymsList = response.body().getRows();
+
+                    adapter = new MyGymRecyclerViewAdapter(
+                            getContext(),
+                            gymsList);
+                    recyclerView.setAdapter(adapter);
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseContainer<GymResponse>> call, Throwable t) {
+                Log.e("failure", "failure in petition");
+            }
+        });
     }
 
 
@@ -90,21 +141,11 @@ public class GymFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android TrainingResponse lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        //void onListFragmentInteraction(DummyItem item);
     }
 }
