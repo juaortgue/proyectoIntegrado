@@ -69,4 +69,5 @@
 
     </string-array>
     <string name="title_activity_maps">Training Map</string>
+    <string name="gymDetail">Gym detail</string>
 </resources>

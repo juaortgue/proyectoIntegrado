@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.gym.GymDetailsActivity">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageViewPictureGym"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/blueFond"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/lessBlue"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPictureGym"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPictureGym"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPictureGym">
+
+            <TextView
+                android:id="@+id/textViewNamePriceGymDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewAddress"
+                app:layout_constraintTop_toTopOf="@+id/imageViewAddress" />
+
+            <ImageView
+                android:id="@+id/imageViewAddress"
+                android:layout_width="30dp"
+                android:layout_height="34dp"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_address" />
+
+            <ImageView
+                android:id="@+id/imageViewMap"
+                android:layout_width="30dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/imageViewAddress"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewAddress"
+                app:srcCompat="@drawable/ic_map_location" />
+
+            <ImageView
+                android:id="@+id/imageViewReloj"
+                android:layout_width="30dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/imageViewMap"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMap"
+                app:srcCompat="@drawable/ic_flag" />
+
+            <TextView
+                android:id="@+id/textViewAddresGymDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewMap"
+                app:layout_constraintTop_toTopOf="@+id/imageViewMap" />
+
+            <TextView
+                android:id="@+id/textViewProvinceCityZipcodeDetailGym"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewReloj"
+                app:layout_constraintTop_toTopOf="@+id/imageViewReloj" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textViewTitleDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/description"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/blueFond"
+            app:layout_constraintStart_toStartOf="@+id/blueFond"
+            app:layout_constraintTop_toBottomOf="@+id/blueFond" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionDetailGym"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginTop="8dp"
+
+            android:background="@color/yellow"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTitleDescription"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitleDescription"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleDescription" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:apiKey="AIzaSyBZJmS-M_YUepkmqWR1p7XghnNhl59ls9A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionDetailGym"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescriptionDetailGym"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionDetailGym" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

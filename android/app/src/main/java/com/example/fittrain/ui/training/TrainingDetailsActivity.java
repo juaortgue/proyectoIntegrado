@@ -47,13 +47,13 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         imageViewPicture=findViewById(R.id.imageViewPictureGym);
         textViewName=findViewById(R.id.textViewTitleNamePriceGym);
         textViewMinutes=findViewById(R.id.textViewMinutes);
-        textViewTarget=findViewById(R.id.textViewAddressGym);
+        textViewTarget=findViewById(R.id.textViewNamePriceGymDetail);
         textViewTotalExercises=findViewById(R.id.textViewTotalExercises);
 
         intent = getIntent();
         if (intent.hasExtra("id"))
             idTraining = intent.getStringExtra("id");
-        textViewDescription = findViewById(R.id.textViewDescriptionDetail);
+        textViewDescription = findViewById(R.id.textViewDescriptionDetailGym);
         btn_go_exercises = findViewById(R.id.buttonWatchExercises);
 
 

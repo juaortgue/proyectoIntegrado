@@ -1,6 +1,7 @@
 package com.example.fittrain.ui.gym;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,16 +13,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
 import com.example.fittrain.model.GymResponse;
-import com.example.fittrain.model.TrainingResponse;
-import com.example.fittrain.ui.gym.GymFragment.OnListFragmentInteractionListener;
-import com.example.fittrain.ui.gym.dummy.DummyContent.DummyItem;
-import com.example.fittrain.util.UtilToken;
+
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyGymRecyclerViewAdapter extends RecyclerView.Adapter<MyGymRecyclerViewAdapter.ViewHolder> {
@@ -60,12 +56,15 @@ public class MyGymRecyclerViewAdapter extends RecyclerView.Adapter<MyGymRecycler
                     .centerCrop()
                     .into(holder.imageViewCover);
         }
-        holder.textViewNamePrice.setText(holder.mItem.getName()+", "+holder.mItem.getPrice());
+        holder.textViewNamePrice.setText(holder.mItem.getName()+", "+holder.mItem.getPrice()+" €");
         holder.textViewAddress.setText(holder.mItem.getAddress());
         holder.gymConstraintLayaout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //IR A DETAIL DE GYM
+                Intent iDetail = new Intent(ctx, GymDetailsActivity.class);
+                iDetail.putExtra("id", holder.mItem.getId());
+                ctx.startActivity(iDetail);
             }
         });
 
@@ -87,7 +86,7 @@ public class MyGymRecyclerViewAdapter extends RecyclerView.Adapter<MyGymRecycler
             super(view);
             mView = view;
             imageViewCover = mView.findViewById(R.id.imageViewPictureGym);
-            textViewAddress = mView.findViewById(R.id.textViewAddressGym);
+            textViewAddress = mView.findViewById(R.id.textViewNamePriceGymDetail);
             textViewNamePrice = mView.findViewById(R.id.textViewTitleNamePriceGym);
             gymConstraintLayaout = mView.findViewById(R.id.constraintGym);
         }

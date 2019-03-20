@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewAddressGym"
+                android:id="@+id/textViewNamePriceGymDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -68,7 +68,7 @@
                 app:srcCompat="@drawable/ic_objetive" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewMap"
                 android:layout_width="30dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="16dp"
@@ -81,8 +81,8 @@
                 android:layout_width="30dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageViewMap"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMap"
                 app:srcCompat="@drawable/ic_stopwatch" />
 
             <TextView
@@ -93,8 +93,8 @@
 
                 android:text="TextView"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewMap"
+                app:layout_constraintTop_toTopOf="@+id/imageViewMap" />
 
             <TextView
                 android:id="@+id/textViewMinutes"
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/blueFond" />
 
     <TextView
-        android:id="@+id/textViewDescriptionDetail"
+        android:id="@+id/textViewDescriptionDetailGym"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -158,8 +158,8 @@
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionDetail"
-        app:layout_constraintStart_toStartOf="@+id/textViewDescriptionDetail"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionDetail" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionDetailGym"
+        app:layout_constraintStart_toStartOf="@+id/textViewDescriptionDetailGym"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionDetailGym" />
 </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

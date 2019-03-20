@@ -24,8 +24,7 @@ import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.GymService;
 import com.example.fittrain.retrofit.services.TrainingService;
-import com.example.fittrain.ui.gym.dummy.DummyContent;
-import com.example.fittrain.ui.gym.dummy.DummyContent.DummyItem;
+
 import com.example.fittrain.ui.training.MyTrainingRecyclerViewAdapter;
 import com.example.fittrain.util.ViewModelUser;
 

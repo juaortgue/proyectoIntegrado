@@ -107,7 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng loc = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
                 mMap.addMarker(new MarkerOptions().position(loc).title("Marker in "+g.getAddress()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 8));
             }else{
                 String[] parts = g.getPosition().split(",");
                 if (parts.length==1){
@@ -116,7 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     LatLng loc = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
                     mMap.addMarker(new MarkerOptions().position(loc).title("Marker in " + g.getAddress()));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 8));
                 } else{
                     String lat = parts[0];
                     String lon = parts[1];
@@ -133,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         return false;
                     });
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 8));
                 }
             }
         }

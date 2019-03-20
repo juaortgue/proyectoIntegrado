@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
 import com.example.fittrain.model.ExerciseResponse;
-import com.example.fittrain.ui.exercise.ExerciseFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
@@ -107,7 +106,7 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
             textViewTitle=mView.findViewById(R.id.textViewTitleNamePriceGym);
             textViewSeriesRepetitions=mView.findViewById(R.id.textViewSeriesRepetitions);
             imageViewGif=mView.findViewById(R.id.imageViewGif);
-            textViewDescription=mView.findViewById(R.id.textViewDescriptionDetail);
+            textViewDescription=mView.findViewById(R.id.textViewDescriptionDetailGym);
 
         }
 
