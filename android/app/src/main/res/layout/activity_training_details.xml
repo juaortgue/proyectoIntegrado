@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewPicture">
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/textViewTitleExercise"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -60,8 +60,8 @@
             android:layout_width="30dp"
             android:layout_height="34dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitleExercise"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleExercise"
 
             app:srcCompat="@drawable/ic_objetive" />
 
@@ -106,4 +106,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

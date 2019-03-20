@@ -1,6 +1,7 @@
 package com.example.fittrain.ui.training;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +11,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
-import com.example.fittrain.model.ExerciseResponse;
 import com.example.fittrain.model.TrainingOneResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
+import com.example.fittrain.ui.exercise.ExerciseFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +26,7 @@ public class TrainingDetailsActivity extends AppCompatActivity {
     private ImageView imageViewPicture;
     private TrainingOneResponse trainingSearched;
     private TrainingService trainingService;
+
     Intent intent;
     private String idTraining;
 
@@ -38,7 +40,7 @@ public class TrainingDetailsActivity extends AppCompatActivity {
 
     public void loadItems() {
         imageViewPicture=findViewById(R.id.imageViewPicture);
-        textViewName=findViewById(R.id.textViewTitle);
+        textViewName=findViewById(R.id.textViewTitleExercise);
         textViewMinutes=findViewById(R.id.textViewMinutes);
         textViewTarget=findViewById(R.id.textViewTarget);
         textViewTotalExercises=findViewById(R.id.textViewTotalExercises);
@@ -46,6 +48,13 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         if (intent.hasExtra("id"))
             idTraining = intent.getStringExtra("id");
 
+
+    }
+    public void goToFragment(Fragment f){
+        /*getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentExercises, f)
+                .commit();*/
     }
     public void loadTraining(){
 
@@ -102,6 +111,8 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         textViewTarget.setText(trainingSearched.getTarget());
         textViewMinutes.setText(trainingSearched.getTime()+" minutes");
         textViewName.setText(trainingSearched.getName());
+
+        goToFragment(new ExerciseFragment(trainingSearched.getExercises()));
 
     }
 
