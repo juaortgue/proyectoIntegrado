@@ -1,6 +1,8 @@
 package com.example.fittrain.ui.training;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +57,14 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
         holder.textViewTotalExercises.setText(String.valueOf(holder.mItem.getExercises().size()));
         holder.textViewTitle.setText(holder.mItem.getName().toUpperCase());
         holder.textViewTarget.setText(holder.mItem.getTarget().toUpperCase());
+        holder.contraintProperty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent details = new Intent(ctx, TrainingDetailsActivity.class);
+                details.putExtra("id", holder.mItem.getId());
+                ctx.startActivity(details);
+            }
+        });
 
     }
 
@@ -68,14 +78,16 @@ public class MyTrainingRecyclerViewAdapter extends RecyclerView.Adapter<MyTraini
         public TextView textViewTitle, textViewTotalExercises, textViewTarget;
         public ImageView imageViewPicture;
         public TrainingResponse mItem;
+        public ConstraintLayout contraintProperty;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            imageViewPicture = mView.findViewById(R.id.imageViewCover);
-            textViewTarget = mView.findViewById(R.id.textViewAddress);
+            imageViewPicture = mView.findViewById(R.id.imageViewPicture);
+            textViewTarget = mView.findViewById(R.id.textViewTarget);
             textViewTitle = mView.findViewById(R.id.textViewTitle);
             textViewTotalExercises = mView.findViewById(R.id.textViewTotalExercises);
+            contraintProperty = mView.findViewById(R.id.constraintProperty);
 
         }
 

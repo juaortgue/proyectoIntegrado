@@ -57,9 +57,9 @@
     <string name="trainingYears">trainingYears</string>
 
     <string-array name="targets">
-            <item>Lost weight</item>
-            <item>Keep in weight</item>
-            <item>Gaining muscle</item>
+        <item>Lost weight</item>
+        <item>Keep in weight</item>
+        <item>Gaining muscle</item>
 
-        </string-array>
+    </string-array>
 </resources>

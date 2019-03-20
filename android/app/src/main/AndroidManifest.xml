@@ -14,12 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.training.TrainingDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.fittrain.ui.common.DashboardActivity" />
+        </activity>
         <activity
             android:name=".ui.common.DashboardActivity"
             android:label="@string/dashboard_menu">
 
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.fittrain.ui.auth.LoginActivity" />
         </activity>
-        <activity android:name=".ui.auth.LoginActivity"
+        <activity
+            android:name=".ui.auth.LoginActivity"
             android:label="@string/title_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

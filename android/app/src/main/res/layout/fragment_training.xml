@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageViewCover"
+            android:id="@+id/imageViewPicture"
             android:layout_width="0dp"
             android:layout_height="250dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/lessBlue"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewCover"
-            app:layout_constraintStart_toStartOf="@+id/imageViewCover"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewCover">
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPicture"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPicture"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPicture">
 
             <TextView
                 android:id="@+id/textViewTitle"
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewAddress"
+                android:id="@+id/textViewTarget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -73,8 +73,8 @@
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="32dp"
-                app:layout_constraintStart_toEndOf="@+id/textViewAddress"
-                app:layout_constraintTop_toTopOf="@+id/textViewAddress"
+                app:layout_constraintStart_toEndOf="@+id/textViewTarget"
+                app:layout_constraintTop_toTopOf="@+id/textViewTarget"
                 app:srcCompat="@drawable/ic_woman" />
 
             <TextView
