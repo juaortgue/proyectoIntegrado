@@ -12,17 +12,19 @@ public class TrainingOneResponse {
     private String name;
     private String target;
     private String time;
+    private String description;
     private String picture;
     private List<ExerciseResponse> exercises;
 
     public TrainingOneResponse() {
     }
 
-    public TrainingOneResponse(String id, String name, String target, String time, String picture, List<ExerciseResponse> exercises) {
+    public TrainingOneResponse(String id, String name, String target, String time, String description, String picture, List<ExerciseResponse> exercises) {
         this.id = id;
         this.name = name;
         this.target = target;
         this.time = time;
+        this.description = description;
         this.picture = picture;
         this.exercises = exercises;
     }
@@ -59,6 +61,14 @@ public class TrainingOneResponse {
         this.time = time;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getPicture() {
         return picture;
     }
@@ -81,18 +91,18 @@ public class TrainingOneResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TrainingOneResponse that = (TrainingOneResponse) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getTarget(), that.getTarget()) &&
-                Objects.equals(getTime(), that.getTime()) &&
-                Objects.equals(getPicture(), that.getPicture()) &&
-                Objects.equals(getExercises(), that.getExercises());
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(target, that.target) &&
+                Objects.equals(time, that.time) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(picture, that.picture);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getTarget(), getTime(), getPicture(), getExercises());
+        return Objects.hash(id, name, target, time, description, picture);
     }
 
     @Override
@@ -102,8 +112,8 @@ public class TrainingOneResponse {
                 ", name='" + name + '\'' +
                 ", target='" + target + '\'' +
                 ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
                 ", picture='" + picture + '\'' +
-                ", exercises=" + exercises +
                 '}';
     }
 }

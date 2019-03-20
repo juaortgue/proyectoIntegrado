@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +24,11 @@ import retrofit2.Response;
 
 
 public class TrainingDetailsActivity extends AppCompatActivity {
-    private TextView textViewName, textViewMinutes, textViewTarget, textViewTotalExercises;
+    private TextView textViewName, textViewMinutes, textViewTarget, textViewTotalExercises, textViewDescription;
     private ImageView imageViewPicture;
     private TrainingOneResponse trainingSearched;
     private TrainingService trainingService;
+    private Button btn_go_exercises;
 
     Intent intent;
     private String idTraining;
@@ -44,9 +47,12 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         textViewMinutes=findViewById(R.id.textViewMinutes);
         textViewTarget=findViewById(R.id.textViewTarget);
         textViewTotalExercises=findViewById(R.id.textViewTotalExercises);
+
         intent = getIntent();
         if (intent.hasExtra("id"))
             idTraining = intent.getStringExtra("id");
+        textViewDescription = findViewById(R.id.textViewDescriptionDetail);
+        btn_go_exercises = findViewById(R.id.buttonWatchExercises);
 
 
     }
@@ -111,8 +117,13 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         textViewTarget.setText(trainingSearched.getTarget());
         textViewMinutes.setText(trainingSearched.getTime()+" minutes");
         textViewName.setText(trainingSearched.getName());
-
-        goToFragment(new ExerciseFragment(trainingSearched.getExercises()));
+        textViewDescription.setText(trainingSearched.getDescription());
+        btn_go_exercises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //IR A ACTIVITY CON LISTA DE ENTRENAMIENTOS
+            }
+        });
 
     }
 

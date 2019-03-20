@@ -102,9 +102,10 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        private TextView textViewTitle, textViewSeriesRepetitions;
+        private TextView textViewTitle, textViewSeriesRepetitions, textViewDescription;
         private ImageView imageViewGif;
         public ExerciseResponse mItem;
+
 
         public ViewHolder(View view) {
             super(view);
@@ -112,6 +113,7 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
             textViewTitle=mView.findViewById(R.id.textViewTitleExercise);
             textViewSeriesRepetitions=mView.findViewById(R.id.textViewSeriesRepetitions);
             imageViewGif=mView.findViewById(R.id.imageViewGif);
+            textViewDescription=mView.findViewById(R.id.textViewDescriptionDetail);
 
         }
 

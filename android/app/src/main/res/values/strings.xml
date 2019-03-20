@@ -55,6 +55,8 @@
     <string name="emailS">email</string>
     <string name="weight">weight</string>
     <string name="trainingYears">trainingYears</string>
+    <string name="description">Description</string>
+    <string name="watchExercises">Watch exercises</string>
 
     <string-array name="targets">
         <item>Lost weight</item>
