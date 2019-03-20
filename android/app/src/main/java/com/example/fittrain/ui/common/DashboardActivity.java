@@ -168,9 +168,10 @@ public class DashboardActivity extends AppCompatActivity {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setPositiveButton(R.string.accept, (dialog, which) -> {
-            if (!editTextTitleTraining.getText().toString().equals(""))
+            options = new HashMap<>();
+            if (!editTextTitleTraining.getText().toString().equals("") || !editTextTitleTraining.getText().toString().isEmpty())
                 options.put("name", editTextTitleTraining.getText().toString());
-            if (!spinnerTarget.getSelectedItem().toString().equals(""))
+            if (!spinnerTarget.getSelectedItem().toString().equals("") || !spinnerTarget.getSelectedItem().toString().isEmpty())
                 options.put("target", spinnerTarget.getSelectedItem().toString());
             goToFragment(new TrainingFragment(options));
 

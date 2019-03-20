@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -82,8 +83,7 @@ public class TrainingFragment extends Fragment {
         //setHasOptionsMenu(true);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-            userReceived = (UserResponse) getArguments().getSerializable("user");
-            userReceived.getTrainingYears();
+
             //options = getArguments().get("options");
 
         }
@@ -101,6 +101,10 @@ public class TrainingFragment extends Fragment {
             ctx = getContext();
             spinnerTarget=getActivity().findViewById(R.id.spinnerTarget);
             editTextTitleTraining=getActivity().findViewById(R.id.editTextSearchTitle);
+            userReceived = new UserResponse();
+            userReceived.setTrainingYears(UtilToken.getTrainingYears(ctx));
+            userReceived.setHeight(UtilToken.getHeight(ctx));
+            userReceived.setWeight(UtilToken.getWeight(ctx));
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
@@ -225,6 +229,7 @@ public class TrainingFragment extends Fragment {
 
     public void loadTraining(RecyclerView recyclerView){
         trainingService= ServiceGenerator.createService(TrainingService.class);
+
         Call<ResponseContainer<TrainingResponse>> call = trainingService.listAll(options);
         call.enqueue(new Callback<ResponseContainer<TrainingResponse>>() {
             @Override
