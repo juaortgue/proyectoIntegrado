@@ -22,11 +22,13 @@ import com.example.fittrain.R;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.ui.auth.LoginActivity;
 import com.example.fittrain.ui.gym.GymFragment;
+import com.example.fittrain.ui.map.MapsActivity;
 import com.example.fittrain.ui.profile.ProfileFragment;
 import com.example.fittrain.ui.training.TrainingFragment;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.ViewModelUser;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -144,7 +146,14 @@ public class DashboardActivity extends AppCompatActivity {
                 createAndShowLogoutDialog();
 
                 return true;
+            case R.id.action_map:
+                Intent iMap= new Intent(getApplicationContext(), MapsActivity.class);
+                if (fragmentSelected==1){
+                    iMap.putExtra("options", (Serializable) options);
+                    startActivity(iMap);
 
+                }
+                return true;
             default:
                 break;
         }

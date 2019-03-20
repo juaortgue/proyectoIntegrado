@@ -68,4 +68,5 @@
         <item>Gaining muscle</item>
 
     </string-array>
+    <string name="title_activity_maps">Training Map</string>
 </resources>

@@ -74,10 +74,10 @@ gymSchema.methods = {
       // add properties for a full view
     } : view*/
     let view = {}
-    let fields = ['id', 'name', 'address', 'price', 'picture' ]
+    let fields = ['id', 'name', 'address', 'price', 'picture', 'position' ]
 
     if (full) {
-      fields = [...fields, 'province', 'city', 'zipcode', 'position', 'description',]
+      fields = [...fields, 'province', 'city', 'zipcode',  'description',]
     }
 
     fields.forEach((field) => { view[field] = this[field] })

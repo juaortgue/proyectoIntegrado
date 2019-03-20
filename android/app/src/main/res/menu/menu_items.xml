@@ -9,10 +9,16 @@
         android:title="@string/filter"
         app:showAsAction="ifRoom"/>
         <item
+            android:id="@+id/action_map"
+            android:icon="@drawable/ic_map_location"
+            android:title="@string/logout"
+            app:showAsAction="ifRoom"/>
+        <item
             android:id="@+id/action_logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout"
             app:showAsAction="ifRoom"/>
+
     </group>
 
 
