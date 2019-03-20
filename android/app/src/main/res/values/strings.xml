@@ -70,4 +70,13 @@
     </string-array>
     <string name="title_activity_maps">Training Map</string>
     <string name="gymDetail">Gym detail</string>
+    <string name="Email_example">example@gmail.com</string>
+    <string name="edit_profile">Edit</string>
+    <string name="changePassword">Change password</string>
+    <string name="editProfile">Edit profile</string>
+    <string name="years">Years</string>
+    <string name="weightProfile">Weight</string>
+    <string name="yearsOld">Years old</string>
+    <string name="heighProfile">Height</string>
+    <string name="genderProfil">Gender</string>
 </resources>

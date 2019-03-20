@@ -12,6 +12,7 @@ import com.example.fittrain.model.GymResponse;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.GymService;
+import com.example.fittrain.ui.gym.GymDetailsActivity;
 import com.example.fittrain.ui.gym.MyGymRecyclerViewAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -127,9 +128,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     mMap.setOnMarkerClickListener(marker -> {
                         //TODO AQUI TE MANDA A SU DETAIL
-                        /*Intent details = new Intent(getApplicationContext(), DetailsActivity.class);
-                        details.putExtra("property", Objects.requireNonNull(marker.getTag()).toString());
-                        startActivity(details);*/
+                        Intent details = new Intent(getApplicationContext(), GymDetailsActivity.class);
+                        details.putExtra("id", Objects.requireNonNull(marker.getTag()).toString());
+                        startActivity(details);
                         return false;
                     });
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
