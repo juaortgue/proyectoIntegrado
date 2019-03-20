@@ -3,9 +3,10 @@ package com.example.fittrain.model;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ExerciseResponse {
+public class ExerciseResponse implements Serializable {
 
     private String id;
     private String name;

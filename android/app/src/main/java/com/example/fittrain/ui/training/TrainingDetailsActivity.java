@@ -17,6 +17,9 @@ import com.example.fittrain.model.TrainingOneResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.exercise.ExerciseFragment;
+import com.example.fittrain.ui.exercise.ListExercisesActivity;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -122,6 +125,12 @@ public class TrainingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //IR A ACTIVITY CON LISTA DE ENTRENAMIENTOS
+                Intent iListExercises = new Intent(getApplicationContext(), ListExercisesActivity.class);
+                iListExercises.putExtra("exercisesList", (Serializable) trainingSearched.getExercises());
+                startActivity(iListExercises);
+                /*Pasarme del list training al listexercisesactivity los ejercicios
+                * crear fragmento con la lista
+                * pasarle la lista de ejercicios al listexercise activity*/
             }
         });
 
