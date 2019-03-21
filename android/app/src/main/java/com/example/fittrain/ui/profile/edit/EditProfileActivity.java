@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
+import com.example.fittrain.dto.UserEditDto;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
@@ -138,6 +139,16 @@ public class EditProfileActivity extends AppCompatActivity {
     }
     public void reformatMyUserDto(){
         String female="Female";
+        /*private String email;
+    private String role;
+    private String password;
+    private String name;
+    private int age;
+    private int weight;
+    private int height;
+    private boolean gender;
+    private int trainingYears;*/
+        UserEditDto = new UserEditDto(myUser.getEmail(), myUser.getRole());
         myUser.setAge(Integer.parseInt(editTextYearsOld.getText().toString()));
         myUser.setHeight(Integer.parseInt(editTextHeight.getText().toString()));
         myUser.setName(editTextName.getText().toString());
