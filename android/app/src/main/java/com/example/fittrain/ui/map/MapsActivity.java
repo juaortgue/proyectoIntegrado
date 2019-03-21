@@ -103,6 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void markGymList(){
         for (GymResponse g : gymsList){
             if (g.getPosition()==null){
+
                 String lat = "37.3803677";
                 String lon = "-6.0071807999999995";
                 LatLng loc = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
