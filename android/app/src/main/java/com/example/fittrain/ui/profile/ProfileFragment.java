@@ -1,5 +1,6 @@
 package com.example.fittrain.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fittrain.R;
+import com.example.fittrain.dto.PasswordDto;
 import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
@@ -29,9 +32,12 @@ import com.example.fittrain.retrofit.services.UserService;
 import com.example.fittrain.ui.profile.edit.EditProfileActivity;
 import com.example.fittrain.util.UtilToken;
 
+import okhttp3.Credentials;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 public class ProfileFragment extends Fragment implements ProfileInteracctionListener{
@@ -50,7 +56,7 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
     private OnFragmentInteractionListener mListener;
     private ImageView imageViewProfile;
     private TextView textViewWeight, textViewHeight, textViewGender, textViewTrainingYears, textViewEmail, textViewName, textViewYearsOld;
-
+    private EditText editTextPasswordDialog, editTextNewPassword;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -215,14 +221,68 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
     Intent iEdit = new Intent(getContext(), EditProfileActivity.class);
     startActivity(iEdit);
     }
+    public void changePasswordPetition(){
+        /* String credentials = Credentials.basic(email, password);
+            LoginService service = ServiceGenerator.createService(LoginService.class);
+            Call<AuthResponse> login = service.doLogin(credentials);*/
+        String email, password;
+        email=UtilToken.getEmail(ctx);
+        password=editTextPasswordDialog.getText().toString();
+        String credentials = Credentials.basic(email, password);
+        userService = ServiceGenerator.createService(UserService.class);
+        PasswordDto pDto = new PasswordDto(editTextNewPassword.getText().toString());
+        Call<UserResponse> call = userService.editPassword(credentials, myUser.getId(), pDto);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("error response", "code error");
+                    Toast.makeText(getActivity(), "Error in request", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("successful response", "Successful response in change password");
 
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("failure", "failure in petition");
+
+            }
+        });
+
+
+    }
+
+    /* LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("ResourceType")
+        View dialogLayout = inflater.inflate(R.layout.activity_search, null);
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setTitle("Training filter");
+
+        builder.setView(dialogLayout);*/
     @Override
     public void changePassword() {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-            builder.setTitle(R.string.changePasswordTitle)
-                    .setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
+        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("ResourceType")
+        View dialogLayout = inflater.inflate(R.layout.change_pass_dialog, null);
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ctx);
+        builder.setTitle("Change password.");
+        editTextPasswordDialog = dialogLayout.findViewById(R.id.editTextFirstPassword);
+        editTextNewPassword = dialogLayout.findViewById(R.id.editTextNewPassword);
+        builder.setView(dialogLayout)
+                .setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            String passOne, passRepeat;
+                            //TODO VALIDAR
+                            passOne = editTextPasswordDialog.getText().toString();
+                            passRepeat = editTextNewPassword.getText().toString();
+                            changePasswordPetition();
+
+
 
                         }
                     })

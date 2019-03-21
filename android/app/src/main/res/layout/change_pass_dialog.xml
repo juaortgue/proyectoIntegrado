@@ -20,19 +20,19 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:hint="@string/passwordDialog"
+            android:hint="@string/oldPass"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextRepeatPassword"
+            android:id="@+id/editTextNewPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="@string/passwordRepeatDialogt"
+            android:hint="@string/newPass"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/editTextFirstPassword"
             app:layout_constraintStart_toStartOf="@+id/editTextFirstPassword"

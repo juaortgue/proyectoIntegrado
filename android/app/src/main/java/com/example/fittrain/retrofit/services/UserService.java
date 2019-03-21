@@ -1,12 +1,14 @@
 package com.example.fittrain.retrofit.services;
 
 
+import com.example.fittrain.dto.PasswordDto;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -21,6 +23,9 @@ public interface UserService {
     Call<UserResponse> getOne(@Path("id") String id);
     @PUT(BASE_URL + "/{id}")
     Call<UserResponse> edit(@Path("id") String id, @Body UserResponse edited);
+    @PUT(BASE_URL + "/{id}/password")
+    Call<UserResponse> editPassword(@Header("Authorization") String authorization, @Path("id") String id, @Body PasswordDto passwordDto);
+
 
     /* @GET(BASE_URL)
 

@@ -114,7 +114,8 @@ public class DashboardActivity extends AppCompatActivity {
         fragmentGym = new GymFragment();
         fragmentProfile = new ProfileFragment();
         fragmentTraining.setArguments(bundle);
-
+        if (!checkEnoughDates())
+            createAndShowUserDates();
         goToFragment(fragmentTraining);
 
 
@@ -140,6 +141,7 @@ public class DashboardActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent iEdit = new Intent(getApplicationContext(), EditProfileActivity.class);
+                        startActivity(iEdit);
 
                     }
                 })

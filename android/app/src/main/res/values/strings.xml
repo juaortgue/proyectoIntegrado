@@ -83,4 +83,6 @@
     <string name="passwordDialog">your password</string>
     <string name="passwordRepeatDialogt">Repeat password</string>
     <string name="changePasswordTitle">Change my password</string>
+    <string name="newPass">New password</string>
+    <string name="oldPass">Old password</string>
 </resources>

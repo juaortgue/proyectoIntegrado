@@ -5,7 +5,15 @@ import android.support.annotation.RequiresApi;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/* "id": "5c862955957d3f38fe3768d3",
+    "name": "admin",
+    "picture": "https://gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30?d=identicon",
+    "email": "admin@gmail.com",
+    "createdAt": "2019-03-11T09:24:37.964Z",
+    "weight": 70,
+    "height": 174,
+    "role": "admin",
+    "trainingYears": 2*/
 public class UserResponse implements Serializable {
     private String id;
     private String email;
