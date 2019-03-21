@@ -28,7 +28,7 @@
         android:id="@+id/profile_image"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_profile"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
@@ -42,7 +42,7 @@
         android:id="@+id/textViewNameEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="24sp"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:width="170dp"
         android:background="@drawable/roundbtn"
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/yearsOld"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -130,13 +130,13 @@
     <TextView
         android:id="@+id/textViewTrainingYears"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="27dp"
         android:layout_marginTop="16dp"
         android:text="@string/trainingYearsProfile"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/editTextHeight"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
+        app:layout_constraintStart_toStartOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <EditText
         android:id="@+id/editTextYearsOld"
@@ -156,12 +156,13 @@
         android:id="@+id/editTextTrainingYears"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/timeTraining"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewTrainingYears"
         app:layout_constraintTop_toBottomOf="@+id/textViewTrainingYears" />
 
     <Spinner
@@ -187,6 +188,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textViewNameTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/gymTitleDialog"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/editTextHeight"
+        app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameTwo" />
 </android.support.constraint.ConstraintLayout>
 
 </android.support.v4.widget.NestedScrollView>
