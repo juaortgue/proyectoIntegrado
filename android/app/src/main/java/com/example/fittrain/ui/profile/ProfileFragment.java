@@ -1,15 +1,12 @@
 package com.example.fittrain.ui.profile;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -79,13 +76,13 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
         textViewHeight = v.findViewById(R.id.textViewHeightWritten);
         textViewGender = v.findViewById(R.id.textViewGenderWritten);
         textViewTrainingYears = v.findViewById(R.id.textViewTrainingYearsWritten);
-        textViewEmail = v.findViewById(R.id.textViewEmailWritten);
-        textViewName= v.findViewById(R.id.textViewName);
-        textViewYearsOld = v.findViewById(R.id.textViewYearsWritten);
+        textViewEmail = v.findViewById(R.id.textViewEmailWrittenEdit);
+        textViewName= v.findViewById(R.id.textViewNameEdit);
+        textViewYearsOld = v.findViewById(R.id.textViewYearsWrittenEdit);
 
         //buttons
         btn_change_password=v.findViewById(R.id.btn_change_password);
-        btn_edit = v.findViewById(R.id.btn_edit_profile);
+        btn_edit = v.findViewById(R.id.btn_save_profile);
 
     }
     public void setItems(){

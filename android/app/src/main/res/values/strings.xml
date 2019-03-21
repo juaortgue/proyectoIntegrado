@@ -68,6 +68,11 @@
         <item>Gaining muscle</item>
 
     </string-array>
+    <string-array name="sex">
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
     <string name="title_activity_maps">Training Map</string>
     <string name="gymDetail">Gym detail</string>
     <string name="Email_example">example@gmail.com</string>
@@ -85,4 +90,8 @@
     <string name="changePasswordTitle">Change my password</string>
     <string name="newPass">New password</string>
     <string name="oldPass">Old password</string>
+    <string name="saveChanges">Save changes</string>
+    <string name="Centimeters" />
+    <string name="centimeters">Centimeters</string>
+    <string name="timeTraining">Time training</string>
 </resources>

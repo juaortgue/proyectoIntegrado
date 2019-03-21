@@ -23,7 +23,7 @@
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewNameEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
-        android:id="@+id/textViewEmailWritten"
+        android:id="@+id/textViewEmailWrittenEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -45,10 +45,10 @@
         android:text="@string/Email_example"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameEdit" />
 
     <Button
-        android:id="@+id/btn_edit_profile"
+        android:id="@+id/btn_save_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -62,7 +62,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmailWritten"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmailWrittenEdit"
         tools:text="@string/editProfile" />
 
     <Button
@@ -80,7 +80,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmailWritten"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmailWrittenEdit"
         tools:text="@string/changePassword" />
 
     <TextView
@@ -93,11 +93,11 @@
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/btn_edit_profile"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
+        app:layout_constraintStart_toStartOf="@+id/btn_save_profile"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save_profile" />
 
     <TextView
-        android:id="@+id/textViewYearsWritten"
+        android:id="@+id/textViewYearsWrittenEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -113,8 +113,8 @@
         android:text="@string/weightProfile"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textViewYearsWritten"
-        app:layout_constraintTop_toBottomOf="@+id/textViewYearsWritten" />
+        app:layout_constraintStart_toStartOf="@+id/textViewYearsWrittenEdit"
+        app:layout_constraintTop_toBottomOf="@+id/textViewYearsWrittenEdit" />
 
         <TextView
             android:id="@+id/textViewWeightWritten"
