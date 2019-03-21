@@ -94,4 +94,5 @@
     <string name="Centimeters" />
     <string name="centimeters">Centimeters</string>
     <string name="timeTraining">Time training</string>
+    <string name="empty">Empty</string>
 </resources>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.UserService;
 import com.example.fittrain.ui.profile.edit.EditProfileActivity;
 import com.example.fittrain.util.UtilToken;
+import com.example.fittrain.util.Validator;
 
 import okhttp3.Credentials;
 import retrofit2.Call;
@@ -274,10 +276,14 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
                 .setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             String passOne, passRepeat;
-                            //TODO VALIDAR
                             passOne = editTextPasswordDialog.getText().toString();
                             passRepeat = editTextNewPassword.getText().toString();
-                            changePasswordPetition();
+                            if (validate()){
+                                changePasswordPetition();
+
+                            }else{
+
+                            }
 
 
 
@@ -290,10 +296,60 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
                     });
 
             // Create the AlertDialog object and return it
-            builder.create();
+
+            AlertDialog d = builder.create();
+
             builder.show();
+            /*d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (1==0){
+
+                    }
+                }
+            });*/
 
 
+            /*.setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String passOne, passRepeat;
+                            passOne = editTextPasswordDialog.getText().toString();
+                            passRepeat = editTextNewPassword.getText().toString();
+                            if (validate()){
+                                changePasswordPetition();
+
+                            }else{
+
+                            }
+
+
+
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });*/
+
+    }
+
+    public boolean validate(){
+        boolean isValid=true;
+        Validator.clearError(editTextPasswordDialog);
+        Validator.clearError(editTextNewPassword);
+        String empty = getString(R.string.empty);
+        if (!Validator.isNotEmpty(editTextPasswordDialog)){
+            isValid=false;
+            Validator.setError(editTextPasswordDialog, empty);
+
+        }
+        if (!Validator.isNotEmpty(editTextNewPassword)){
+            isValid=false;
+            Validator.setError(editTextNewPassword, "Empty");
+
+        }
+        return isValid;
     }
 
 
