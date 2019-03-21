@@ -148,7 +148,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private int height;
     private boolean gender;
     private int trainingYears;*/
-        UserEditDto = new UserEditDto(myUser.getEmail(), myUser.getRole());
+        //TODO ME QUEDA EL CREAR EL DTO Y PASARSELO PARA EDITARLO
+        //UserEditDto = new UserEditDto(myUser.getEmail(), myUser.getRole());
         myUser.setAge(Integer.parseInt(editTextYearsOld.getText().toString()));
         myUser.setHeight(Integer.parseInt(editTextHeight.getText().toString()));
         myUser.setName(editTextName.getText().toString());
