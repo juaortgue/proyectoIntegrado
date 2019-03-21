@@ -196,7 +196,6 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -236,9 +235,10 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (!response.isSuccessful()) {
                     Log.e("error response", "code error");
-                    Toast.makeText(getActivity(), "Error in request", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error, OLD PASSWORD INCORRECT.", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("successful response", "Successful response in change password");
+                    Toast.makeText(getActivity(), "Your password has been changed.", Toast.LENGTH_SHORT).show();
 
 
 
@@ -268,38 +268,44 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ResourceType")
         View dialogLayout = inflater.inflate(R.layout.change_pass_dialog, null);
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ctx);
-        builder.setTitle("Change password.");
+
         editTextPasswordDialog = dialogLayout.findViewById(R.id.editTextFirstPassword);
         editTextNewPassword = dialogLayout.findViewById(R.id.editTextNewPassword);
-        builder.setView(dialogLayout)
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        final AlertDialog d =builder.setTitle("Change password.")
+                .setView(dialogLayout)
                 .setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            String passOne, passRepeat;
-                            passOne = editTextPasswordDialog.getText().toString();
-                            passRepeat = editTextNewPassword.getText().toString();
-                            if (validate()){
-                                changePasswordPetition();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                            }else{
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do nothing here because we override this button later to change the close behaviour.
+                        //However, we still need this because on older versions of Android unless we
+                        //pass a handler the button doesn't get instantiated
+                    }
+                })
+                .create();
+        d.show();
+        d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()){
+                    changePasswordPetition();
+                    d.dismiss();
+                }
+            }
+        });
+        d.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.dismiss();
+            }
+        });
 
-                            }
-
-
-
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-
-            // Create the AlertDialog object and return it
-
-            AlertDialog d = builder.create();
-
-            builder.show();
             /*d.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -335,20 +341,31 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
     }
 
     public boolean validate(){
+        int min=8, max=15;
         boolean isValid=true;
         Validator.clearError(editTextPasswordDialog);
         Validator.clearError(editTextNewPassword);
-        String empty = getString(R.string.empty);
+        String empty = getString(R.string.empty), size=getString(R.string.size_password), samePassword=getString(R.string.isNotSame);
         if (!Validator.isNotEmpty(editTextPasswordDialog)){
             isValid=false;
             Validator.setError(editTextPasswordDialog, empty);
-
         }
+        if (Validator.isLessThan(editTextPasswordDialog, min) || Validator.isGreaterThan(editTextPasswordDialog, max)){
+            isValid=false;
+            Validator.setError(editTextPasswordDialog, size);
+        }
+
+
         if (!Validator.isNotEmpty(editTextNewPassword)){
             isValid=false;
             Validator.setError(editTextNewPassword, "Empty");
 
         }
+        if (Validator.isLessThan(editTextNewPassword, min) || Validator.isGreaterThan(editTextNewPassword, max)){
+            isValid=false;
+            Validator.setError(editTextNewPassword, size);
+        }
+
         return isValid;
     }
 

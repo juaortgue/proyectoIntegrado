@@ -95,4 +95,5 @@
     <string name="centimeters">Centimeters</string>
     <string name="timeTraining">Time training</string>
     <string name="empty">Empty</string>
+    <string name="isNotSame">It is not the same</string>
 </resources>
