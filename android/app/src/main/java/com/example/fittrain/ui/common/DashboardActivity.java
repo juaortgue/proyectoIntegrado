@@ -27,6 +27,7 @@ import com.example.fittrain.ui.auth.LoginActivity;
 import com.example.fittrain.ui.gym.GymFragment;
 import com.example.fittrain.ui.map.MapsActivity;
 import com.example.fittrain.ui.profile.ProfileFragment;
+import com.example.fittrain.ui.profile.edit.EditProfileActivity;
 import com.example.fittrain.ui.training.TrainingFragment;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.ViewModelUser;
@@ -34,6 +35,8 @@ import com.example.fittrain.util.ViewModelUser;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.internal.Util;
 
 public class DashboardActivity extends AppCompatActivity {
     private ViewModelUser mViewModel;
@@ -55,7 +58,11 @@ public class DashboardActivity extends AppCompatActivity {
                 case R.id.navigation_training:
                     fragmentSelected=0;
                     getSupportActionBar().setTitle(R.string.title_training);
+                    //if user doesnt have enough date to calculate imc, we redirect him to my profile for a better experience
+                    if (!checkEnoughDates())
+                        createAndShowUserDates();
                     goToFragment(fragmentTraining);
+
                     return true;
                 case R.id.navigation_gym:
                     getSupportActionBar().setTitle(R.string.title_gym);
@@ -119,6 +126,12 @@ public class DashboardActivity extends AppCompatActivity {
 
         super.invalidateOptionsMenu();
     }
+    public boolean checkEnoughDates(){
+       boolean isEnought=true;
+        if (UtilToken.getHeight(getApplicationContext()) ==0 || UtilToken.getWeight(getApplicationContext())==0)
+            isEnought=false;
+        return isEnought;
+    }
 
     public void createAndShowUserDates(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -126,6 +139,7 @@ public class DashboardActivity extends AppCompatActivity {
                 .setMessage(R.string.userDatesMessage)
                 .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Intent iEdit = new Intent(getApplicationContext(), EditProfileActivity.class);
 
                     }
                 })

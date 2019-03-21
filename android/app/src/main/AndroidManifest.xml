@@ -19,7 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.gym.GymDetailsActivity"
+        <activity android:name=".ui.profile.edit.EditProfileActivity"
+            android:label="@string/editProfile"></activity>
+        <activity
+            android:name=".ui.gym.GymDetailsActivity"
             android:label="@string/gymDetail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -56,11 +59,7 @@
         </activity>
         <activity
             android:name=".ui.common.DashboardActivity"
-            android:label="@string/dashboard_menu">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.fittrain.ui.auth.LoginActivity" />
-        </activity>
+            android:label="@string/dashboard_menu"/>
         <activity
             android:name=".ui.auth.LoginActivity"
             android:label="@string/title_login">

@@ -36,9 +36,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="dashboard_menu">Principal menu</string>
-    <string name="title_training">Training</string>
-    <string name="title_gym">Gym</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_training">Training list</string>
+    <string name="title_gym">Gym list</string>
+    <string name="title_profile">My profile</string>
     <string name="title_login">FitTrain Login</string>
     <string name="logoutDialog">¿Do you want to logout?</string>
     <string name="accept">Accept</string>
@@ -80,4 +80,7 @@
     <string name="heighProfile">Height</string>
     <string name="genderProfil">Gender</string>
     <string name="trainingYearsProfile">Training years</string>
+    <string name="passwordDialog">your password</string>
+    <string name="passwordRepeatDialogt">Repeat password</string>
+    <string name="changePasswordTitle">Change my password</string>
 </resources>

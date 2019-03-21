@@ -273,8 +273,8 @@ public class TrainingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        if (level==0)
-            createAndShowUserDates();
+        /*if (level==0)
+            createAndShowUserDates();*/
 
 
     }
@@ -296,7 +296,7 @@ public class TrainingFragment extends Fragment {
         builder.create();
         builder.show();
     }
-    public void createAndShowUserDates(){
+    /*public void createAndShowUserDates(){
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setTitle(R.string.userDates)
                 .setMessage(R.string.userDatesMessage)
@@ -317,7 +317,7 @@ public class TrainingFragment extends Fragment {
         // Create the AlertDialog object and return it
         builder.create();
         builder.show();
-    }
+    }*/
     public  void logout(){
         UtilToken.clearAll(ctx);
         Intent iLogin = new Intent(ctx, LoginActivity.class);

@@ -1,6 +1,9 @@
 package com.example.fittrain.ui.profile;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,7 @@ import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.UserService;
+import com.example.fittrain.ui.profile.edit.EditProfileActivity;
 import com.example.fittrain.util.UtilToken;
 
 import retrofit2.Call;
@@ -29,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements ProfileInteracctionListener{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -41,6 +46,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Context ctx;
+    private Button btn_edit, btn_change_password;
     private OnFragmentInteractionListener mListener;
     private ImageView imageViewProfile;
     private TextView textViewWeight, textViewHeight, textViewGender, textViewTrainingYears, textViewEmail, textViewName, textViewYearsOld;
@@ -71,6 +77,10 @@ public class ProfileFragment extends Fragment {
         textViewName= v.findViewById(R.id.textViewName);
         textViewYearsOld = v.findViewById(R.id.textViewYearsWritten);
 
+        //buttons
+        btn_change_password=v.findViewById(R.id.btn_change_password);
+        btn_edit = v.findViewById(R.id.btn_edit_profile);
+
     }
     public void setItems(){
         if (myUser.getPicture()!=null){
@@ -95,6 +105,18 @@ public class ProfileFragment extends Fragment {
         textViewEmail.setText(myUser.getEmail());
         textViewName.setText(myUser.getName());
         textViewYearsOld.setText(String.valueOf(myUser.getAge())+" years");
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToEditProfile();
+            }
+        });
+        btn_change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePassword();
+            }
+        });
 
     }
     public String selectAGender(){
@@ -186,6 +208,35 @@ public class ProfileFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void goToEditProfile() {
+    Intent iEdit = new Intent(getContext(), EditProfileActivity.class);
+    startActivity(iEdit);
+    }
+
+    @Override
+    public void changePassword() {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+            builder.setTitle(R.string.changePasswordTitle)
+                    .setPositiveButton(R.string.changePassword, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            // Create the AlertDialog object and return it
+            builder.create();
+            builder.show();
+
+
     }
 
 
