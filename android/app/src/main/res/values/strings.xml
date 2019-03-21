@@ -79,4 +79,5 @@
     <string name="yearsOld">Years old</string>
     <string name="heighProfile">Height</string>
     <string name="genderProfil">Gender</string>
+    <string name="trainingYearsProfile">Training years</string>
 </resources>

@@ -11,9 +11,9 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserService {
-    final String BASE_URL = "/user";
+    final String BASE_URL = "/users";
 
-    @GET("/me")
+    @GET(BASE_URL+ "/me")
    Call<UserResponse> getMe();
     @GET(BASE_URL)
     Call<ResponseContainer<UserResponse>> listAll();
