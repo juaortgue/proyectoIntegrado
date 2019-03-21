@@ -80,15 +80,14 @@ public class GymFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gym_list, container, false);
-
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
+            ctx = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
             loadGyms(recyclerView);
         }
