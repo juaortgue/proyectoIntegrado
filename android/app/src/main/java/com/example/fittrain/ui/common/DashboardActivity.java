@@ -39,6 +39,7 @@ public class DashboardActivity extends AppCompatActivity {
     private int fragmentSelected=0;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
     UserResponse uPass;
+
     Map<String, String> options = new HashMap<>();
     private EditText editTextTitleTraining, editTextTitleGym, editTextAddress;
     private Spinner spinnerTarget;
@@ -109,6 +110,13 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void invalidateOptionsMenu() {
+
+        super.invalidateOptionsMenu();
+    }
+
     public void createAndShowUserDates(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.userDates)
@@ -188,6 +196,7 @@ public class DashboardActivity extends AppCompatActivity {
         return true;
 
     }
+
     public void searchGymOptions () {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ResourceType")
@@ -279,4 +288,5 @@ public class DashboardActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+
 }

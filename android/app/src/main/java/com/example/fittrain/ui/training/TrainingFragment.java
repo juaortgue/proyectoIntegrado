@@ -16,6 +16,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -88,8 +90,16 @@ public class TrainingFragment extends Fragment {
             //options = getArguments().get("options");
 
         }
+        setHasOptionsMenu(true);
 
 
+    }
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        MenuItem map = menu.findItem(R.id.action_map);
+        map.setVisible(false);
     }
 
     @Override

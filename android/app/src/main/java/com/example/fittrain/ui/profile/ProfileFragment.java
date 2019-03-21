@@ -2,9 +2,13 @@ package com.example.fittrain.ui.profile;
 
 import android.content.Context;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +48,19 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
+
+        //((AppCompatActivity) getActivity()).getSupportActionBar();
+    }
+
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem item = menu.findItem(R.id.action_filter);
+        item.setVisible(false);
+        MenuItem map = menu.findItem(R.id.action_map);
+        map.setVisible(false);
     }
 
     @Override
@@ -53,7 +70,7 @@ public class ProfileFragment extends Fragment {
         ctx=getContext();
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_profile, container, false);
-        getActivity().closeContextMenu();
+
         return v;
     }
 
