@@ -201,7 +201,7 @@ public class TrainingFragment extends Fragment {
             level=2;
         }
         else{
-            level=0;
+            level=1;
 
         }
 
