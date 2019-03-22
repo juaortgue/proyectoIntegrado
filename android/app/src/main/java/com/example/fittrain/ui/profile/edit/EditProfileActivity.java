@@ -26,6 +26,7 @@ import com.example.fittrain.util.Validator;
 
 import org.w3c.dom.Text;
 
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -239,6 +240,10 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(getBaseContext(), "User edited", Toast.LENGTH_SHORT).show();
                     //refresh();
+                    UtilToken.setTrainingYears(getBaseContext(), response.body().getTrainingYears());
+                    UtilToken.setHeight(getBaseContext(), response.body().getHeight());
+                    UtilToken.setWeight(getBaseContext(), response.body().getWeight());
+
                 } else {
                     Toast.makeText(getBaseContext(), "Error updating user", Toast.LENGTH_SHORT).show();
                 }
