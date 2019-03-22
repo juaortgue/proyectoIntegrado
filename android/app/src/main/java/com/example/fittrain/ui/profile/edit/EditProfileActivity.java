@@ -20,7 +20,9 @@ import com.example.fittrain.model.UserResponse;
 import com.example.fittrain.retrofit.generator.AuthType;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.UserService;
+import com.example.fittrain.ui.common.DashboardActivity;
 import com.example.fittrain.util.UtilToken;
+import com.example.fittrain.util.Validator;
 
 import org.w3c.dom.Text;
 
@@ -125,7 +127,8 @@ public class EditProfileActivity extends AppCompatActivity {
         btn_save_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateMyProfile();
+                if (validate())
+                    updateMyProfile();
             }
         });
     }
@@ -137,45 +140,105 @@ public class EditProfileActivity extends AppCompatActivity {
         return gender;
 
     }
-    public void reformatMyUserDto(){
+    public boolean validate(){
+        int minYearsOld=1, maxYearsOld=120, minHeight=50, maxHeight=300, minName=1, maxName=20, minTrainingYears=0, maxTrainingYears=60, minWeight=1, maxWeight=500;
+        boolean isValid=true;
+
+        Validator.clearError(editTextYearsOld);
+        Validator.clearError(editTextHeight);
+        Validator.clearError(editTextName);
+        Validator.clearError(editTextTrainingYears);
+        Validator.clearError(editTextWeight);
+
+        //empty
+        String empty = getString(R.string.empty), size=getString(R.string.size_password), samePassword=getString(R.string.isNotSame);
+        if (!Validator.isNotEmpty(editTextYearsOld)){
+            isValid=false;
+            Validator.setError(editTextYearsOld, empty);
+        }else{
+            if (Validator.isLessThanNumber(editTextYearsOld, minYearsOld) || Validator.isGreaterThanNumber(editTextYearsOld, maxYearsOld)){
+                isValid=false;
+                Validator.setError(editTextYearsOld, "Between 1 - 120.");
+            }
+        }
+        if (!Validator.isNotEmpty(editTextHeight)){
+            isValid=false;
+            Validator.setError(editTextHeight, empty);
+        }else{
+            if (Validator.isLessThanNumber(editTextHeight, minHeight) || Validator.isGreaterThanNumber(editTextHeight, maxHeight)){
+                isValid=false;
+                Validator.setError(editTextHeight, "Between 50 - 300");
+            }
+        }
+        if (!Validator.isNotEmpty(editTextName)){
+            isValid=false;
+            Validator.setError(editTextName, empty);
+        }else{
+
+            if (Validator.isLessThan(editTextName, minName) || Validator.isGreaterThan(editTextName, maxName)){
+                isValid=false;
+                Validator.setError(editTextName, "Between 1-20");
+            }
+        }
+        if (!Validator.isNotEmpty(editTextTrainingYears)){
+            isValid=false;
+            Validator.setError(editTextTrainingYears, empty);
+        }else{
+            if (Validator.isLessThanNumber(editTextTrainingYears, minTrainingYears) || Validator.isGreaterThanNumber(editTextTrainingYears, maxTrainingYears)){
+                isValid=false;
+                Validator.setError(editTextTrainingYears, "Between 1 - 60");
+            }
+        }
+        if (!Validator.isNotEmpty(editTextWeight)){
+            isValid=false;
+            Validator.setError(editTextWeight, empty);
+        }else{
+
+            if (Validator.isLessThanNumber(editTextWeight, minWeight) || Validator.isGreaterThanNumber(editTextWeight, maxHeight)){
+                isValid=false;
+                Validator.setError(editTextWeight, "Between 1-500kg");
+            }
+        }
+
+
+
+
+
+
+
+
+
+        return isValid;
+    }
+    public UserEditDto reformatMyUserDto(){
         String female="Female";
-        /*private String email;
-    private String role;
-    private String password;
-    private String name;
-    private int age;
-    private int weight;
-    private int height;
-    private boolean gender;
-    private int trainingYears;*/
-        //TODO ME QUEDA EL CREAR EL DTO Y PASARSELO PARA EDITARLO
-        //UserEditDto = new UserEditDto(myUser.getEmail(), myUser.getRole());
-        myUser.setAge(Integer.parseInt(editTextYearsOld.getText().toString()));
-        myUser.setHeight(Integer.parseInt(editTextHeight.getText().toString()));
-        myUser.setName(editTextName.getText().toString());
-        myUser.setTrainingYears(Integer.parseInt(editTextTrainingYears.getText().toString()));
-        myUser.setWeight(Integer.parseInt(editTextWeight.getText().toString()));
+        UserEditDto userToEdit= new UserEditDto();
+        userToEdit.setAge(Integer.parseInt(editTextYearsOld.getText().toString()));
+        userToEdit.setHeight(Integer.parseInt(editTextHeight.getText().toString()));
+        userToEdit.setName(editTextName.getText().toString());
+        userToEdit.setTrainingYears(Integer.parseInt(editTextTrainingYears.getText().toString()));
+        userToEdit.setWeight(Integer.parseInt(editTextWeight.getText().toString()));
 
         //gender
-        if (selectAGender().equals(female)){
-            myUser.setGender(false);
+        if (spinnerGender.getSelectedItem().toString().equals(female)){
+            userToEdit.setGender(false);
         }else {
-            myUser.setGender(true);
-
+            userToEdit.setGender(true);
         }
         //gender
+        return userToEdit;
 
     }
     public void updateMyProfile(){
-        reformatMyUserDto();
-        Call<UserResponse> callEdit = userService.edit(myUser.getId(), myUser);
+
+        Call<UserResponse> callEdit = userService.edit(myUser.getId(), reformatMyUserDto());
         callEdit.enqueue(new Callback<UserResponse>() {
 
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getBaseContext(), "User edited", Toast.LENGTH_SHORT).show();
-                    refresh();
+                    //refresh();
                 } else {
                     Toast.makeText(getBaseContext(), "Error updating user", Toast.LENGTH_SHORT).show();
                 }
@@ -191,5 +254,12 @@ public class EditProfileActivity extends AppCompatActivity {
     public void refresh() {
         Intent iRefresh = new Intent(this, EditProfileActivity.class);
         startActivity(iRefresh);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, DashboardActivity.class);
+        startActivity(i);
+        super.onBackPressed();
     }
 }

@@ -93,6 +93,12 @@ public class DashboardActivity extends AppCompatActivity {
         .commit();
 
     }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        savedInstanceState.clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,16 +110,16 @@ public class DashboardActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        UserResponse userToPass =   (UserResponse) getIntent().getExtras().getSerializable("user");
+       /* UserResponse userToPass =   (UserResponse) getIntent().getExtras().getSerializable("user");
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("user", userToPass);
+        bundle.putSerializable("user", userToPass);*/
 
 
         fragmentTraining = new TrainingFragment();
         fragmentGym = new GymFragment();
         fragmentProfile = new ProfileFragment();
-        fragmentTraining.setArguments(bundle);
+        //fragmentTraining.setArguments(bundle);
         if (!checkEnoughDates())
             createAndShowUserDates();
         goToFragment(fragmentTraining);

@@ -1,5 +1,10 @@
 package com.example.fittrain.dto;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
+import java.util.Objects;
+
 public class UserEditDto {
     /*	"email": "admin2@gmail.com",
 	"role": "admin",
@@ -10,9 +15,7 @@ public class UserEditDto {
 	"height": 174,
 	"gender": false,
 	"trainingYears": 5*/
-    private String email;
-    private String role;
-    private String password;
+
     private String name;
     private int age;
     private int weight;
@@ -23,40 +26,13 @@ public class UserEditDto {
     public UserEditDto() {
     }
 
-    public UserEditDto(String email, String role, String password, String name, int age, int weight, int height, boolean gender, int trainingYears) {
-        this.email = email;
-        this.role = role;
-        this.password = password;
+    public UserEditDto(String name, int age, int weight, int height, boolean gender, int trainingYears) {
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.gender = gender;
         this.trainingYears = trainingYears;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -105,5 +81,37 @@ public class UserEditDto {
 
     public void setTrainingYears(int trainingYears) {
         this.trainingYears = trainingYears;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEditDto that = (UserEditDto) o;
+        return getAge() == that.getAge() &&
+                getWeight() == that.getWeight() &&
+                getHeight() == that.getHeight() &&
+                isGender() == that.isGender() &&
+                getTrainingYears() == that.getTrainingYears() &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(), getWeight(), getHeight(), isGender(), getTrainingYears());
+    }
+
+    @Override
+    public String toString() {
+        return "UserEditDto{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", gender=" + gender +
+                ", trainingYears=" + trainingYears +
+                '}';
     }
 }

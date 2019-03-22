@@ -59,6 +59,7 @@ public class Validator {
     public static boolean isLessThan(EditText editText, int size){
         boolean isLessThan=false;
         if (editText.getText().toString().length()<size){
+
             isLessThan=true;
         }
         return isLessThan;
@@ -66,6 +67,21 @@ public class Validator {
     public static boolean isGreaterThan(EditText editText, int size){
         boolean isGreaterThan=false;
         if (editText.getText().toString().length()>size){
+            isGreaterThan=true;
+        }
+        return isGreaterThan;
+    }
+    public static boolean isLessThanNumber(EditText editText, int size){
+        boolean isLessThan=false;
+        if (Integer.valueOf(editText.getText().toString())<size){
+
+            isLessThan=true;
+        }
+        return isLessThan;
+    }
+    public static boolean isGreaterThanNumber(EditText editText, int size){
+        boolean isGreaterThan=false;
+        if (Integer.valueOf(editText.getText().toString())>size){
             isGreaterThan=true;
         }
         return isGreaterThan;

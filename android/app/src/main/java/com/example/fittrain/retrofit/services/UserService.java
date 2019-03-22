@@ -2,6 +2,7 @@ package com.example.fittrain.retrofit.services;
 
 
 import com.example.fittrain.dto.PasswordDto;
+import com.example.fittrain.dto.UserEditDto;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.UserResponse;
 
@@ -22,7 +23,7 @@ public interface UserService {
     @GET(BASE_URL + "/{id}")
     Call<UserResponse> getOne(@Path("id") String id);
     @PUT(BASE_URL + "/{id}")
-    Call<UserResponse> edit(@Path("id") String id, @Body UserResponse edited);
+    Call<UserResponse> edit(@Path("id") String id, @Body UserEditDto edited);
     @PUT(BASE_URL + "/{id}/password")
     Call<UserResponse> editPassword(@Header("Authorization") String authorization, @Path("id") String id, @Body PasswordDto passwordDto);
 

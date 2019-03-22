@@ -100,8 +100,8 @@ router.get('/:id',
  * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
-  body({ name, address, province, city, zipcode, position, price, description, picture }),
+  token({ required: true, roles: ['admin', 'user'] }),
+  body({ name, address, province, city, zipcode, position, price, description}),
   update)
 
 /**
