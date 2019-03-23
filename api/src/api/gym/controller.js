@@ -40,3 +40,31 @@ export const destroy = ({ params }, res, next) =>
     .then((gym) => gym ? gym.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+    //photo methods
+export const createWithPhoto = (req, res, next) => {
+      uploadService.uploadFromBinary(req.file.buffer)
+          .then((json) => 
+            
+            Gym.create({
+              name: req.body.name,
+              address: req.body.address,
+              city: req.body.city,
+              province: req.body.province,
+              zipcode: req.body.zipcode,
+              price: req.body.price,
+              description: req.body.description,
+              position: req.body.position,
+              picture: json.data.link,
+              deletehash: json.data.deletehash
+              
+            })
+          )
+          .then((gymCreated) => gymCreated.view(true))
+          .then(success(res, 201))
+          .catch(err => {
+            console.log(err)
+            next(err)
+          })
+        }
+    //photo methods
