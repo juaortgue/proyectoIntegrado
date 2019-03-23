@@ -18,7 +18,7 @@ export class CreateExerciseDialogComponent implements OnInit {
   @ViewChild('file') file;
   progress;
   canBeClosed = true;
-  primaryButtonText = 'Subir';
+  primaryButtonText = 'Upload';
   showCancelButton = true;
   uploading = false;
   uploadSuccessful = false;
@@ -39,7 +39,8 @@ export class CreateExerciseDialogComponent implements OnInit {
        finishTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        restTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        categories: [null, Validators.compose ([ Validators.required ])],
-       description: [null, Validators.compose ([ Validators.required ])]
+       description: [null, Validators.compose ([ Validators.required ])],
+       gif: [null, Validators.compose ([ Validators.required ])]
       
 
       });
@@ -52,7 +53,7 @@ export class CreateExerciseDialogComponent implements OnInit {
       const newExercise :ExerciseCreateDto = <ExerciseCreateDto>this.form.value;
       //SOLUCION TEMPORAL FOTO
 
-      newExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
+      //newExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
       console.log('NUEVO EJERCICIO')
       console.log(newExercise)
       this.exerciseService.create(newExercise).subscribe(r => this.dialogRef.close('confirm'),
@@ -96,8 +97,7 @@ export class CreateExerciseDialogComponent implements OnInit {
 
     // start the upload and save the progress map
     const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
-    console.log('MIRA CABESA')
-    console.log(newExercise)
+    
     this.progress = this.uploadExerciseService.upload(this.files, newExercise);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {

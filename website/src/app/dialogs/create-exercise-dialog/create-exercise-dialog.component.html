@@ -32,7 +32,7 @@
     </mat-form-field>
     <h1 mat-dialog-title>Upload gif</h1>
     <div>
-        <input type="file" accept="*" #file (change)="onFilesAdded()" [disabled]="uploading || uploadSuccessful" value="Seleccionar fichero" />
+        <input type="file" accept="image/gif"  #file (change)="onFilesAdded()" [disabled]="uploading || uploadSuccessful" value="Select gif"  [formControl]="form.controls['gif']"/>
     </div>
     <mat-list>
       <mat-list-item *ngFor="let file of files">
@@ -54,7 +54,7 @@
 
 <mat-dialog-actions class="actions">
         <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+        <button mat-raised-button color="primary" [disabled]="!canBeClosed || !form.valid" (click)="closeDialog()">{{primaryButtonText}}</button>
       </mat-dialog-actions>
     
   </div>
