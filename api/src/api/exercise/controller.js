@@ -7,43 +7,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then((exercise) => exercise.view(true))
     .then(success(res, 201))
     .catch(next)
-/*uploadService.uploadFromBinary(req.file.buffer)
-      .then((json) =>     
-        Producto.create({
-          nombre: req.body.nombre,
-          codReferencia: req.body.codReferencia,
-          descripcion: req.body.descripcion,
-          dimensiones: req.body.dimensiones,
-          distribuidor: req.body.distribuidor,
-          categoria: req.body.categoria,
-          foto: json.data.link
-        })
-      )
-      .then((producto) => {
-        productoCreado = producto;
-        Categoria.findByIdAndUpdate(producto.categoria, { $push: {productos: producto}}).exec()
-        return Distribuidor.findByIdAndUpdate(producto.distribuidor, { $push: {productos: producto}}).exec()
-      })
-    .then((distribuidor) => productoCreado.view(true))
-      .then(success(res, 201))
-      .catch(err => {
-        console.log(err)
-        next(err)
-      })
-    }*/
 
-    /*export const create = (req, res, next) => {
-// export const create = ({ bodymen: { body } }, res, next) => {
-  uploadService.uploadFromBinary(req.file.buffer)
-    .then(json => Photo.create({
-      propertyId: req.body.propertyId,
-      imgurLink: json.data.link,
-      deletehash: json.data.deletehash
-    }))
-    .then((photo) => photo.view(true))
-    .then(success(res, 201))
-    .catch(next)
-}*/
 export const createWithPhoto = (req, res, next) => {
   uploadService.uploadFromBinary(req.file.buffer)
       .then((json) => 
@@ -97,61 +61,15 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then((exercise) => exercise ? exercise.view(true) : null)
     .then(success(res))
     .catch(next)
-/*export const createWithPhoto = (req, res, next) => {
-  uploadService.uploadFromBinary(req.file.buffer)
-      .then((json) => 
-        
-        Exercise.create({
-          name: req.body.name,
-          series: req.body.series,
-          repetitions: req.body.repetitions,
-          finishTime: req.body.finishTime,
-          restTime: req.body.restTime,
-          gif: json.data.link,
-          category: req.body.category,
-          description: req.body.description,
-          
-        })
-      )
-      .then((exerciseCreated) => exerciseCreated.view(true))
-      .then(success(res, 201))
-      .catch(err => {
-        console.log(err)
-        next(err)
-      })
-    }*/
 
-    /*Boleta.findOne({
-  serie: req.params.id
-})
-.then((boleta) => {
-  boleta.firma = req.params.firma;
-  boleta
-    .save()
-    .then(() => {
-      res.jsonp({ boleta }); // enviamos la boleta de vuelta
-    });
-});*/
-/*Boleta.findOne({
-  serie: req.params.id
-})
-.then((boleta) => {
-  boleta.firma = req.params.firma;
-  boleta
-    .save()
-    .then(() => {
-      res.jsonp({ boleta }); // enviamos la boleta de vuelta
-    });
-});*/
+//metodo creado para la edicion de fotos en ejercicio
 export const updateWithPhoto = (req, res, next) => {
   
   uploadService.uploadFromBinary(req.file.buffer)
   Exercise.findById(req.params.id)
   .then(exercise=>{
     uploadService.uploadFromBinary(req.file.buffer)
-    .then(json=>{
-      console.log('NO MODIFICADO')
-      console.log(exercise)
+    .then(json=>{//seteamos campos junto al a foto subida
       exercise.gif=json.data.link;
       exercise.deletehash=json.data.deletehash;
       exercise.name=req.body.name;
@@ -160,13 +78,11 @@ export const updateWithPhoto = (req, res, next) => {
       exercise.finishTime=req.body.finishTime;
       exercise.restTime=req.body.restTime;
       exercise.description=req.body.description;
-      console.log('MODIFICADO')
-      console.log(exercise)
       exercise
-      .save()
-      .then(() => {
-        res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
-      });
+        .save()// guardamos el ejercicio
+        .then(() => {
+          res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
+        });
     })
 
   }

@@ -52,32 +52,13 @@ exerciseSchema.pre('remove', {query: true }, function(next){
   uploadService.deleteImage(this.deletehash)
   return next();
 })
-exerciseSchema.pre('updateWithPhoto', {query: true }, function(next){
+exerciseSchema.pre('save', {query: true }, function(next){
   console.log('Elminando la imagen' + this.gif)
   uploadService.deleteImage(this.deletehash)
   return next();
 })
 exerciseSchema.methods = {
-  /*view (full) {
-    const view = {
-      // simple view
-      id: this.id,
-      name: this.name,
-      categoryId: this.categoryId,
-      series: this.series,
-      repetitions: this.repetitions,
-      finishTime: this.finishTime,
-      restTime: this.restTime,
-      gif: this.gif,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
-    }
-
-    return full ? {
-      ...view
-      // add properties for a full view
-    } : view
-  }*/
+  
   view (full) {
 
       let view = {}

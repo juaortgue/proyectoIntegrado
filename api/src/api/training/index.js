@@ -5,7 +5,9 @@ import { token, master } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Training, { schema } from './model'
-
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage})
 const router = new Router()
 const { name, description, target, time, picture, exercises, level } = schema.tree
 

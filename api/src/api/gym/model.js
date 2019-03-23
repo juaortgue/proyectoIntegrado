@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+const uploadService = require('../../services/upload/')
 
 const gymSchema = new Schema({
   name: {
@@ -40,6 +41,9 @@ const gymSchema = new Schema({
   },
   picture: {
     type: String
+  },
+  deletehash: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -74,7 +78,7 @@ gymSchema.methods = {
       // add properties for a full view
     } : view*/
     let view = {}
-    let fields = ['id', 'name', 'address', 'price', 'picture', 'position' ]
+    let fields = ['id', 'name', 'address', 'price', 'picture', 'position', 'deletehash' ]
 
     if (full) {
       fields = [...fields, 'province', 'city', 'zipcode',  'description',]
@@ -86,7 +90,16 @@ gymSchema.methods = {
   }
 
 }
-
+gymSchema.pre('remove', {query: true }, function(next){
+  console.log('Elminando la imagen' + this.picture)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
+gymSchema.pre('updateWithPhoto', {query: true }, function(next){
+  console.log('Elminando la imagen' + this.picture)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
 const model = mongoose.model('Gym', gymSchema)
 
 export const schema = model.schema

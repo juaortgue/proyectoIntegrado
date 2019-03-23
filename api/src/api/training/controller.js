@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { Training } from '.'
+const uploadService = require('../../services/upload/')
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Training.create(body)
