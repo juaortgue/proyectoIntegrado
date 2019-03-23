@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+const uploadService = require('../../services/upload/')
 
 const exerciseSchema = new Schema({
   name: {
@@ -32,6 +33,9 @@ const exerciseSchema = new Schema({
     type: String,
     required: true
   },
+  deletehash: {
+    type: String
+  },
   description: {
     type: String,
     required: true
@@ -43,7 +47,16 @@ const exerciseSchema = new Schema({
     transform: (obj, ret) => { delete ret._id }
   }
 })
-
+exerciseSchema.pre('remove', {query: true }, function(next){
+  console.log('Elminando la imagen' + this.gif)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
+exerciseSchema.pre('update', {query: true }, function(next){
+  console.log('Elminando la imagen' + this.gif)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
 exerciseSchema.methods = {
   /*view (full) {
     const view = {
@@ -71,7 +84,7 @@ exerciseSchema.methods = {
       let fields = ['id', 'name', 'series', 'repetitions', 'categoryId']
   
       if (full) {
-        fields = [...fields, 'finishTime', 'restTime','gif', 'description']
+        fields = [...fields, 'finishTime', 'restTime','gif', 'deletehash', 'description']
       }
   
       fields.forEach((field) => { view[field] = this[field] })

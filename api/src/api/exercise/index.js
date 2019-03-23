@@ -9,7 +9,7 @@ const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 const router = new Router()
-const { name, categoryId, series, repetitions, finishTime, restTime, gif, description } = schema.tree
+const { name, categoryId, series, repetitions, finishTime, restTime, gif, description, deletehash } = schema.tree
 
 /**
  * @api {post} /exercises Create exercise

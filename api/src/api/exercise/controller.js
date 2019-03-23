@@ -55,6 +55,7 @@ export const createWithPhoto = (req, res, next) => {
           finishTime: req.body.finishTime,
           restTime: req.body.restTime,
           gif: json.data.link,
+          deletehash: json.data.deletehash,
           category: req.body.category,
           description: req.body.description,
           
@@ -96,6 +97,43 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then((exercise) => exercise ? exercise.view(true) : null)
     .then(success(res))
     .catch(next)
+/*export const createWithPhoto = (req, res, next) => {
+  uploadService.uploadFromBinary(req.file.buffer)
+      .then((json) => 
+        
+        Exercise.create({
+          name: req.body.name,
+          series: req.body.series,
+          repetitions: req.body.repetitions,
+          finishTime: req.body.finishTime,
+          restTime: req.body.restTime,
+          gif: json.data.link,
+          category: req.body.category,
+          description: req.body.description,
+          
+        })
+      )
+      .then((exerciseCreated) => exerciseCreated.view(true))
+      .then(success(res, 201))
+      .catch(err => {
+        console.log(err)
+        next(err)
+      })
+    }*/
+
+export const updateWithPhoto = (req, res, next) => {
+  uploadService.uploadFromBinary(req.file.buffer)
+  .then((json) =>{
+    req.gif=json.data.link
+    req.deletehash=json.data.deletehash
+    return req;
+  }
+  
+  )
+}
+    
+
+
 
 export const destroy = ({ params }, res, next) =>
   Exercise.findById(params.id)
