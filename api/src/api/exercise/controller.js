@@ -121,16 +121,59 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
       })
     }*/
 
+    /*Boleta.findOne({
+  serie: req.params.id
+})
+.then((boleta) => {
+  boleta.firma = req.params.firma;
+  boleta
+    .save()
+    .then(() => {
+      res.jsonp({ boleta }); // enviamos la boleta de vuelta
+    });
+});*/
+/*Boleta.findOne({
+  serie: req.params.id
+})
+.then((boleta) => {
+  boleta.firma = req.params.firma;
+  boleta
+    .save()
+    .then(() => {
+      res.jsonp({ boleta }); // enviamos la boleta de vuelta
+    });
+});*/
 export const updateWithPhoto = (req, res, next) => {
-  uploadService.uploadFromBinary(req.file.buffer)
-  .then((json) =>{
-    req.gif=json.data.link
-    req.deletehash=json.data.deletehash
-    return req;
-  }
   
+  uploadService.uploadFromBinary(req.file.buffer)
+  Exercise.findById(req.params.id)
+  .then(exercise=>{
+    uploadService.uploadFromBinary(req.file.buffer)
+    .then(json=>{
+      console.log('NO MODIFICADO')
+      console.log(exercise)
+      exercise.gif=json.data.link;
+      exercise.deletehash=json.data.deletehash;
+      exercise.name=req.body.name;
+      exercise.series=req.body.series;
+      exercise.repetitions=req.body.repetitions;
+      exercise.finishTime=req.body.finishTime;
+      exercise.restTime=req.body.restTime;
+      exercise.description=req.body.description;
+      console.log('MODIFICADO')
+      console.log(exercise)
+      exercise
+      .save()
+      .then(() => {
+        res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
+      });
+    })
+
+  }
   )
+ 
 }
+
     
 
 

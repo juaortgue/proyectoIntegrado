@@ -52,7 +52,7 @@ exerciseSchema.pre('remove', {query: true }, function(next){
   uploadService.deleteImage(this.deletehash)
   return next();
 })
-exerciseSchema.pre('update', {query: true }, function(next){
+exerciseSchema.pre('updateWithPhoto', {query: true }, function(next){
   console.log('Elminando la imagen' + this.gif)
   uploadService.deleteImage(this.deletehash)
   return next();
