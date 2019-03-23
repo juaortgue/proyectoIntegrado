@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20e430a3-b314-4f1d-9b75-e0d4c3ff06e4",
+		"_postman_id": "6edf4fb5-76cd-4455-9660-c14952787467",
 		"name": "fitTrainOrtizGuerraJuanAntonio copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -223,15 +223,25 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "gym",
-			"item": [
+				},
 				{
-					"name": "update",
+					"name": "changePass",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@gmail.com",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -243,26 +253,36 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"mcfit\",\n    \"address\": \"calle condes de bustillo, 17\",\n    \"province\": \"sevilla\",\n    \"city\": \"sevilla\",\n    \"zipcode\": \"41010\",\n    \"position\": \"37.3886303, -5.9953171\",\n    \"price\": 24,\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n}"
+							"raw": "{\n\t\"password\": \"adminadmin\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts",
+							"raw": "{{url}}users/5c862955957d3f38fe3768d3/password",
 							"host": [
-								"{{url}}gyms"
+								"{{url}}users"
 							],
 							"path": [
-								"5c877bfc45fe8e2b2c2fa046"
+								"5c862955957d3f38fe3768d3",
+								"password"
 							],
 							"query": [
 								{
-									"key": "access_token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts"
+									"key": "",
+									"value": "adminadmin"
+								},
+								{
+									"key": "",
+									"value": ""
 								}
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "gym",
+			"item": [
 				{
 					"name": "add",
 					"request": {
@@ -295,16 +315,23 @@
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "update",
 					"request": {
-						"method": "DELETE",
-						"header": [],
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"name\": \"mcfit\",\n    \"address\": \"calle condes de bustillo, 17\",\n    \"province\": \"sevilla\",\n    \"city\": \"sevilla\",\n    \"zipcode\": \"41010\",\n    \"position\": \"37.3886303, -5.9953171\",\n    \"price\": 24,\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts",
 							"host": [
 								"{{url}}gyms"
 							],
@@ -314,7 +341,7 @@
 							"query": [
 								{
 									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3NGE0Y2Y4ZjU0MjcxOTY3NWQ2OSIsImlhdCI6MTU1MjM4MTA5Mn0.D_zpzG6pzWym7AHiGZFmn6baPp-g-siVsBF52ymJ0ts"
 								}
 							]
 						}
@@ -373,6 +400,33 @@
 					"response": []
 				},
 				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}gyms/5c877bfc45fe8e2b2c2fa046?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}gyms"
+							],
+							"path": [
+								"5c877bfc45fe8e2b2c2fa046"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "obtainPosition",
 					"request": {
 						"method": "GET",
@@ -415,6 +469,21 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "addWithPhoto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -423,6 +492,52 @@
 			"item": [
 				{
 					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addOne",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"aerobico\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}categories?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}categories"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -461,53 +576,7 @@
 					"response": []
 				},
 				{
-					"name": "addOne",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"aerobico\"\n}"
-						},
-						"url": {
-							"raw": "{{url}}categories?access_token={{ACCESS_TOKEN}}",
-							"host": [
-								"{{url}}categories"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "update",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -527,6 +596,33 @@
 			"name": "training",
 			"item": [
 				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}training/5c8c0000721bf36a26af94a9?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}training"
+							],
+							"path": [
+								"5c8c0000721bf36a26af94a9"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getAll",
 					"request": {
 						"method": "GET",
@@ -544,6 +640,37 @@
 								{
 									"key": "access_token",
 									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"curisisimor\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Perder peso\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\",\n\t\"exercises\": [\n\t\t\n\t\t\"5c8c0607721bf36a26af94ab\",\"5c8b9fe75ef5b833aa1a6135\"\n\t\t],\n\t\"level\": 2\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}training?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{url}}training"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
 								}
 							]
 						}
@@ -610,70 +737,39 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}training/5c8c0000721bf36a26af94a9?access_token={{ACCESS_TOKEN}}",
-							"host": [
-								"{{url}}training"
-							],
-							"path": [
-								"5c8c0000721bf36a26af94a9"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"curisisimor\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Perder peso\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\",\n\t\"exercises\": [\n\t\t\n\t\t\"5c8c0607721bf36a26af94ab\",\"5c8b9fe75ef5b833aa1a6135\"\n\t\t],\n\t\"level\": 2\n}\n"
-						},
-						"url": {
-							"raw": "{{url}}training?access_token={{ACCESS_TOKEN}}",
-							"host": [
-								"{{url}}training"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{ACCESS_TOKEN}}"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
 		{
 			"name": "exercise",
 			"item": [
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}exercises/5c8b9fe75ef5b833aa1a6135?access_token={{MASTER_KEY}}",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"5c8b9fe75ef5b833aa1a6135"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{MASTER_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "getAll",
 					"request": {
@@ -699,28 +795,16 @@
 					"response": []
 				},
 				{
-					"name": "getOne",
+					"name": "addOneWithPhoto",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}exercises/5c8b9fe75ef5b833aa1a6135?access_token={{MASTER_KEY}}",
-							"host": [
-								"{{url}}exercises"
-							],
-							"path": [
-								"5c8b9fe75ef5b833aa1a6135"
-							],
-							"query": [
-								{
-									"key": "access_token",
-									"value": "{{MASTER_KEY}}"
-								}
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -760,21 +844,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add",
 					"request": {
 						"method": "POST",
@@ -806,16 +875,92 @@
 					"response": []
 				},
 				{
-					"name": "addOneWithPhoto",
+					"name": "Delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": ""
+							"raw": "{{local}}exercises/5c961b1afadfe03a81843b36?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{local}}exercises"
+							],
+							"path": [
+								"5c961b1afadfe03a81843b36"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editWithPhoto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "pepe",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "pepe",
+									"type": "text"
+								},
+								{
+									"key": "series",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "repetitions",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "5c89380bd94eaf4530b1fb2d",
+									"type": "text"
+								},
+								{
+									"key": "finishTime",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "restTime",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}exercises/5c8c0607721bf36a26af94ab/photo?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{local}}exercises"
+							],
+							"path": [
+								"5c8c0607721bf36a26af94ab",
+								"photo"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
 						}
 					},
 					"response": []
