@@ -1,11 +1,13 @@
-<div fxLayout="column" id="container">
+<div fxLayout="column" class="container">
   <div fxGap="100px">
-    <h4 fxFlex="100px" id="titleTable">Exercises</h4>
+      <div fxFlexFill fxFlex fxLayoutGap="10px">
+
+          <h1 fxFlex="100px" id="titleTable" fxFlex="20%">Exercise list</h1>
     <mat-form-field fxFlex="300px" fxFlex.lt-md="150px">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search exercise.">
     </mat-form-field>
-  </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 white w-100">
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlex="80%" fxLayoutGap="200px">
     
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -62,8 +64,9 @@
   </table>
 
 
-  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+  <mat-paginator fxFlex="80%" fxLayoutGap="200px" class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons ></mat-paginator>
 <button mat-fab id="addFloatingButton" (click)="openDialogNew()">
   <mat-icon>add</mat-icon>
 </button>
+</div>
+</div>
