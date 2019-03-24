@@ -83,11 +83,7 @@ trainingSchema.pre('remove', {query: true }, function(next){
   uploadService.deleteImage(this.deletehash)
   return next();
 })
-trainingSchema.pre('save', {query: true }, function(next){
-  console.log('ELIMINANDO IMAGEN ' + this.picture)
-  uploadService.deleteImage(this.deletehash)
-  return next();
-})
+
 const model = mongoose.model('Training', trainingSchema)
 
 export const schema = model.schema

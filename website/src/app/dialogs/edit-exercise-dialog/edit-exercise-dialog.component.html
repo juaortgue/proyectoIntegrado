@@ -1,38 +1,60 @@
-
 <h1 mat-dialog-title>Edit Exercise</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form">
   <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
     <mat-form-field class="w-100">
       <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
     </mat-form-field>
-    
+
     <mat-form-field class="w-100">
-      <input min="1"  matInput placeholder="Series" type="number" [formControl]="form.controls['series']" required>
-    </mat-form-field> 
-    <mat-form-field class="w-100">
-      <input min="1"  matInput placeholder="Repetitions" type="number" [formControl]="form.controls['repetitions']" required>
+      <input min="1" matInput placeholder="Series" type="number" [formControl]="form.controls['series']" required>
     </mat-form-field>
     <mat-form-field class="w-100">
-      <input min="1" matInput placeholder="Rest Time (seconds)" type="number" [formControl]="form.controls['restTime']" required>
+      <input min="1" matInput placeholder="Repetitions" type="number" [formControl]="form.controls['repetitions']"
+        required>
     </mat-form-field>
     <mat-form-field class="w-100">
-      <input min="1"  matInput placeholder="Finish time (minutes)" type="number" [formControl]="form.controls['finishTime']" required>
+      <input min="1" matInput placeholder="Rest Time (seconds)" type="number" [formControl]="form.controls['restTime']"
+        required>
     </mat-form-field>
     <mat-form-field class="w-100">
-      <mat-select placeholder="Categories"   [formControl]="form.controls['categories']">
+      <input min="1" matInput placeholder="Finish time (minutes)" type="number"
+        [formControl]="form.controls['finishTime']" required>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-select placeholder="Categories" [formControl]="form.controls['categories']">
         <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    
+
     <mat-form-field class="example-full-width">
-      <input matInput #message maxlength="256" placeholder="Description" [formControl]="form.controls['description']" required>
+      <input matInput #message maxlength="256" placeholder="Description" [formControl]="form.controls['description']"
+        required>
       <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
       <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
     </mat-form-field>
-  
-    
+    <h1 mat-dialog-title>Upload gif</h1>
+    <div>
+      <input type="file" accept="image/gif" #file (change)="onFilesAdded()" [disabled]="uploading || uploadSuccessful"
+        value="Select gif" [formControl]="form.controls['gif']" />
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let file of files">
+
+        <h4 mat-line>{{file.name}}</h4>
+
+        <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async">
+        </mat-progress-bar>
+
+      </mat-list-item>
+    </mat-list>
+
+    <mat-dialog-actions class="actions">
+      <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="!canBeClosed || !form.valid"
+        (click)="closeDialog()">{{primaryButtonText}}</button>
+    </mat-dialog-actions>
   </div>
-  <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
+  <!-- <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
     <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">ADD</button>
-  </div>
+  </div>-->
 </form>

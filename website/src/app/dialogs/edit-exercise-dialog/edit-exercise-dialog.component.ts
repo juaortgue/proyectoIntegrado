@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ExerciseService } from 'src/app/services/exercise.service';
@@ -7,6 +7,9 @@ import { CategoryResponse } from '../../interfaces/category-response';
 import { ExerciseOneResponse } from 'src/app/interfaces/exercise-one-response';
 import { ExerciseCreateDto } from '../../dto/exercise-create.dto';
 import { CategoryService } from 'src/app/services/category.service';
+import { UploadExerciseService } from 'src/app/services/upload-exercise.service';
+import { ExercisePhotoDto } from 'src/app/dto/exercise-photo-dto';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-edit-exercise-dialog',
@@ -14,9 +17,17 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./edit-exercise-dialog.component.scss']
 })
 export class EditExerciseDialogComponent implements OnInit {
+  @ViewChild('file') file;
+  progress;
+  canBeClosed = true;
+  primaryButtonText = 'Upload';
+  showCancelButton = true;
+  uploading = false;
+  uploadSuccessful = false;
+  public files: Set<File> = new Set();
 
   form: FormGroup;
-  constructor(private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(public uploadExerciseService:UploadExerciseService, private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
   private exerciseService: ExerciseService,public dialogRef: MatDialogRef<CreateExerciseDialogComponent>, private categoryService: CategoryService) { }
   categories:CategoryResponse[];
   exercise:ExerciseOneResponse;
@@ -35,6 +46,7 @@ export class EditExerciseDialogComponent implements OnInit {
        restTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        categories: [null, Validators.compose ([ Validators.required ])],
        description: [null, Validators.compose ([ Validators.required ])],
+       gif: [null, Validators.compose ([ Validators.required ])]
 
       });
      this.form = newForm;
@@ -49,6 +61,7 @@ export class EditExerciseDialogComponent implements OnInit {
      restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
      categories: [this.exercise.categoryId, Validators.compose ([ Validators.required ])],
      description: [this.exercise.description, Validators.compose ([ Validators.required ])],
+     gif: [null, Validators.compose ([ Validators.required ])]
 
     });
     this.form = newForm;
@@ -58,7 +71,7 @@ export class EditExerciseDialogComponent implements OnInit {
     
       const editExercise :ExerciseCreateDto = <ExerciseCreateDto>this.form.value;
       //SOLUCION TEMPORAL FOTO
-      editExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
+      //editExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
 
       console.log('EDITADO EJERCICIO')
       console.log(editExercise)
@@ -102,5 +115,72 @@ export class EditExerciseDialogComponent implements OnInit {
       });
     });
   }
+  //PHOTO
+
+  onFilesAdded() {
+    const files: { [key: string]: File } = this.file.nativeElement.files;
+    this.files = new Set();
+    for (const key in files) {
+      if (!isNaN(parseInt(key, 10))) {
+        this.files.add(files[key]);
+      }
+    }
+  }
+  closeDialog() {
+    // if everything was uploaded already, just close the dialog
+    if (this.uploadSuccessful) {
+      return this.dialogRef.close('confirm');
+
+      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
+      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
+    }
+
+    // set the component state to "uploading"
+    this.uploading = true;
+
+    // start the upload and save the progress map
+    const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
+    console.log('MIRA AQUI SINO')
+    console.log(this.data)
+    this.progress = this.uploadExerciseService.editWithPhoto(this.files, newExercise, this.data.exercise.id);
+    // tslint:disable-next-line:forin
+    for (const key in this.progress) {
+      this.progress[key].progress.subscribe(val => console.log(val));
+    }
+
+    // convert the progress map into an array
+    const allProgressObservables = [];
+    // tslint:disable-next-line:forin
+    for (const key in this.progress) {
+      allProgressObservables.push(this.progress[key].progress);
+    }
+
+    // Adjust the state variables
+
+    // The OK-button should have the text "Finish" now
+    this.primaryButtonText = 'Finalizar';
+
+    // The dialog should not be closed while uploading
+    this.canBeClosed = false;
+    this.dialogRef.disableClose = true;
+
+    // Hide the cancel-button
+    this.showCancelButton = false;
+
+    // When all progress-observables are completed...
+    forkJoin(allProgressObservables).subscribe(end => {
+      // ... the dialog can be closed again...
+      this.canBeClosed = true;
+      this.dialogRef.disableClose = false;
+
+      // ... the upload was successful...
+      this.uploadSuccessful = true;
+
+      // ... and the component is no longer uploading
+      this.uploading = false;
+
+    });
+  }
+  //foto
 
 }

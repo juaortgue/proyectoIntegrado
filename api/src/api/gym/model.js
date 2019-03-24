@@ -95,11 +95,7 @@ gymSchema.pre('remove', {query: true }, function(next){
   uploadService.deleteImage(this.deletehash)
   return next();
 })
-gymSchema.pre('save', {query: true }, function(next){
-  console.log('ELIMINANDO IMAGEN ' + this.picture)
-  uploadService.deleteImage(this.deletehash)
-  return next();
-})
+
 const model = mongoose.model('Gym', gymSchema)
 
 export const schema = model.schema
