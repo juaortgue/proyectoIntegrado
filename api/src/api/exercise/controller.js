@@ -20,7 +20,7 @@ export const createWithPhoto = (req, res, next) => {
           restTime: req.body.restTime,
           gif: json.data.link,
           deletehash: json.data.deletehash,
-          category: req.body.category,
+          categoryId: req.body.categoryId,
           description: req.body.description,
           
         })

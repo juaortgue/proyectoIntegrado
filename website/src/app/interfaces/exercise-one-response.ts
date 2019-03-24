@@ -7,6 +7,9 @@ export interface ExerciseOneResponse {
         restTime: string;
         gif: string;
         description: string;
-        categoryId: string;
+        categoryId:{
+                name:string,
+                id:string
+        }
 }
     

@@ -59,7 +59,7 @@ export class EditExerciseDialogComponent implements OnInit {
      repetitions: [this.exercise.repetitions, Validators.compose ([ Validators.required, Validators.min(1) ])],
      finishTime: [this.exercise.finishTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
      restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     categories: [this.exercise.categoryId, Validators.compose ([ Validators.required ])],
+     categories: [this.exercise.categoryId.id, Validators.compose ([ Validators.required ])],
      description: [this.exercise.description, Validators.compose ([ Validators.required ])],
      gif: [null, Validators.compose ([ Validators.required ])]
 
@@ -81,7 +81,7 @@ export class EditExerciseDialogComponent implements OnInit {
   }
   getOneCategory(){
     console.log(this.exercise)
-    this.categoryService.getOne(this.exercise.categoryId).subscribe(one => {
+    this.categoryService.getOne(this.exercise.categoryId.id).subscribe(one => {
       this.categoryExercise=one;
      console.log('se obtiene la categoria')
     }, error => {
@@ -106,6 +106,8 @@ export class EditExerciseDialogComponent implements OnInit {
     this.exerciseService.getOne(this.data.exercise.id).subscribe(one => {
       this.exercise=one;
       this.getAllCategories();
+      console.log('LOLAZO')
+      console.log(this.exercise)
       this.createFormFilled();
       
     }, error => {
@@ -141,7 +143,7 @@ export class EditExerciseDialogComponent implements OnInit {
     // start the upload and save the progress map
     const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
     console.log('MIRA AQUI SINO')
-    console.log(newExercise)
+    console.log(this.data)
     this.progress = this.uploadExerciseService.editWithPhoto(this.files, newExercise, this.data.exercise.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
