@@ -17,7 +17,7 @@ export class TrainingComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthenticationService, private trainingService: TrainingService,
     public snackBar: MatSnackBar, public dialog: MatDialog) { }
-  displayedColumns: string[] = ['name', 'target', 'time', 'actions'];
+  displayedColumns: string[] = ['picture', 'name', 'target', 'time', 'actions'];
 
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -9,6 +9,8 @@ import { GymCreateDto } from 'src/app/dto/gym-create.dto';
 import { CityResponse } from 'src/app/interfaces/city-response.js';
 import { GeoService } from 'src/app/services/geo.service';
 import { UploadService } from 'src/app/services/upload.service';
+import { GymCreatePhotoDto } from '../../dto/gym-photo-dto';
+import { UploadGymService } from '../../services/upload-gym.service';
 
 //const Pselect = require('../create-gym-dialog/pselect.js');
 @Component({
@@ -31,7 +33,7 @@ export class CreateGymDialogComponent implements OnInit {
 
   
  
-  constructor(private uploadService:UploadService,private geoService: GeoService,private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(private uploadService:UploadGymService,private geoService: GeoService,private snackBar: MatSnackBar, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
   private gymService: GymService, public dialogRef: MatDialogRef<CreateGymDialogComponent>) { }
 
   ngOnInit() {
@@ -40,6 +42,56 @@ export class CreateGymDialogComponent implements OnInit {
     
   }
 
+
+ 
+ 
+  createForm() {
+   
+    const newForm: FormGroup = this.fb.group ({
+      name: [null, Validators.compose ([ Validators.required ])],
+      address: [null, Validators.compose ([ Validators.required ])],
+      zipcode: [null, Validators.compose ([ Validators.required ])],
+      province: [null, Validators.compose ([ Validators.required ])],
+      city: [null, Validators.compose ([ Validators.required ])],
+      price: [null, Validators.compose ([ Validators.required ])],
+      description: [null, Validators.compose ([ Validators.required ])],
+      picture: [null, Validators.compose ([ Validators.required ])]
+
+    });
+    this.form = newForm;
+  }
+  addGym() {
+    
+    const gymCreateDto = <GymCreateDto> this.form.value;
+
+    this.gymService.createGym(gymCreateDto).subscribe(
+      gym => {
+        this.dialogRef.close('confirm');
+      }
+    );
+  }
+ 
+  onSubmit() {
+        let newGym: GymCreateDto = <GymCreateDto>this.form.value;
+      //newGym = this.getPosition(newGym);
+      let position = '';
+
+      //obtain geolocation
+      this.geoService.getLocation(newGym.address).subscribe(r => {
+      
+        position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+        position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+        newGym.position = position;
+        //newGym.picture='foto'
+      
+      this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
+      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
+  
+      })
+      
+      
+  }
+  //foto
 
   onFilesAdded() {
     const files: { [key: string]: File } = this.file.nativeElement.files;
@@ -50,22 +102,22 @@ export class CreateGymDialogComponent implements OnInit {
       }
     }
   }
-
   closeDialog() {
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
-      return this.dialogRef.close();
+      return this.dialogRef.close('confirm');
+
+      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
+      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
     }
 
     // set the component state to "uploading"
     this.uploading = true;
 
     // start the upload and save the progress map
-    const gymCreateDto = <GymCreateDto> this.form.value;
-
+    const newGym :GymCreatePhotoDto = <GymCreatePhotoDto>this.form.value;
     
-    this.progress = this.uploadService.upload(this.files,  <GymCreateDto> this.form.value);
-    
+    this.progress = this.uploadService.upload(this.files, newGym);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
       this.progress[key].progress.subscribe(val => console.log(val));
@@ -104,63 +156,7 @@ export class CreateGymDialogComponent implements OnInit {
 
     });
   }
-  
- 
-  createForm() {
-   
-    const newForm: FormGroup = this.fb.group ({
-      name: [null, Validators.compose ([ Validators.required ])],
-      address: [null, Validators.compose ([ Validators.required ])],
-      zipcode: [null, Validators.compose ([ Validators.required ])],
-      province: [null, Validators.compose ([ Validators.required ])],
-      city: [null, Validators.compose ([ Validators.required ])],
-      price: [null, Validators.compose ([ Validators.required ])],
-      description: [null, Validators.compose ([ Validators.required ])]
-    });
-    this.form = newForm;
-  }
-  addGym() {
-    
-    const gymCreateDto = <GymCreateDto> this.form.value;
+  //foto
 
-    this.gymService.createGym(gymCreateDto).subscribe(
-      gym => {
-        this.dialogRef.close('confirm');
-      }
-    );
-  }
- 
-  onSubmit() {
-        let newGym: GymCreateDto = <GymCreateDto>this.form.value;
-      //newGym = this.getPosition(newGym);
-      let position = '';
-
-      //obtain geolocation
-      this.geoService.getLocation(newGym.address).subscribe(r => {
-      
-        position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
-        position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
-        newGym.position = position;
-        //newGym.picture='foto'
-      
-      this.gymService.createGym(newGym).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
-  
-      })
-      
-      
-  }
-  /*getPosition(newGym: GymCreateDto){
-    let position ='';
-    this.geoService.getLocation(newGym.address).subscribe(r => {
-      
-      position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
-      position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
-      newGym.position = position;
-      
-
-    })
-    return newGym;
-  }*/
 
 }

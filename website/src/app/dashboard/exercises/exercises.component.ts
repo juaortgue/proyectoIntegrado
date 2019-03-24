@@ -18,7 +18,7 @@ export class ExercisesComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthenticationService, private exerciseService: ExerciseService,
     public snackBar: MatSnackBar, public dialog: MatDialog) { }
-  displayedColumns: string[] = ['name', 'series', 'repetitions', 'actions'];
+  displayedColumns: string[] = ['gif', 'name', 'series', 'repetitions', 'actions'];
 
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
