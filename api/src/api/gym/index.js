@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query, Schema } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token, master } from '../../services/passport'
-import { create, index, show, update, destroy, createWithPhoto } from './controller'
+import { create, index, show, update, destroy, createWithPhoto, updateWithPhoto } from './controller'
 import { schema } from './model'
 export Gym, { schema } from './model'
 const multer = require('multer')
@@ -112,6 +112,10 @@ router.put('/:id',
   body({ name, address, province, city, zipcode, position, price, description, picture }),
   update)
 
+router.put('/:id/photo',
+  token({ required: true, roles: ['admin'] }),
+  upload.single('photo'),
+  updateWithPhoto)
 /**
  * @api {delete} /gyms/:id Delete gym
  * @apiName DeleteGym
