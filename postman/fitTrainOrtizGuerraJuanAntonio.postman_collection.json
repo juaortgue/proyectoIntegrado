@@ -473,7 +473,80 @@
 				{
 					"name": "addWithPhoto",
 					"request": {
-						"method": "GET",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "fit22",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "direccion",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "sevilla",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "sevilla",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "41940",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "adas",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "-1231,-1234",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}gyms/photo?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{local}}gyms"
+							],
+							"path": [
+								"photo"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWithPhoto",
+					"request": {
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -727,6 +800,138 @@
 							],
 							"path": [
 								"5c8bff61ebb0de695b7cc80f"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addWithPhoto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "target",
+									"value": "Gaining muscle",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "exercises",
+									"value": "5c8c0607721bf36a26af94ab",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}training/photo?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{local}}training"
+							],
+							"path": [
+								"photo"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{ACCESS_TOKEN}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWithPhoto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "entrenamiento perfecto",
+									"type": "text"
+								},
+								{
+									"key": "series",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "repetitions",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "descripcion de ejemplo",
+									"type": "text"
+								},
+								{
+									"key": "target",
+									"value": "Gaining muscle",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "exercises",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}training/5c975cd80a76782f5bc3e9cb/photo?access_token={{ACCESS_TOKEN}}",
+							"host": [
+								"{{local}}training"
+							],
+							"path": [
+								"5c975cd80a76782f5bc3e9cb",
+								"photo"
 							],
 							"query": [
 								{

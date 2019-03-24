@@ -41,3 +41,56 @@ export const destroy = ({ params }, res, next) =>
     .then((training) => training ? training.remove() : null)
     .then(success(res, 204))
     .catch(next)
+//photo methods
+export const createWithPhoto = (req, res, next) => {
+  uploadService.uploadFromBinary(req.file.buffer)
+    .then((json) =>
+
+      Training.create({
+        name: req.body.name,
+        description: req.body.description,
+        target: req.body.target,
+        time: req.body.time,
+        exercises: req.body.exercises,
+        level: req.body.level,
+        picture: json.data.link,
+        deletehash: json.data.deletehash
+
+      })
+    )
+    .then((trainingCreated) => trainingCreated.view(true))
+    .then(success(res, 201))
+    .catch(err => {
+      console.log(err)
+      next(err)
+    })
+}
+
+//metodo creado para la edicion de fotos en ejercicio
+export const updateWithPhoto = (req, res, next) => {
+  
+  uploadService.uploadFromBinary(req.file.buffer)
+  Training.findById(req.params.id)
+  .then(exercise=>{
+    uploadService.uploadFromBinary(req.file.buffer)
+    .then(json=>{//seteamos campos junto al a foto subida
+      exercise.gif=json.data.link;
+      exercise.deletehash=json.data.deletehash;
+      exercise.name=req.body.name;
+      exercise.series=req.body.series;
+      exercise.repetitions=req.body.repetitions;
+      exercise.finishTime=req.body.finishTime;
+      exercise.restTime=req.body.restTime;
+      exercise.description=req.body.description;
+      exercise
+        .save()// guardamos el ejercicio
+        .then(() => {
+          res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
+        });
+    })
+
+  }
+  )
+ 
+}
+//photo methods

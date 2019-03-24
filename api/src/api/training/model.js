@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+const uploadService = require('../../services/upload/')
 
 const trainingSchema = new Schema({
   name: {
@@ -23,6 +24,9 @@ const trainingSchema = new Schema({
   picture: {
     type: String,
     required: true
+  },
+  deletehash: {
+    type: String
   },
   level:{
     type: Number,
@@ -61,7 +65,7 @@ trainingSchema.methods = {
   view (full) {
 
       let view = {}
-      let fields = ['id', 'name', 'target', 'time', 'picture', 'exercises', 'level']
+      let fields = ['id', 'name', 'target', 'time', 'picture', 'deletehash', 'exercises', 'level']
   
       if (full) {
         fields = [...fields, 'description', 'city',  'level']
@@ -74,7 +78,16 @@ trainingSchema.methods = {
   
   
 }
-
+trainingSchema.pre('remove', {query: true }, function(next){
+  console.log('ELIMINANDO IMAGEN' + this.picture)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
+trainingSchema.pre('save', {query: true }, function(next){
+  console.log('ELIMINANDO IMAGEN ' + this.picture)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
 const model = mongoose.model('Training', trainingSchema)
 
 export const schema = model.schema

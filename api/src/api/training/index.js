@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token, master } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, createWithPhoto, updateWithPhoto } from './controller'
 import { schema } from './model'
 export Training, { schema } from './model'
 const multer = require('multer')
@@ -31,7 +31,9 @@ router.post('/',
   token({ required: true, roles: ['admin'] }),
   body({ name, description, target, time, picture, exercises, level }),
   create)
-
+router.post('/photo',
+  upload.single('photo'),
+  createWithPhoto)
 /**
  * @api {get} /training Retrieve trainings
  * @apiName RetrieveTrainings
@@ -118,7 +120,10 @@ router.put('/:id',
   token({ required: true, roles: ['admin'] }),
   body({ name, description, target, time, picture, exercises, level }),
   update)
-
+router.put('/:id/photo',
+  token({ required: true, roles: ['admin'] }),
+  upload.single('photo'),
+  updateWithPhoto)
 /**
  * @api {delete} /training/:id Delete training
  * @apiName DeleteTraining
