@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
         android:src="@mipmap/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VectorDrawableCompat" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -32,7 +32,7 @@
         android:textAlignment="textStart"
         android:textColor="#fa870c"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleLogin" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start"
         android:hint="@string/password"
@@ -66,7 +66,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/buttonround"
         android:drawableRight="@drawable/ic_login"
         android:paddingLeft="15dp"
@@ -102,7 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
         android:text="@string/loginTitle"
         android:textSize="18sp"
         android:textStyle="bold"

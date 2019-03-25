@@ -6,43 +6,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.auth.SignUpFragment">
 
-    <TextView
-        android:id="@+id/textViewTitleDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="@string/appName"
-        android:textColor="@color/orange"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewTitleDetail"
-        app:layout_constraintTop_toTopOf="@+id/textViewTitleDetail"
-        app:srcCompat="@drawable/logo"
-        android:layout_marginLeft="24dp" />
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/textViewTitleRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
+
         android:gravity="center"
         android:text="@string/register"
-
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTitleDetail"
-        app:layout_constraintStart_toStartOf="@+id/textViewTitleDetail"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitleDetail" />
+        app:layout_constraintEnd_toEndOf="@+id/imageViewLogo"
+        app:layout_constraintStart_toStartOf="@+id/imageViewLogo"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
 
     <EditText
         android:id="@+id/editTextEmailRegister"
