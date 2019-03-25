@@ -30,6 +30,8 @@ export class EditTrainingDialogComponent implements OnInit {
   private trainingService: TrainingService, private exerciseService: ExerciseService,public dialogRef: MatDialogRef<EditTrainingDialogComponent>) { }
   exercises:ExerciseResponse[];
   training: TrainingOneResponse;
+  selected=false
+  optionSelected:string[]=[];
   t =['5c8dfa0562274718e10cdac1', '5c8c13baf51ba626edb5a2e8'];
   ngOnInit() {
     console.log(this.data.training.id)
@@ -50,13 +52,14 @@ export class EditTrainingDialogComponent implements OnInit {
      this.form = newForm;
      
    }
+  
    createFormFilled() {
     const newForm: FormGroup = this.fb.group ({
     name: [this.training.name, Validators.compose ([ Validators.required ])],
     target: [this.training.target, Validators.compose ([ Validators.required ])],
     time: [this.training.time, Validators.compose ([ Validators.required, Validators.min(1) ])],
     description: [this.training.description, Validators.compose ([ Validators.required ])],
-    exercises: [this.training.exercises, Validators.compose ([ Validators.required ])],
+    exercises: [null, Validators.compose ([ Validators.required ])],
     level: [this.training.level, Validators.compose ([ Validators.required, Validators.min(1), Validators.max(5), Validators.maxLength(5) ])],
     picture: [null, Validators.compose ([ Validators.required ])]
 
@@ -110,7 +113,16 @@ export class EditTrainingDialogComponent implements OnInit {
       }
     }
   }
+  checkExercisesSelect(){
+    let result=true;
+    let exerciseList :string[] = this.form.controls['exercises'].value;
+    if(exerciseList.length<=0){
+      result=false;
+    }
+    return result;
+  }
   closeDialog() {
+    
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
