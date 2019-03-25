@@ -1,7 +1,7 @@
 # FITTRAIN
-# English description
 
-# Spanish description
+## English description
+
 Integrated project for the higher profesional grade  of multiplatform application development. It is a software dedicated to helping those people who want to get the physique they have always dreamed of or just keep in shape.
 Whether the user is new to sports and does not know how to start to gain muscle mass, lose weight or stay or if he is an expert athlete, this app will help you with a simple screen touch that exercises you must do to achieve your goals, all with a quick, easy and simple interface.
 
@@ -22,6 +22,7 @@ The mobile application is developed in native Android, through it the user can s
 #### Authors:
 - Juan Antonio Ortiz Guerra
 ___
+
 # Spanish description
 Proyecto integrado para el ciclo de grado superior de desarrollo de aplicaciones multiplataforma. Es un software dedicado a ayudar a aquellas personas que quieran conseguir el físico que siempre han soñado o simplemente mantenerse en forma.
 Tanto si el usuario es nuevo haciendo deporte y no sabe como empezar para ganar masa muscular, adelgazar o mantenerse o si es un atleta experto, esta app le ayudará con un simple toque de pantalla que ejercicios debe hacer para lograr sus metas, todo ello con una interfaz rápida, fácil y sencilla.
