@@ -71,21 +71,21 @@ export const updateWithPhoto = (req, res, next) => {
   
   uploadService.uploadFromBinary(req.file.buffer)
   Training.findById(req.params.id)
-  .then(exercise=>{
+  .then(training=>{
     uploadService.uploadFromBinary(req.file.buffer)
     .then(json=>{//seteamos campos junto al a foto subida
-      exercise.gif=json.data.link;
-      exercise.deletehash=json.data.deletehash;
-      exercise.name=req.body.name;
-      exercise.series=req.body.series;
-      exercise.repetitions=req.body.repetitions;
-      exercise.finishTime=req.body.finishTime;
-      exercise.restTime=req.body.restTime;
-      exercise.description=req.body.description;
-      exercise
+      training.picture=json.data.link;
+      training.deletehash=json.data.deletehash;
+      training.name=req.body.name;
+      training.series=req.body.series;
+      training.repetitions=req.body.repetitions;
+      training.finishTime=req.body.finishTime;
+      training.restTime=req.body.restTime;
+      training.description=req.body.description;
+      training
         .save()// guardamos el ejercicio
         .then(() => {
-          res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
+          res.jsonp({ training }); // enviamos el ejercicio de vuelta
         });
     })
 

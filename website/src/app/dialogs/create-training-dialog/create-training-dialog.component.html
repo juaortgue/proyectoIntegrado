@@ -1,6 +1,6 @@
 
 <h1 mat-dialog-title>New Training</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" >
   <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around">
     <mat-form-field class="w-100">
       <input matInput placeholder="Name" type="text" [formControl]="form.controls['name']" required>
@@ -35,21 +35,30 @@
         <mat-option *ngFor="let target of targets" [value]="target">{{target}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <div>
+      <input type="file" accept="*" #file (change)="onFilesAdded()"
+        [disabled]="uploading || uploadSuccessful" value="Select file" [formControl]="form.controls['picture']"/>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let file of files">
 
-   <!-- <mat-form-field class="w-100">
-      <mat-select placeholder="User role" [formControl]="form.controls['role']" [(value)]="roleSelected" name="role">
-        <mat-option *ngFor="let role of roles" [value]="role">
-          {{role}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>-->
+        <h4 mat-line>{{file.name}}</h4>
+
+        <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async">
+        </mat-progress-bar>
+
+      </mat-list-item>
+    </mat-list>
+    <mat-dialog-actions class="actions">
+      <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="!canBeClosed || !form.valid"
+        (click)="closeDialog()">{{primaryButtonText}}</button>
+    </mat-dialog-actions>
     
    
 
 
     
   </div>
-  <div mat-dialog-actions fxLayout="column" fxLayoutAlign="space-around">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">ADD</button>
-  </div>
+ 
 </form>
