@@ -14,12 +14,12 @@ const { name } = schema.tree
  * @apiName CreateCategory
  * @apiGroup Category
  * @apiPermission master
- * @apiParam {String} access_token master access token.
+ * @apiParam {String} access_token admin access token.
  * @apiParam name Category's name.
  * @apiSuccess {Object} category Category's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Category not found.
- * @apiError 401 master access only.
+ * @apiError 401 admin access only.
  */
 router.post('/',
 token({ required: true, roles: ['admin'] }),
@@ -31,12 +31,12 @@ body({ name }),
  * @apiName RetrieveCategories
  * @apiGroup Category
  * @apiPermission admin
- * @apiParam {String} access_token admin access token.
+ * @apiParam {String} access_token master  access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of categories.
  * @apiSuccess {Object[]} rows List of categories.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 admin access only.
+ * @apiError 401 master access only.
  */
 router.get('/',
   master(),
@@ -48,11 +48,11 @@ router.get('/',
  * @apiName RetrieveCategory
  * @apiGroup Category
  * @apiPermission admin
- * @apiParam {String} access_token admin access token.
+ * @apiParam {String} access_token master  access token.
  * @apiSuccess {Object} category Category's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Category not found.
- * @apiError 401 admin access only.
+ * @apiError 401 master access only.
  */
 router.get('/:id',
   master(),
@@ -63,12 +63,12 @@ router.get('/:id',
  * @apiName UpdateCategory
  * @apiGroup Category
  * @apiPermission master
- * @apiParam {String} access_token master access token.
+ * @apiParam {String} access_token admin access token.
  * @apiParam name Category's name.
  * @apiSuccess {Object} category Category's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Category not found.
- * @apiError 401 master access only.
+ * @apiError 401 admin access only.
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
@@ -80,10 +80,10 @@ router.put('/:id',
  * @apiName DeleteCategory
  * @apiGroup Category
  * @apiPermission master
- * @apiParam {String} access_token master access token.
+ * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Category not found.
- * @apiError 401 master access only.
+ * @apiError 401 admin access only.
  */
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),

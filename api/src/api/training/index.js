@@ -17,11 +17,13 @@ const { name, description, target, time, picture, exercises, level } = schema.tr
  * @apiGroup Training
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Training's name.
- * @apiParam description Training's description.
- * @apiParam target Training's target.
- * @apiParam time Training's time.
- * @apiParam picture Training's picture.
+ * @apiParam {String} name Training's name.
+ * @apiParam {String} description Training's description.
+ * @apiParam {String} target Training's target.
+ * @apiParam {String} time Training's time.
+ * @apiParam {String} picture Training's picture.
+ * @apiParam {String[]} exercises Training's exercises, like string array.
+ * @apiParam {Number} level Training's level.
  * @apiSuccess {Object} training Training's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Training not found.
@@ -31,6 +33,26 @@ router.post('/',
   token({ required: true, roles: ['admin'] }),
   body({ name, description, target, time, picture, exercises, level }),
   create)
+
+
+/**
+ * @api {post} /training/photo Create training with photo
+ * @apiName CreateTrainingPhoto
+ * @apiGroup Training
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Training's name.
+ * @apiParam {String} description Training's description.
+ * @apiParam {String} target Training's target.
+ * @apiParam {String} time Training's time.
+ * @apiParam {File} photo Training's picture, like a file, not a string.
+ * @apiParam {String[]}exercises Training's exercises.
+ * @apiParam {Number} level Training's level.
+ * @apiSuccess {Object} training Training's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Training not found.
+ * @apiError 401 admin access only.
+ */
 router.post('/photo',
   upload.single('photo'),
   createWithPhoto)
@@ -47,7 +69,6 @@ router.post('/photo',
  * @apiError 401 master access only.
  */
 
- /*nombrecito2*/
 router.get('/',
   master(),
   query({
@@ -67,23 +88,7 @@ router.get('/',
  }),
   index)
 
-  /*const schema = new Schema({
-  active: Boolean, // shorthand to { type: Boolean }
-  sort: '-createdAt', // shorthand to { type: String, default: '-createdAt' }
-  term: {
-    type: RegExp,
-    paths: ['title', 'description'],
-    bindTo: 'search' // default was 'query'
-  },
-  with_picture: {
-    type: Boolean,
-    paths: ['picture'],
-    operator: '$exists'
-  }
-}, {
-  page: false, // disable default parameter `page`
-  limit: 'max_items' // change name of default parameter `limit` to `max_items`
-}); */
+  
 
 /**
  * @api {get} /training/:id Retrieve training
@@ -106,11 +111,11 @@ router.get('/:id',
  * @apiGroup Training
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Training's name.
- * @apiParam description Training's description.
- * @apiParam target Training's target.
- * @apiParam time Training's time.
- * @apiParam picture Training's picture.
+ * @apiParam {String} name Training's name.
+ * @apiParam {String} description Training's description.
+ * @apiParam {String} target Training's target.
+ * @apiParam {String} time Training's time.
+ * @apiParam {String} picture Training's picture.
  * @apiSuccess {Object} training Training's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Training not found.
@@ -120,6 +125,22 @@ router.put('/:id',
   token({ required: true, roles: ['admin'] }),
   body({ name, description, target, time, picture, exercises, level }),
   update)
+/**
+ * @api {put} /training/:id/photo Update training with photo
+ * @apiName UpdateTrainingPhoto
+ * @apiGroup Training
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Training's name.
+ * @apiParam {String} description Training's description.
+ * @apiParam {String} target Training's target.
+ * @apiParam {String} time Training's time.
+ * @apiParam {File} photo Training's picture.
+ * @apiSuccess {Object} training Training's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Training not found.
+ * @apiError 401 admin access only.
+ */
 router.put('/:id/photo',
   token({ required: true, roles: ['admin'] }),
   upload.single('photo'),

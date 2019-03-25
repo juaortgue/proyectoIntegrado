@@ -17,13 +17,14 @@ const { name, categoryId, series, repetitions, finishTime, restTime, gif, descri
  * @apiGroup Exercise
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Exercise's name.
- * @apiParam categoryId Exercise's categoryId.
- * @apiParam series Exercise's series.
- * @apiParam repetitions Exercise's repetitions.
- * @apiParam finishTime Exercise's finishTime.
- * @apiParam restTime Exercise's restTime.
- * @apiParam gif Exercise's gif.
+ * @apiParam {String} name Exercise's name.
+ * @apiParam {String} categoryId Exercise's categoryId.
+ * @apiParam {Number} series Exercise's series.
+ * @apiParam {Number} repetitions Exercise's repetitions.
+ * @apiParam {String} finishTime Exercise's finishTime.
+ * @apiParam {String} restTime Exercise's restTime.
+ * @apiParam {String} gif Exercise's gif.
+ * @apiParam {String} description Exercise's description.
  * @apiSuccess {Object} exercise Exercise's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Exercise not found.
@@ -34,10 +35,27 @@ router.post('/',
   body({ name, categoryId, series, repetitions, finishTime, restTime, gif, description }),
   create)
 
+  /**
+ * @api {post} /exercises/photo Create exercise with photo
+ * @apiName CreateExercisePhoto
+ * @apiGroup Exercise
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Exercise's name.
+ * @apiParam {String} categoryId Exercise's categoryId.
+ * @apiParam {Number} series Exercise's series.
+ * @apiParam {Number} repetitions Exercise's repetitions.
+ * @apiParam {String} finishTime Exercise's finishTime.
+ * @apiParam {String} restTime Exercise's restTime.
+ * @apiParam {File} photo Exercise's gif.
+ * @apiParam {String} description Exercise's description.
+ * @apiSuccess {Object} exercise Exercise's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Exercise not found.
+ * @apiError 401 admin access only.
+ */
 router.post('/photo',
   token({ required: true, roles: ['admin'] }),
-//body({foto, nombre, codReferencia, descripcion, dimensiones }),
-  //body({ name, categoryId, series, repetitions, finishTime, restTime,  description }),
   upload.single('photo'),
   createWithPhoto)
 /**
@@ -78,13 +96,13 @@ router.get('/:id',
  * @apiGroup Exercise
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Exercise's name.
- * @apiParam categoryId Exercise's categoryId.
- * @apiParam series Exercise's series.
- * @apiParam repetitions Exercise's repetitions.
- * @apiParam finishTime Exercise's finishTime.
- * @apiParam restTime Exercise's restTime.
- * @apiParam gif Exercise's gif.
+ * @apiParam {String} name Exercise's name.
+ * @apiParam {String} categoryId Exercise's categoryId.
+ * @apiParam {Number} series Exercise's series.
+ * @apiParam {Number} repetitions Exercise's repetitions.
+ * @apiParam {String} finishTime Exercise's finishTime.
+ * @apiParam {String} restTime Exercise's restTime.
+ * @apiParam {String} gif Exercise's gif.
  * @apiSuccess {Object} exercise Exercise's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Exercise not found.
@@ -94,7 +112,25 @@ router.put('/:id',
   token({ required: true, roles: ['admin'] }),
   body({ name, categoryId, series, repetitions, finishTime, restTime, gif, description }),
   update)
-  
+
+/**
+ * @api {put} /exercises/:id/photo Update exercise with photo
+ * @apiName UpdateExercisePhoto
+ * @apiGroup Exercise
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Exercise's name.
+ * @apiParam {String} categoryId Exercise's categoryId.
+ * @apiParam {Number} series Exercise's series.
+ * @apiParam {Number} repetitions Exercise's repetitions.
+ * @apiParam {String} finishTime Exercise's finishTime.
+ * @apiParam {String} restTime Exercise's restTime.
+ * @apiParam {File} photo Exercise's gif.
+ * @apiSuccess {Object} exercise Exercise's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Exercise not found.
+ * @apiError 401 admin access only.
+ */
 router.put('/:id/photo',
   token({ required: true, roles: ['admin'] }),
   upload.single('photo'),

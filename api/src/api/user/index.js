@@ -13,8 +13,8 @@ const { email, password, name, picture, role, age, weight, height, gender, train
  * @api {get} /users Retrieve users
  * @apiName RetrieveUsers
  * @apiGroup User
- * @apiPermission admin
- * @apiParam {String} access_token User access_token.
+ * @apiPermission master
+ * @apiParam {String} access_token master access_token.
  * @apiUse listParams
  * @apiSuccess {Object[]} users List of users.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -48,6 +48,7 @@ router.get('/me',
  * @apiName RetrieveUser
  * @apiGroup User
  * @apiPermission public
+ * @apiParam {String} access_token master access_token
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
  */
@@ -66,6 +67,11 @@ router.get('/:id',
  * @apiParam {String} [name] User's name.
  * @apiParam {String} [picture] User's picture.
  * @apiParam {String=user,admin} [role=user] User's role.
+ * @apiParam {Number} weight User's weight.
+ * @apiParam {Number} height User's height.
+ * @apiParam {Boolean} gender User's gender, true (male), false (female).
+ * @apiParam {Number} age User's age.
+ * @apiParam {Number} trainingYears User's trainingYears.
  * @apiSuccess (Sucess 201) {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Master access only.
@@ -84,6 +90,11 @@ router.post('/',
  * @apiParam {String} access_token User access_token.
  * @apiParam {String} [name] User's name.
  * @apiParam {String} [picture] User's picture.
+ * @apiParam {Number} weight User's weight.
+ * @apiParam {Number} height User's height.
+ * @apiParam {Boolean} gender User's gender, true (male), false (female).
+ * @apiParam {Number} age User's age.
+ * @apiParam {Number} trainingYears User's trainingYears.
  * @apiSuccess {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Current user or admin access only.
@@ -115,7 +126,7 @@ router.put('/:id/password',
  * @apiName DeleteUser
  * @apiGroup User
  * @apiPermission admin
- * @apiParam {String} access_token User access_token.
+ * @apiParam {String} access_token Admin access_token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 401 Admin access only.
  * @apiError 404 User not found.

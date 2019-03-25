@@ -18,13 +18,10 @@ const gymsSchema = new Schema({
   address: {
     type: String, 
     paths: ['address']
-  }/*,
-  near: {
-    paths: ['loc']    
-  }*/
+  }
   
   
-}, /*{near: true}*/)
+}, )
 
 /**
  * @api {post} /gyms Create gym
@@ -32,14 +29,15 @@ const gymsSchema = new Schema({
  * @apiGroup Gym
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Gym's name.
- * @apiParam address Gym's address.
- * @apiParam province Gym's province.
- * @apiParam city Gym's city.
- * @apiParam zipcode Gym's zipcode.
- * @apiParam position Gym's position.
- * @apiParam price Gym's price.
- * @apiParam description Gym's description.
+ * @apiParam {String} name Gym's name.
+ * @apiParam {String} address Gym's address.
+ * @apiParam {String} province Gym's province.
+ * @apiParam {String} city Gym's city.
+ * @apiParam {String} zipcode Gym's zipcode.
+ * @apiParam {String} position Gym's position.
+ * @apiParam {Number} price Gym's price.
+ * @apiParam {String} picture Gym's picture.
+ * @apiParam {String} description Gym's description.
  * @apiSuccess {Object} gym Gym's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Gym not found.
@@ -49,11 +47,28 @@ router.post('/',
   token({ required: true, roles: ['admin'] }),
   body({ name, address, province, city, zipcode, position, price, description, picture }),
   create)
-
+/**
+ * @api {post} /gyms/photo Create gym with photo
+ * @apiName CreateGymPhoto
+ * @apiGroup Gym
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Gym's name.
+ * @apiParam {String} address Gym's address.
+ * @apiParam {String} province Gym's province.
+ * @apiParam {String} city Gym's city.
+ * @apiParam {String} zipcode Gym's zipcode.
+ * @apiParam {String} position Gym's position.
+ * @apiParam {Number} price Gym's price.
+ * @apiParam {File} photo Gym's picture.
+ * @apiParam {String} description Gym's description.
+ * @apiSuccess {Object} gym Gym's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Gym not found.
+ * @apiError 401 admin access only.
+ */
 router.post('/photo',
   token({ required: true, roles: ['admin'] }),
-//body({foto, nombre, codReferencia, descripcion, dimensiones }),
-  //body({ name, categoryId, series, repetitions, finishTime, restTime,  description }),
   upload.single('photo'),
   createWithPhoto)
 /**
@@ -94,14 +109,15 @@ router.get('/:id',
  * @apiGroup Gym
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiParam name Gym's name.
- * @apiParam address Gym's address.
- * @apiParam province Gym's province.
- * @apiParam city Gym's city.
- * @apiParam zipcode Gym's zipcode.
- * @apiParam position Gym's position.
- * @apiParam price Gym's price.
- * @apiParam description Gym's description.
+ * @apiParam {String} name Gym's name.
+ * @apiParam {String} address Gym's address.
+ * @apiParam {String} province Gym's province.
+ * @apiParam {String} city Gym's city.
+ * @apiParam {String} zipcode Gym's zipcode.
+ * @apiParam {String} position Gym's position.
+ * @apiParam {Number} price Gym's price.
+ * @apiParam {String} description Gym's description.
+ * @apiParam {String} picture Gym's picture.
  * @apiSuccess {Object} gym Gym's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Gym not found.
@@ -111,7 +127,26 @@ router.put('/:id',
   token({ required: true, roles: ['admin'] }),
   body({ name, address, province, city, zipcode, position, price, description, picture }),
   update)
-
+/**
+ * @api {put} /gyms/:id/photo Update gym With photo
+ * @apiName UpdateGymPhoto
+ * @apiGroup Gym
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiParam {String} name Gym's name.
+ * @apiParam {String} address Gym's address.
+ * @apiParam {String} province Gym's province.
+ * @apiParam {String} city Gym's city.
+ * @apiParam {String} zipcode Gym's zipcode.
+ * @apiParam {String} position Gym's position.
+ * @apiParam {Number} price Gym's price.
+ * @apiParam {String} description Gym's description.
+ * @apiParam {File} photo Gym's picture.
+ * @apiSuccess {Object} gym Gym's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Gym not found.
+ * @apiError 401 admin access only.
+ */
 router.put('/:id/photo',
   token({ required: true, roles: ['admin'] }),
   upload.single('photo'),

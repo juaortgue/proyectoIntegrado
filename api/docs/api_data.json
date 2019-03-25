@@ -205,7 +205,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>master access token.</p>"
+            "description": "<p>admin access token.</p>"
           },
           {
             "group": "Parameter",
@@ -249,7 +249,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "401",
-            "description": "<p>master access only.</p>"
+            "description": "<p>admin access only.</p>"
           }
         ]
       }
@@ -279,7 +279,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>master access token.</p>"
+            "description": "<p>admin access token.</p>"
           }
         ]
       }
@@ -309,7 +309,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "401",
-            "description": "<p>master access only.</p>"
+            "description": "<p>admin access only.</p>"
           }
         ]
       }
@@ -339,7 +339,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>admin access token.</p>"
+            "description": "<p>master  access token.</p>"
           },
           {
             "group": "Parameter",
@@ -418,7 +418,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "401",
-            "description": "<p>admin access only.</p>"
+            "description": "<p>master access only.</p>"
           }
         ]
       }
@@ -448,81 +448,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>admin access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "category",
-            "description": "<p>Category's data.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>Category not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>admin access only.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "src/api/category/index.js",
-    "groupTitle": "Category"
-  },
-  {
-    "type": "put",
-    "url": "/categories/:id",
-    "title": "Update category",
-    "name": "UpdateCategory",
-    "group": "Category",
-    "permission": [
-      {
-        "name": "master",
-        "title": "Master access only",
-        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "access_token",
-            "description": "<p>master access token.</p>"
-          },
-          {
-            "group": "Parameter",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Category's name.</p>"
+            "description": "<p>master  access token.</p>"
           }
         ]
       }
@@ -570,6 +496,80 @@
     "groupTitle": "Category"
   },
   {
+    "type": "put",
+    "url": "/categories/:id",
+    "title": "Update category",
+    "name": "UpdateCategory",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "master",
+        "title": "Master access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category's name.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "category",
+            "description": "<p>Category's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Category not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/category/index.js",
+    "groupTitle": "Category"
+  },
+  {
     "type": "post",
     "url": "/exercises",
     "title": "Create exercise",
@@ -594,45 +594,183 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Exercise's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "categoryId",
             "description": "<p>Exercise's categoryId.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "series",
             "description": "<p>Exercise's series.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "repetitions",
             "description": "<p>Exercise's repetitions.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "finishTime",
             "description": "<p>Exercise's finishTime.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "restTime",
             "description": "<p>Exercise's restTime.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "gif",
             "description": "<p>Exercise's gif.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Exercise's description.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "exercise",
+            "description": "<p>Exercise's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Exercise not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/exercise/index.js",
+    "groupTitle": "Exercise"
+  },
+  {
+    "type": "post",
+    "url": "/exercises/photo",
+    "title": "Create exercise with photo",
+    "name": "CreateExercisePhoto",
+    "group": "Exercise",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Exercise's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>Exercise's categoryId.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "series",
+            "description": "<p>Exercise's series.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "repetitions",
+            "description": "<p>Exercise's repetitions.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "finishTime",
+            "description": "<p>Exercise's finishTime.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "restTime",
+            "description": "<p>Exercise's restTime.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
+            "description": "<p>Exercise's gif.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Exercise's description.</p>"
           }
         ]
       }
@@ -941,44 +1079,168 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Exercise's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "categoryId",
             "description": "<p>Exercise's categoryId.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "series",
             "description": "<p>Exercise's series.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "repetitions",
             "description": "<p>Exercise's repetitions.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "finishTime",
             "description": "<p>Exercise's finishTime.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "restTime",
             "description": "<p>Exercise's restTime.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "gif",
+            "description": "<p>Exercise's gif.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "exercise",
+            "description": "<p>Exercise's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Exercise not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/exercise/index.js",
+    "groupTitle": "Exercise"
+  },
+  {
+    "type": "put",
+    "url": "/exercises/:id/photo",
+    "title": "Update exercise with photo",
+    "name": "UpdateExercisePhoto",
+    "group": "Exercise",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Exercise's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>Exercise's categoryId.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "series",
+            "description": "<p>Exercise's series.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "repetitions",
+            "description": "<p>Exercise's repetitions.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "finishTime",
+            "description": "<p>Exercise's finishTime.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "restTime",
+            "description": "<p>Exercise's restTime.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
             "description": "<p>Exercise's gif.</p>"
           }
         ]
@@ -1051,48 +1313,194 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Gym's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "address",
             "description": "<p>Gym's address.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "province",
             "description": "<p>Gym's province.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "city",
             "description": "<p>Gym's city.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "zipcode",
             "description": "<p>Gym's zipcode.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "position",
             "description": "<p>Gym's position.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "price",
             "description": "<p>Gym's price.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "picture",
+            "description": "<p>Gym's picture.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Gym's description.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "gym",
+            "description": "<p>Gym's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Gym not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/gym/index.js",
+    "groupTitle": "Gym"
+  },
+  {
+    "type": "post",
+    "url": "/gyms/photo",
+    "title": "Create gym with photo",
+    "name": "CreateGymPhoto",
+    "group": "Gym",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Gym's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "address",
+            "description": "<p>Gym's address.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "province",
+            "description": "<p>Gym's province.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>Gym's city.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "zipcode",
+            "description": "<p>Gym's zipcode.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "position",
+            "description": "<p>Gym's position.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Gym's price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
+            "description": "<p>Gym's picture.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "description",
             "description": "<p>Gym's description.</p>"
@@ -1404,51 +1812,197 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Gym's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "address",
             "description": "<p>Gym's address.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "province",
             "description": "<p>Gym's province.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "city",
             "description": "<p>Gym's city.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "zipcode",
             "description": "<p>Gym's zipcode.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "position",
             "description": "<p>Gym's position.</p>"
           },
           {
             "group": "Parameter",
+            "type": "Number",
             "optional": false,
             "field": "price",
             "description": "<p>Gym's price.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "description",
             "description": "<p>Gym's description.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "picture",
+            "description": "<p>Gym's picture.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "gym",
+            "description": "<p>Gym's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Gym not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/gym/index.js",
+    "groupTitle": "Gym"
+  },
+  {
+    "type": "put",
+    "url": "/gyms/:id/photo",
+    "title": "Update gym With photo",
+    "name": "UpdateGymPhoto",
+    "group": "Gym",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Gym's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "address",
+            "description": "<p>Gym's address.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "province",
+            "description": "<p>Gym's province.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>Gym's city.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "zipcode",
+            "description": "<p>Gym's zipcode.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "position",
+            "description": "<p>Gym's position.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Gym's price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Gym's description.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
+            "description": "<p>Gym's picture.</p>"
           }
         ]
       }
@@ -1520,33 +2074,169 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Training's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "description",
             "description": "<p>Training's description.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "target",
             "description": "<p>Training's target.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "time",
             "description": "<p>Training's time.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "picture",
             "description": "<p>Training's picture.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "exercises",
+            "description": "<p>Training's exercises, like string array.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "level",
+            "description": "<p>Training's level.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "training",
+            "description": "<p>Training's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Training not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/training/index.js",
+    "groupTitle": "Training"
+  },
+  {
+    "type": "post",
+    "url": "/training/photo",
+    "title": "Create training with photo",
+    "name": "CreateTrainingPhoto",
+    "group": "Training",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Training's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Training's description.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "target",
+            "description": "<p>Training's target.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "time",
+            "description": "<p>Training's time.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
+            "description": "<p>Training's picture, like a file, not a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "exercises",
+            "description": "<p>Training's exercises.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "level",
+            "description": "<p>Training's level.</p>"
           }
         ]
       }
@@ -1855,32 +2545,140 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "name",
             "description": "<p>Training's name.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "description",
             "description": "<p>Training's description.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "target",
             "description": "<p>Training's target.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "time",
             "description": "<p>Training's time.</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
             "field": "picture",
+            "description": "<p>Training's picture.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "training",
+            "description": "<p>Training's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Training not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/training/index.js",
+    "groupTitle": "Training"
+  },
+  {
+    "type": "put",
+    "url": "/training/:id/photo",
+    "title": "Update training with photo",
+    "name": "UpdateTrainingPhoto",
+    "group": "Training",
+    "permission": [
+      {
+        "name": "admin",
+        "title": "Admin access only",
+        "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Training's name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Training's description.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "target",
+            "description": "<p>Training's target.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "time",
+            "description": "<p>Training's time.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
             "description": "<p>Training's picture.</p>"
           }
         ]
@@ -1991,6 +2789,41 @@
             "field": "role",
             "defaultValue": "user",
             "description": "<p>User's role.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>User's weight.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>User's height.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>User's gender, true (male), false (female).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "age",
+            "description": "<p>User's age.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "trainingYears",
+            "description": "<p>User's trainingYears.</p>"
           }
         ]
       }
@@ -2058,7 +2891,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>User access_token.</p>"
+            "description": "<p>Admin access_token.</p>"
           }
         ]
       }
@@ -2151,6 +2984,19 @@
         "name": "public"
       }
     ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>master access_token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -2188,8 +3034,8 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin",
-        "title": "Admin access only",
+        "name": "master",
+        "title": "Master access only",
         "description": "<p>You must pass <code>access_token</code> parameter or a Bearer Token authorization header to access this endpoint.</p>"
       }
     ],
@@ -2201,7 +3047,7 @@
             "type": "String",
             "optional": false,
             "field": "access_token",
-            "description": "<p>User access_token.</p>"
+            "description": "<p>master access_token.</p>"
           },
           {
             "group": "Parameter",
@@ -2393,6 +3239,41 @@
             "optional": true,
             "field": "picture",
             "description": "<p>User's picture.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>User's weight.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "height",
+            "description": "<p>User's height.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>User's gender, true (male), false (female).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "age",
+            "description": "<p>User's age.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "trainingYears",
+            "description": "<p>User's trainingYears.</p>"
           }
         ]
       }

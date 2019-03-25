@@ -16,24 +16,30 @@
 	
 - [Exercise](#exercise)
 	- [Create exercise](#create-exercise)
+	- [Create exercise with photo](#create-exercise-with-photo)
 	- [Delete exercise](#delete-exercise)
 	- [Retrieve exercise](#retrieve-exercise)
 	- [Retrieve exercises](#retrieve-exercises)
 	- [Update exercise](#update-exercise)
+	- [Update exercise with photo](#update-exercise-with-photo)
 	
 - [Gym](#gym)
 	- [Create gym](#create-gym)
+	- [Create gym with photo](#create-gym-with-photo)
 	- [Delete gym](#delete-gym)
 	- [Retrieve gym](#retrieve-gym)
 	- [Retrieve gyms](#retrieve-gyms)
 	- [Update gym](#update-gym)
+	- [Update gym With photo](#update-gym-with-photo)
 	
 - [Training](#training)
 	- [Create training](#create-training)
+	- [Create training with photo](#create-training-with-photo)
 	- [Delete training](#delete-training)
 	- [Retrieve training](#retrieve-training)
 	- [Retrieve trainings](#retrieve-trainings)
 	- [Update training](#update-training)
+	- [Update training with photo](#update-training-with-photo)
 	
 - [User](#user)
 	- [Create user](#create-user)
@@ -105,7 +111,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
 | name			| 			|  <p>Category's name.</p>							|
 
 ## Delete category
@@ -119,7 +125,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
 
 ## Retrieve categories
 
@@ -132,7 +138,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>admin access token.</p>							|
+| access_token			| String			|  <p>master  access token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -150,7 +156,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>admin access token.</p>							|
+| access_token			| String			|  <p>master  access token.</p>							|
 
 ## Update category
 
@@ -163,7 +169,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
 | name			| 			|  <p>Category's name.</p>							|
 
 # Exercise
@@ -180,13 +186,35 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Exercise's name.</p>							|
-| categoryId			| 			|  <p>Exercise's categoryId.</p>							|
-| series			| 			|  <p>Exercise's series.</p>							|
-| repetitions			| 			|  <p>Exercise's repetitions.</p>							|
-| finishTime			| 			|  <p>Exercise's finishTime.</p>							|
-| restTime			| 			|  <p>Exercise's restTime.</p>							|
-| gif			| 			|  <p>Exercise's gif.</p>							|
+| name			| String			|  <p>Exercise's name.</p>							|
+| categoryId			| String			|  <p>Exercise's categoryId.</p>							|
+| series			| Number			|  <p>Exercise's series.</p>							|
+| repetitions			| Number			|  <p>Exercise's repetitions.</p>							|
+| finishTime			| String			|  <p>Exercise's finishTime.</p>							|
+| restTime			| String			|  <p>Exercise's restTime.</p>							|
+| gif			| String			|  <p>Exercise's gif.</p>							|
+| description			| String			|  <p>Exercise's description.</p>							|
+
+## Create exercise with photo
+
+
+
+	POST /exercises/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Exercise's name.</p>							|
+| categoryId			| String			|  <p>Exercise's categoryId.</p>							|
+| series			| Number			|  <p>Exercise's series.</p>							|
+| repetitions			| Number			|  <p>Exercise's repetitions.</p>							|
+| finishTime			| String			|  <p>Exercise's finishTime.</p>							|
+| restTime			| String			|  <p>Exercise's restTime.</p>							|
+| photo			| File			|  <p>Exercise's gif.</p>							|
+| description			| String			|  <p>Exercise's description.</p>							|
 
 ## Delete exercise
 
@@ -244,13 +272,33 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Exercise's name.</p>							|
-| categoryId			| 			|  <p>Exercise's categoryId.</p>							|
-| series			| 			|  <p>Exercise's series.</p>							|
-| repetitions			| 			|  <p>Exercise's repetitions.</p>							|
-| finishTime			| 			|  <p>Exercise's finishTime.</p>							|
-| restTime			| 			|  <p>Exercise's restTime.</p>							|
-| gif			| 			|  <p>Exercise's gif.</p>							|
+| name			| String			|  <p>Exercise's name.</p>							|
+| categoryId			| String			|  <p>Exercise's categoryId.</p>							|
+| series			| Number			|  <p>Exercise's series.</p>							|
+| repetitions			| Number			|  <p>Exercise's repetitions.</p>							|
+| finishTime			| String			|  <p>Exercise's finishTime.</p>							|
+| restTime			| String			|  <p>Exercise's restTime.</p>							|
+| gif			| String			|  <p>Exercise's gif.</p>							|
+
+## Update exercise with photo
+
+
+
+	PUT /exercises/:id/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Exercise's name.</p>							|
+| categoryId			| String			|  <p>Exercise's categoryId.</p>							|
+| series			| Number			|  <p>Exercise's series.</p>							|
+| repetitions			| Number			|  <p>Exercise's repetitions.</p>							|
+| finishTime			| String			|  <p>Exercise's finishTime.</p>							|
+| restTime			| String			|  <p>Exercise's restTime.</p>							|
+| photo			| File			|  <p>Exercise's gif.</p>							|
 
 # Gym
 
@@ -266,14 +314,37 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Gym's name.</p>							|
-| address			| 			|  <p>Gym's address.</p>							|
-| province			| 			|  <p>Gym's province.</p>							|
-| city			| 			|  <p>Gym's city.</p>							|
-| zipcode			| 			|  <p>Gym's zipcode.</p>							|
-| position			| 			|  <p>Gym's position.</p>							|
-| price			| 			|  <p>Gym's price.</p>							|
-| description			| 			|  <p>Gym's description.</p>							|
+| name			| String			|  <p>Gym's name.</p>							|
+| address			| String			|  <p>Gym's address.</p>							|
+| province			| String			|  <p>Gym's province.</p>							|
+| city			| String			|  <p>Gym's city.</p>							|
+| zipcode			| String			|  <p>Gym's zipcode.</p>							|
+| position			| String			|  <p>Gym's position.</p>							|
+| price			| Number			|  <p>Gym's price.</p>							|
+| picture			| String			|  <p>Gym's picture.</p>							|
+| description			| String			|  <p>Gym's description.</p>							|
+
+## Create gym with photo
+
+
+
+	POST /gyms/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Gym's name.</p>							|
+| address			| String			|  <p>Gym's address.</p>							|
+| province			| String			|  <p>Gym's province.</p>							|
+| city			| String			|  <p>Gym's city.</p>							|
+| zipcode			| String			|  <p>Gym's zipcode.</p>							|
+| position			| String			|  <p>Gym's position.</p>							|
+| price			| Number			|  <p>Gym's price.</p>							|
+| photo			| File			|  <p>Gym's picture.</p>							|
+| description			| String			|  <p>Gym's description.</p>							|
 
 ## Delete gym
 
@@ -331,14 +402,37 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Gym's name.</p>							|
-| address			| 			|  <p>Gym's address.</p>							|
-| province			| 			|  <p>Gym's province.</p>							|
-| city			| 			|  <p>Gym's city.</p>							|
-| zipcode			| 			|  <p>Gym's zipcode.</p>							|
-| position			| 			|  <p>Gym's position.</p>							|
-| price			| 			|  <p>Gym's price.</p>							|
-| description			| 			|  <p>Gym's description.</p>							|
+| name			| String			|  <p>Gym's name.</p>							|
+| address			| String			|  <p>Gym's address.</p>							|
+| province			| String			|  <p>Gym's province.</p>							|
+| city			| String			|  <p>Gym's city.</p>							|
+| zipcode			| String			|  <p>Gym's zipcode.</p>							|
+| position			| String			|  <p>Gym's position.</p>							|
+| price			| Number			|  <p>Gym's price.</p>							|
+| description			| String			|  <p>Gym's description.</p>							|
+| picture			| String			|  <p>Gym's picture.</p>							|
+
+## Update gym With photo
+
+
+
+	PUT /gyms/:id/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Gym's name.</p>							|
+| address			| String			|  <p>Gym's address.</p>							|
+| province			| String			|  <p>Gym's province.</p>							|
+| city			| String			|  <p>Gym's city.</p>							|
+| zipcode			| String			|  <p>Gym's zipcode.</p>							|
+| position			| String			|  <p>Gym's position.</p>							|
+| price			| Number			|  <p>Gym's price.</p>							|
+| description			| String			|  <p>Gym's description.</p>							|
+| photo			| File			|  <p>Gym's picture.</p>							|
 
 # Training
 
@@ -354,11 +448,33 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Training's name.</p>							|
-| description			| 			|  <p>Training's description.</p>							|
-| target			| 			|  <p>Training's target.</p>							|
-| time			| 			|  <p>Training's time.</p>							|
-| picture			| 			|  <p>Training's picture.</p>							|
+| name			| String			|  <p>Training's name.</p>							|
+| description			| String			|  <p>Training's description.</p>							|
+| target			| String			|  <p>Training's target.</p>							|
+| time			| String			|  <p>Training's time.</p>							|
+| picture			| String			|  <p>Training's picture.</p>							|
+| exercises			| String[]			|  <p>Training's exercises, like string array.</p>							|
+| level			| Number			|  <p>Training's level.</p>							|
+
+## Create training with photo
+
+
+
+	POST /training/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Training's name.</p>							|
+| description			| String			|  <p>Training's description.</p>							|
+| target			| String			|  <p>Training's target.</p>							|
+| time			| String			|  <p>Training's time.</p>							|
+| photo			| File			|  <p>Training's picture, like a file, not a string.</p>							|
+| exercises			| String[]			|  <p>Training's exercises.</p>							|
+| level			| Number			|  <p>Training's level.</p>							|
 
 ## Delete training
 
@@ -416,11 +532,29 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
-| name			| 			|  <p>Training's name.</p>							|
-| description			| 			|  <p>Training's description.</p>							|
-| target			| 			|  <p>Training's target.</p>							|
-| time			| 			|  <p>Training's time.</p>							|
-| picture			| 			|  <p>Training's picture.</p>							|
+| name			| String			|  <p>Training's name.</p>							|
+| description			| String			|  <p>Training's description.</p>							|
+| target			| String			|  <p>Training's target.</p>							|
+| time			| String			|  <p>Training's time.</p>							|
+| picture			| String			|  <p>Training's picture.</p>							|
+
+## Update training with photo
+
+
+
+	PUT /training/:id/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| name			| String			|  <p>Training's name.</p>							|
+| description			| String			|  <p>Training's description.</p>							|
+| target			| String			|  <p>Training's target.</p>							|
+| time			| String			|  <p>Training's time.</p>							|
+| photo			| File			|  <p>Training's picture.</p>							|
 
 # User
 
@@ -441,6 +575,11 @@
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
 | role			| String			| **optional** <p>User's role.</p>							|
+| weight			| Number			|  <p>User's weight.</p>							|
+| height			| Number			|  <p>User's height.</p>							|
+| gender			| Boolean			|  <p>User's gender, true (male), false (female).</p>							|
+| age			| Number			|  <p>User's age.</p>							|
+| trainingYears			| Number			|  <p>User's trainingYears.</p>							|
 
 ## Delete user
 
@@ -453,7 +592,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
+| access_token			| String			|  <p>Admin access_token.</p>							|
 
 ## Retrieve current user
 
@@ -475,6 +614,12 @@
 	GET /users/:id
 
 
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access_token</p>							|
+
 ## Retrieve users
 
 
@@ -486,7 +631,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
+| access_token			| String			|  <p>master access_token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -525,5 +670,10 @@
 | access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
+| weight			| Number			|  <p>User's weight.</p>							|
+| height			| Number			|  <p>User's height.</p>							|
+| gender			| Boolean			|  <p>User's gender, true (male), false (female).</p>							|
+| age			| Number			|  <p>User's age.</p>							|
+| trainingYears			| Number			|  <p>User's trainingYears.</p>							|
 
 
