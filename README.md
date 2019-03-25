@@ -19,6 +19,7 @@ The web application is developed in Angular2. This app is designed for the admin
 
 The mobile application is developed in native Android, through it the user can see the sports training appropriate to their BMI, all managed through ranges in each training, so that if a user has obesity III will not see the same workouts than a person with normal weight and who has 3 years of sport. In addition, all the nearby gyms and their offers can be displayed at the list and map level. On the other hand, the client will have an editing and visualization panel of their personal data, so that if in time the data has improved and changed, the system will be able to provide the most appropriate exercises.
 
+#### ©2019
 #### Authors:
 - Juan Antonio Ortiz Guerra
 ___
