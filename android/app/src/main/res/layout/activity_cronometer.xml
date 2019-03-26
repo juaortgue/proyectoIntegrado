@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewTimeTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/trainingTime"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTrainingTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeTitle"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeTitle" />
+
+    <TextView
+        android:id="@+id/textViewTimeWritten"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/cronoStart"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeTitle"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrainingTime" />
+
+    <Button
+        android:id="@+id/buttonObtainPoints"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttonroundoscuro"
+        android:drawableRight="@drawable/registro"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/obPoints"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeWritten"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeWritten"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeWritten"
+        android:enabled="false"/>
+</android.support.constraint.ConstraintLayout>

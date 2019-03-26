@@ -96,4 +96,11 @@
     <string name="timeTraining">Time training</string>
     <string name="empty">Empty</string>
     <string name="isNotSame">It is not the same</string>
+    <string name="startCountdown">Start countdown</string>
+    <string name="cronometer">Cronometer</string>
+    <string name="timeToFinish">Time to finish</string>
+    <string name="cronoStart">00:00:00</string>
+
+    <string name="trainingTime">Training time</string>
+    <string name="obPoints">Get points</string>
 </resources>

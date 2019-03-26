@@ -112,13 +112,13 @@
         android:id="@+id/textViewTitleDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/description"
         android:textColor="@color/orange"
-        app:layout_constraintEnd_toEndOf="@+id/blueFond"
-        app:layout_constraintStart_toStartOf="@+id/blueFond"
-        app:layout_constraintTop_toBottomOf="@+id/blueFond" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonCronometro"
+        app:layout_constraintStart_toStartOf="@+id/buttonCronometro"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCronometro" />
 
     <TextView
         android:id="@+id/textViewDescriptionDetailGym"
@@ -127,7 +127,6 @@
 
 
         android:layout_marginTop="8dp"
-
         android:background="@color/yellow"
         android:fontFamily="sans-serif"
         android:paddingLeft="15dp"
@@ -146,9 +145,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/buttonroundoscuro"
         android:drawableRight="@drawable/registro"
         android:paddingLeft="15dp"
@@ -157,9 +154,28 @@
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDescriptionDetailGym"
-        app:layout_constraintStart_toStartOf="@+id/textViewDescriptionDetailGym"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionDetailGym" />
+        app:layout_constraintEnd_toEndOf="@+id/blueFond"
+        app:layout_constraintStart_toStartOf="@+id/blueFond"
+        app:layout_constraintTop_toBottomOf="@+id/blueFond" />
+
+    <Button
+        android:id="@+id/buttonCronometro"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="#B3B3D7"
+        android:drawableRight="@drawable/ic_clock"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/startCountdown"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/buttonWatchExercises"
+        app:layout_constraintStart_toStartOf="@+id/buttonWatchExercises"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWatchExercises" />
+
 </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>
