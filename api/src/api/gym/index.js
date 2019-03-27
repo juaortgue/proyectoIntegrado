@@ -31,9 +31,15 @@ const gymsSchema = new Schema({
     type: String, 
     paths: ['zipcode']
   },
-  price: {
-    type: String, 
-    paths: ['price']
+  min_price: {
+    type: Number,
+    paths: ['price'],
+    operator: '$gte'
+  },
+  max_price: {
+    type: Number,
+    paths: ['price'],
+    operator: '$lte'
   }
   
   
