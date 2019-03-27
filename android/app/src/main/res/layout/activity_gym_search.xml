@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/editTextSearchAddressGym"
@@ -31,4 +31,140 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--<EditText
+        android:id="@+id/search_city"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/city"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextSearchAddressGym"
+        app:layout_constraintStart_toStartOf="@+id/editTextSearchAddressGym"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearchAddressGym" />
+
+    <EditText
+        android:id="@+id/search_province"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/province"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/search_city"
+        app:layout_constraintStart_toStartOf="@+id/search_city"
+        app:layout_constraintTop_toBottomOf="@+id/search_city" />
+
+    <EditText
+        android:id="@+id/search_zipcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/zipcode_prop"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/search_province"
+        app:layout_constraintStart_toStartOf="@+id/search_province"
+        app:layout_constraintTop_toBottomOf="@+id/search_province" />
+-->
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/search_max_price"
+        app:layout_constraintStart_toStartOf="@+id/search_min_price"
+        app:layout_constraintTop_toBottomOf="@+id/search_min_price">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/region_dialog"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvRegion"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/province_dialog"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvProvincia"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/city_dialog"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvMunicipio"
+                android:textSize="18sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/search_min_price"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Min Price"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/search_max_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearchAddressGym" />
+
+    <EditText
+        android:id="@+id/search_max_price"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Max Price"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/search_min_price"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearchAddressGym" />
+
+    <Button
+        android:id="@+id/buttonSelectDirection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonround"
+        android:drawableRight="@drawable/ic_address"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/selectDirection"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+        app:layout_constraintStart_toStartOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 </android.support.constraint.ConstraintLayout>

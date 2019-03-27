@@ -75,6 +75,8 @@
         <item>Female</item>
 
     </string-array>
+    <string name="ready_bt_label">Ready</string>
+
     <string name="title_activity_maps">Training Map</string>
     <string name="gymDetail">Gym detail</string>
     <string name="Email_example">example@gmail.com</string>
@@ -107,4 +109,11 @@
     <string name="obPoints">Get points</string>
     <string name="points">points</string>
     <string name="pointUpper">Points</string>
+    <string name="zipcode_prop">Zipcode</string>
+    <string name="province">Province</string>
+    <string name="city">City</string>
+    <string name="region_dialog">Region: </string>
+    <string name="province_dialog">Province: </string>
+    <string name="city_dialog">City: </string>
+    <string name="selectDirection">Select direction</string>
 </resources>

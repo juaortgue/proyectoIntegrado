@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,8 +19,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.fittrain.R;
 import com.example.fittrain.model.UserResponse;
@@ -31,6 +34,9 @@ import com.example.fittrain.ui.profile.edit.EditProfileActivity;
 import com.example.fittrain.ui.training.TrainingFragment;
 import com.example.fittrain.util.UtilToken;
 import com.example.fittrain.util.ViewModelUser;
+import com.example.fittrain.util.data.GeographySpain;
+import com.example.fittrain.util.geography.GeographyListener;
+import com.example.fittrain.util.geography.GeographySelector;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -38,12 +44,15 @@ import java.util.Map;
 
 import okhttp3.internal.Util;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements GeographyListener, View.OnClickListener {
     private ViewModelUser mViewModel;
     private int fragmentSelected=0;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
     UserResponse uPass;
-
+    private Button btnSelectDirection;
+    private TextView tvRegion;
+    private TextView tvProvincia;
+    private TextView tvMunicipio;
     Map<String, String> options = new HashMap<>();
     private EditText editTextTitleTraining, editTextTitleGym, editTextAddress;
     private Spinner spinnerTarget;
@@ -114,8 +123,13 @@ public class DashboardActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", userToPass);*/
+        loadItems();
 
 
+
+    }
+
+    public void loadItems(){
         fragmentTraining = new TrainingFragment();
         fragmentGym = new GymFragment();
         fragmentProfile = new ProfileFragment();
@@ -233,13 +247,26 @@ public class DashboardActivity extends AppCompatActivity {
         //find items
         editTextTitleGym=dialogLayout.findViewById(R.id.editTextSearchNameGym);
         editTextAddress = dialogLayout.findViewById(R.id.editTextSearchAddressGym);
+        btnSelectDirection=dialogLayout.findViewById(R.id.buttonSelectDirection);
+        tvRegion = (TextView) findViewById(R.id.tvRegion);
+        tvProvincia = (TextView) findViewById(R.id.tvProvincia);
+        tvMunicipio = (TextView) findViewById(R.id.tvMunicipio);
+        btnSelectDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GeographySelector gs = new GeographySelector(DashboardActivity.this);
+                gs.setOnGeograpySelectedListener(DashboardActivity.this);
+                FragmentManager fm = getSupportFragmentManager();
+                gs.show(fm, "geographySelector");
+            }
+        });
         //find items
 
 
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setPositiveButton(R.string.accept, (dialog, which) -> {
+        builder.setPositiveButton(R.string.filter, (dialog, which) -> {
             options = new HashMap<>();
             if (!editTextTitleGym.getText().toString().equals("") || !editTextTitleGym.getText().toString().isEmpty())
                 options.put("name", editTextTitleGym.getText().toString());
@@ -276,7 +303,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setPositiveButton(R.string.accept, (dialog, which) -> {
+        builder.setPositiveButton(R.string.filter, (dialog, which) -> {
             String spinnerValue=spinnerTarget.getSelectedItem().toString();
             options = new HashMap<>();
             if (!editTextTitleTraining.getText().toString().equals("") || !editTextTitleTraining.getText().toString().isEmpty())
@@ -319,4 +346,18 @@ public class DashboardActivity extends AppCompatActivity {
         builder.show();
     }
 
+    @Override
+    public void onGeographySelected(Map<String, String> hm) {
+        tvRegion.setText(hm.get(GeographySpain.REGION));
+        tvProvincia.setText(hm.get(GeographySpain.PROVINCIA));
+        tvMunicipio.setText(hm.get(GeographySpain.MUNICIPIO));
+    }
+
+    @Override
+    public void onClick(View v) {
+        GeographySelector gs = new GeographySelector(DashboardActivity.this);
+        gs.setOnGeograpySelectedListener(DashboardActivity.this);
+        FragmentManager fm = getSupportFragmentManager();
+        gs.show(fm, "geographySelector");
+    }
 }
