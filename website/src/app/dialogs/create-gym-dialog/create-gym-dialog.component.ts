@@ -73,6 +73,7 @@ export class CreateGymDialogComponent implements OnInit {
  
   onSubmit() {
         let newGym: GymCreateDto = <GymCreateDto>this.form.value;
+        
       //newGym = this.getPosition(newGym);
       let position = '';
 
@@ -91,6 +92,7 @@ export class CreateGymDialogComponent implements OnInit {
       
       
   }
+  
   //foto
 
   onFilesAdded() {
@@ -102,59 +104,79 @@ export class CreateGymDialogComponent implements OnInit {
       }
     }
   }
+  uploadImage(newGym: GymCreatePhotoDto){
+//FOTO SUBIDA
+       // if everything was uploaded already, just close the dialog
+       if (this.uploadSuccessful) {
+        return this.dialogRef.close('confirm');
+  
+        /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
+        e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
+      }
+  
+      // set the component state to "uploading"
+      this.uploading = true;
+  
+      // start the upload and save the progress map
+      //newGym.zipcode = newGym.zipcode.toString();
+      
+      this.progress = this.uploadService.upload(this.files, newGym);
+      // tslint:disable-next-line:forin
+      for (const key in this.progress) {
+        this.progress[key].progress.subscribe(val => console.log(val));
+      }
+  
+      // convert the progress map into an array
+      const allProgressObservables = [];
+      // tslint:disable-next-line:forin
+      for (const key in this.progress) {
+        allProgressObservables.push(this.progress[key].progress);
+      }
+  
+      // Adjust the state variables
+  
+      // The OK-button should have the text "Finish" now
+      this.primaryButtonText = 'Finalizar';
+  
+      // The dialog should not be closed while uploading
+      this.canBeClosed = false;
+      this.dialogRef.disableClose = true;
+  
+      // Hide the cancel-button
+      this.showCancelButton = false;
+  
+      // When all progress-observables are completed...
+      forkJoin(allProgressObservables).subscribe(end => {
+        // ... the dialog can be closed again...
+        this.canBeClosed = true;
+        this.dialogRef.disableClose = false;
+  
+        // ... the upload was successful...
+        this.uploadSuccessful = true;
+  
+        // ... and the component is no longer uploading
+        this.uploading = false;
+  
+      });
+         //FOTO SUBIDA
+  }
   closeDialog() {
-    // if everything was uploaded already, just close the dialog
-    if (this.uploadSuccessful) {
-      return this.dialogRef.close('confirm');
-
-      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
-    }
-
-    // set the component state to "uploading"
-    this.uploading = true;
-
-    // start the upload and save the progress map
     const newGym :GymCreatePhotoDto = <GymCreatePhotoDto>this.form.value;
+     //newGym = this.getPosition(newGym);
+     let position = '';
+
+     //obtain geolocation
+     this.geoService.getLocation(newGym.address).subscribe(r => {
+     
+       position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+       position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+       newGym.position = position;
+       this.uploadImage(newGym);
+     
+       
+      
+     })
     
-    this.progress = this.uploadService.upload(this.files, newGym);
-    // tslint:disable-next-line:forin
-    for (const key in this.progress) {
-      this.progress[key].progress.subscribe(val => console.log(val));
-    }
-
-    // convert the progress map into an array
-    const allProgressObservables = [];
-    // tslint:disable-next-line:forin
-    for (const key in this.progress) {
-      allProgressObservables.push(this.progress[key].progress);
-    }
-
-    // Adjust the state variables
-
-    // The OK-button should have the text "Finish" now
-    this.primaryButtonText = 'Finalizar';
-
-    // The dialog should not be closed while uploading
-    this.canBeClosed = false;
-    this.dialogRef.disableClose = true;
-
-    // Hide the cancel-button
-    this.showCancelButton = false;
-
-    // When all progress-observables are completed...
-    forkJoin(allProgressObservables).subscribe(end => {
-      // ... the dialog can be closed again...
-      this.canBeClosed = true;
-      this.dialogRef.disableClose = false;
-
-      // ... the upload was successful...
-      this.uploadSuccessful = true;
-
-      // ... and the component is no longer uploading
-      this.uploading = false;
-
-    });
   }
   //foto
 

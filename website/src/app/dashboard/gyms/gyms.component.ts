@@ -76,8 +76,9 @@ export class GymsComponent implements OnInit {
   }
   openDialogNewGym() {
     const dialogNewGym = this.dialog.open(CreateGymDialogComponent, { width: '500px' });
-    dialogNewGym.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,
-      err => this.snackBar.open('There was an error when we were creating a new Gym.', 'Close', { duration: 3000 }));
+    dialogNewGym.afterClosed().subscribe(result =>{
+      this.getAllGyms();
+    });
   }
   openDialogEditGym(gymResponse: GymResponse) {
     console.log('open dialog')

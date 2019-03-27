@@ -119,6 +119,23 @@ export class EditGymDialogComponent implements OnInit {
     }
   }
   closeDialog() {
+    let position = '';
+    const newGym :GymCreatePhotoDto = <GymCreatePhotoDto>this.form.value;
+
+    //obtain geolocation
+    this.geoService.getLocation(newGym.address).subscribe(r => {
+    
+      position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+      position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+      newGym.position = position;
+      this.uploadImage(newGym);
+    
+      
+     
+    })
+    
+  }
+  uploadImage(newGym: GymCreatePhotoDto){
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
@@ -131,9 +148,7 @@ export class EditGymDialogComponent implements OnInit {
     this.uploading = true;
 
     // start the upload and save the progress map
-    const newGym :GymCreatePhotoDto = <GymCreatePhotoDto>this.form.value;
-    console.log('JEJE')
-    console.log(newGym);
+    
     this.progress = this.uploadService.editWithPhoto(this.files, newGym, this.data.gym.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
