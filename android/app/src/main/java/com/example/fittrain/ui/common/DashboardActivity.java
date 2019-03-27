@@ -49,10 +49,12 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
     private int fragmentSelected=0;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
     UserResponse uPass;
+    LayoutInflater inflater;
     private Button btnSelectDirection;
     private TextView tvRegion;
     private TextView tvProvincia;
     private TextView tvMunicipio;
+    View dialogLayout;
     Map<String, String> options = new HashMap<>();
     private EditText editTextTitleTraining, editTextTitleGym, editTextAddress;
     private Spinner spinnerTarget;
@@ -137,7 +139,9 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
         if (!checkEnoughDates())
             createAndShowUserDates();
         goToFragment(fragmentTraining);
-
+        tvRegion = (TextView) findViewById(R.id.tvRegion);
+        tvProvincia = (TextView) findViewById(R.id.tvProvincia);
+        tvMunicipio = (TextView) findViewById(R.id.tvMunicipio);
 
 
     }
@@ -238,8 +242,7 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
 
     public void searchGymOptions () {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("ResourceType")
-        View dialogLayout = inflater.inflate(R.layout.activity_gym_search, null);
+        dialogLayout = inflater.inflate(R.layout.activity_gym_search, null);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
         builder.setTitle("Gym filter");
 
@@ -248,9 +251,9 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
         editTextTitleGym=dialogLayout.findViewById(R.id.editTextSearchNameGym);
         editTextAddress = dialogLayout.findViewById(R.id.editTextSearchAddressGym);
         btnSelectDirection=dialogLayout.findViewById(R.id.buttonSelectDirection);
-        tvRegion = (TextView) findViewById(R.id.tvRegion);
-        tvProvincia = (TextView) findViewById(R.id.tvProvincia);
-        tvMunicipio = (TextView) findViewById(R.id.tvMunicipio);
+        tvRegion = (TextView) dialogLayout.findViewById(R.id.tvRegion);
+        tvProvincia = (TextView) dialogLayout.findViewById(R.id.tvProvincia);
+        tvMunicipio = (TextView) dialogLayout.findViewById(R.id.tvMunicipio);
         btnSelectDirection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,7 +291,7 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
     }
     public void searchOptions () {
         String  everything = "Everything";
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ResourceType")
         View dialogLayout = inflater.inflate(R.layout.activity_search, null);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
