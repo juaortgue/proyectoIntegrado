@@ -5,15 +5,7 @@ import android.support.annotation.RequiresApi;
 
 import java.io.Serializable;
 import java.util.Objects;
-/* "id": "5c862955957d3f38fe3768d3",
-    "name": "admin",
-    "picture": "https://gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30?d=identicon",
-    "email": "admin@gmail.com",
-    "createdAt": "2019-03-11T09:24:37.964Z",
-    "weight": 70,
-    "height": 174,
-    "role": "admin",
-    "trainingYears": 2*/
+
 public class UserResponse implements Serializable {
     private String id;
     private String email;
@@ -26,6 +18,7 @@ public class UserResponse implements Serializable {
     private boolean gender;
     private int trainingYears;
     private int age;
+    private int points;
 
 
     public UserResponse() {
@@ -36,7 +29,7 @@ public class UserResponse implements Serializable {
 
     }
 
-    public UserResponse(String id, String email, String password, String name, String role, String picture, int weight, int height, boolean gender, int trainingYears, int age) {
+    public UserResponse(String id, String email, String password, String name, String role, String picture, int weight, int height, boolean gender, int trainingYears, int age, int points) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -48,6 +41,7 @@ public class UserResponse implements Serializable {
         this.gender = gender;
         this.trainingYears = trainingYears;
         this.age = age;
+        this.points = points;
     }
 
     public String getId() {
@@ -138,29 +132,38 @@ public class UserResponse implements Serializable {
         this.age = age;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserResponse that = (UserResponse) o;
-        return weight == that.weight &&
-                height == that.height &&
-                gender == that.gender &&
-                trainingYears == that.trainingYears &&
-                age == that.age &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(role, that.role) &&
-                Objects.equals(picture, that.picture);
+        return getWeight() == that.getWeight() &&
+                getHeight() == that.getHeight() &&
+                isGender() == that.isGender() &&
+                getTrainingYears() == that.getTrainingYears() &&
+                getAge() == that.getAge() &&
+                getPoints() == that.getPoints() &&
+                Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getEmail(), that.getEmail()) &&
+                Objects.equals(getPassword(), that.getPassword()) &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getRole(), that.getRole()) &&
+                Objects.equals(getPicture(), that.getPicture());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, name, role, picture, weight, height, gender, trainingYears, age);
+        return Objects.hash(getId(), getEmail(), getPassword(), getName(), getRole(), getPicture(), getWeight(), getHeight(), isGender(), getTrainingYears(), getAge(), getPoints());
     }
 
     @Override
@@ -177,7 +180,7 @@ public class UserResponse implements Serializable {
                 ", gender=" + gender +
                 ", trainingYears=" + trainingYears +
                 ", age=" + age +
+                ", points=" + points +
                 '}';
     }
-
 }

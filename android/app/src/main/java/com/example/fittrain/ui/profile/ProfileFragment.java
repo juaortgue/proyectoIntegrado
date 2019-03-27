@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
     private Button btn_edit, btn_change_password;
     private OnFragmentInteractionListener mListener;
     private ImageView imageViewProfile;
-    private TextView textViewWeight, textViewHeight, textViewGender, textViewTrainingYears, textViewEmail, textViewName, textViewYearsOld;
+    private TextView textViewWeight, textViewHeight, textViewGender, textViewTrainingYears, textViewEmail, textViewName, textViewYearsOld, textViewPointsWritten;
     private EditText editTextPasswordDialog, editTextNewPassword;
     public ProfileFragment() {
         // Required empty public constructor
@@ -81,7 +81,7 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
         textViewEmail = v.findViewById(R.id.textViewEmailWrittenEdit);
         textViewName= v.findViewById(R.id.textViewNameEdit);
         textViewYearsOld = v.findViewById(R.id.textViewYearsWrittenEdit);
-
+        textViewPointsWritten = v.findViewById(R.id.textViewPointsWritten);
         //buttons
         btn_change_password=v.findViewById(R.id.btn_change_password);
         btn_edit = v.findViewById(R.id.btn_save_profile);
@@ -110,6 +110,7 @@ public class ProfileFragment extends Fragment implements ProfileInteracctionList
         textViewEmail.setText(myUser.getEmail());
         textViewName.setText(myUser.getName());
         textViewYearsOld.setText(String.valueOf(myUser.getAge())+" years");
+        textViewPointsWritten.setText(String.valueOf(myUser.getPoints()));
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

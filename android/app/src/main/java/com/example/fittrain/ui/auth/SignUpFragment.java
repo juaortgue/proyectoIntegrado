@@ -95,9 +95,16 @@ public class SignUpFragment extends Fragment {
                         // success
                         UtilToken.setToken(ctx, response.body().getToken());
                         UtilToken.setId(ctx, response.body().getUser().getId());
-                        UtilToken.setToken(ctx, response.body().getToken());
-                        startActivity(new Intent(ctx, DashboardActivity.class));
-                        setViewModel(response.body().getUser());
+                        UtilToken.setEmail(ctx, response.body().getUser().getEmail());
+                        UtilToken.setWeight(ctx, response.body().getUser().getWeight());
+                        UtilToken.setHeight(ctx, response.body().getUser().getHeight());
+                        UtilToken.setTrainingYears(ctx, response.body().getUser().getTrainingYears());
+                        UtilToken.setPoints(ctx, response.body().getUser().getPoints());
+                        Intent i =new Intent(getActivity(), DashboardActivity.class);
+                        i.putExtra("user", response.body().getUser());
+
+
+                        startActivity(i);
 
                     } else {
                         // error

@@ -144,4 +144,24 @@ public class UtilToken {
 
         return trainingYears;
     }
+    public static void setPoints(Context mContext, int points) {
+        SharedPreferences sharedPreferences =
+                mContext.getSharedPreferences(
+                        mContext.getString(R.string.sharedpreferences_filename),
+                        Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(mContext.getString(R.string.points), points);
+        editor.commit();
+    }
+    public static int getPoints(Context mContext) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(
+                mContext.getString(R.string.sharedpreferences_filename),
+                Context.MODE_PRIVATE
+        );
+
+        int points = sharedPreferences
+                .getInt(mContext.getString(R.string.points), 0);
+
+        return points;
+    }
 }

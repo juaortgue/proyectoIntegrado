@@ -53,6 +53,9 @@ const userSchema = new Schema({
   },
   trainingYears: {
     type: Number
+  },
+  points: {
+    type: Number
   }
 }, {
   timestamps: true
@@ -89,7 +92,7 @@ userSchema.methods = {
     let fields = ['id', 'name', 'picture', 'email', ]
 
     if (full) {
-      fields = [...fields, 'email', 'createdAt', 'age', 'gender', 'weight', 'height', 'role', 'trainingYears']
+      fields = [...fields, 'email', 'createdAt', 'age', 'gender', 'weight', 'height', 'role', 'trainingYears', 'points']
     }
 
     fields.forEach((field) => { view[field] = this[field] })

@@ -260,6 +260,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
     public void searchOptions () {
+        String  everything = "Everything";
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ResourceType")
         View dialogLayout = inflater.inflate(R.layout.activity_search, null);
@@ -273,15 +274,19 @@ public class DashboardActivity extends AppCompatActivity {
         //find items
 
 
-
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setPositiveButton(R.string.accept, (dialog, which) -> {
+            String spinnerValue=spinnerTarget.getSelectedItem().toString();
             options = new HashMap<>();
             if (!editTextTitleTraining.getText().toString().equals("") || !editTextTitleTraining.getText().toString().isEmpty())
                 options.put("name", editTextTitleTraining.getText().toString());
-            if (!spinnerTarget.getSelectedItem().toString().equals("") || !spinnerTarget.getSelectedItem().toString().isEmpty())
-                options.put("target", spinnerTarget.getSelectedItem().toString());
+            //if user selects everithing the app doesnt do a filter
+            if (!spinnerValue.toLowerCase().equals(everything.toLowerCase())){
+                if (!spinnerValue.equals("") || !spinnerValue.isEmpty())
+                    options.put("target", spinnerTarget.getSelectedItem().toString());
+            }
+
             goToFragment(new TrainingFragment(options));
 
 

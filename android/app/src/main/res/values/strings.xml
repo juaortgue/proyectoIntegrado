@@ -63,9 +63,11 @@
     <string name="AddressDialog">Address</string>
 
     <string-array name="targets">
+        <item>Everything</item>
         <item>Lost weight</item>
         <item>Keep in weight</item>
         <item>Gaining muscle</item>
+
 
     </string-array>
     <string-array name="sex">
@@ -103,4 +105,6 @@
 
     <string name="trainingTime">Training time</string>
     <string name="obPoints">Get points</string>
+    <string name="points">points</string>
+    <string name="pointUpper">Points</string>
 </resources>

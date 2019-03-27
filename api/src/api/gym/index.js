@@ -18,6 +18,22 @@ const gymsSchema = new Schema({
   address: {
     type: String, 
     paths: ['address']
+  },
+  province: {
+    type: String, 
+    paths: ['province']
+  },
+  city: {
+    type: String, 
+    paths: ['city']
+  },
+  zipcode: {
+    type: String, 
+    paths: ['zipcode']
+  },
+  price: {
+    type: String, 
+    paths: ['price']
   }
   
   
