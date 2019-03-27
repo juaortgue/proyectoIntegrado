@@ -44,19 +44,14 @@ import java.util.Map;
 
 import okhttp3.internal.Util;
 
-public class DashboardActivity extends AppCompatActivity implements GeographyListener, View.OnClickListener {
+public class DashboardActivity extends AppCompatActivity {
     private ViewModelUser mViewModel;
     private int fragmentSelected=0;
     private Fragment fragmentGym, fragmentTraining, fragmentProfile;
-    UserResponse uPass;
     LayoutInflater inflater;
-    private Button btnSelectDirection;
-    private TextView tvRegion;
-    private TextView tvProvincia;
-    private TextView tvMunicipio;
     View dialogLayout;
     Map<String, String> options = new HashMap<>();
-    private EditText editTextTitleTraining, editTextTitleGym, editTextAddress;
+    private EditText editTextTitleTraining, editTextTitleGym, editTextAddress, editTextProvince, editTextCity, editTextMinPrice, editTextMaxPrice;
     private Spinner spinnerTarget;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -139,9 +134,7 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
         if (!checkEnoughDates())
             createAndShowUserDates();
         goToFragment(fragmentTraining);
-        tvRegion = (TextView) findViewById(R.id.tvRegion);
-        tvProvincia = (TextView) findViewById(R.id.tvProvincia);
-        tvMunicipio = (TextView) findViewById(R.id.tvMunicipio);
+
 
 
     }
@@ -250,19 +243,10 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
         //find items
         editTextTitleGym=dialogLayout.findViewById(R.id.editTextSearchNameGym);
         editTextAddress = dialogLayout.findViewById(R.id.editTextSearchAddressGym);
-        btnSelectDirection=dialogLayout.findViewById(R.id.buttonSelectDirection);
-        tvRegion = (TextView) dialogLayout.findViewById(R.id.tvRegion);
-        tvProvincia = (TextView) dialogLayout.findViewById(R.id.tvProvincia);
-        tvMunicipio = (TextView) dialogLayout.findViewById(R.id.tvMunicipio);
-        btnSelectDirection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GeographySelector gs = new GeographySelector(DashboardActivity.this);
-                gs.setOnGeograpySelectedListener(DashboardActivity.this);
-                FragmentManager fm = getSupportFragmentManager();
-                gs.show(fm, "geographySelector");
-            }
-        });
+        editTextProvince = dialogLayout.findViewById(R.id.editTextProvince);
+        editTextCity = dialogLayout.findViewById(R.id.editTextcity);
+        editTextMinPrice = dialogLayout.findViewById(R.id.search_min_price);
+        editTextMaxPrice = dialogLayout.findViewById(R.id.search_max_price);
         //find items
 
 
@@ -275,8 +259,19 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
                 options.put("name", editTextTitleGym.getText().toString());
             if (!editTextAddress.getText().toString().equals("") || !editTextAddress.getText().toString().isEmpty())
                 options.put("address", editTextAddress.getText().toString());
+            //direction filter
+            if (!editTextProvince.getText().toString().equals("") || !editTextProvince.getText().toString().isEmpty())
+                options.put("province", editTextProvince.getText().toString());
+            if (!editTextCity.getText().toString().equals("") || !editTextCity.getText().toString().isEmpty())
+                options.put("city", editTextCity.getText().toString());
 
-                goToFragment(new GymFragment(options));
+            if (!editTextMinPrice.getText().toString().equals("") || !editTextMinPrice.getText().toString().isEmpty())
+                options.put("min_price", editTextMinPrice.getText().toString());
+
+            if (!editTextMaxPrice.getText().toString().equals("") || !editTextMaxPrice.getText().toString().isEmpty())
+                options.put("max_price", editTextMaxPrice.getText().toString());
+
+            goToFragment(new GymFragment(options));
 
 
         });
@@ -317,6 +312,7 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
                     options.put("target", spinnerTarget.getSelectedItem().toString());
             }
 
+
             goToFragment(new TrainingFragment(options));
 
 
@@ -349,18 +345,5 @@ public class DashboardActivity extends AppCompatActivity implements GeographyLis
         builder.show();
     }
 
-    @Override
-    public void onGeographySelected(Map<String, String> hm) {
-        tvRegion.setText(hm.get(GeographySpain.REGION));
-        tvProvincia.setText(hm.get(GeographySpain.PROVINCIA));
-        tvMunicipio.setText(hm.get(GeographySpain.MUNICIPIO));
-    }
 
-    @Override
-    public void onClick(View v) {
-        GeographySelector gs = new GeographySelector(DashboardActivity.this);
-        gs.setOnGeograpySelectedListener(DashboardActivity.this);
-        FragmentManager fm = getSupportFragmentManager();
-        gs.show(fm, "geographySelector");
-    }
 }
