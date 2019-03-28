@@ -22,17 +22,19 @@ public class UserEditDto {
     private int height;
     private boolean gender;
     private int trainingYears;
+    private int points;
 
     public UserEditDto() {
     }
 
-    public UserEditDto(String name, int age, int weight, int height, boolean gender, int trainingYears) {
+    public UserEditDto(String name, int age, int weight, int height, boolean gender, int trainingYears, int points) {
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.gender = gender;
         this.trainingYears = trainingYears;
+        this.points = points;
     }
 
     public String getName() {
@@ -83,6 +85,14 @@ public class UserEditDto {
         this.trainingYears = trainingYears;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
@@ -94,13 +104,14 @@ public class UserEditDto {
                 getHeight() == that.getHeight() &&
                 isGender() == that.isGender() &&
                 getTrainingYears() == that.getTrainingYears() &&
+                getPoints() == that.getPoints() &&
                 Objects.equals(getName(), that.getName());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge(), getWeight(), getHeight(), isGender(), getTrainingYears());
+        return Objects.hash(getName(), getAge(), getWeight(), getHeight(), isGender(), getTrainingYears(), getPoints());
     }
 
     @Override
@@ -112,6 +123,7 @@ public class UserEditDto {
                 ", height=" + height +
                 ", gender=" + gender +
                 ", trainingYears=" + trainingYears +
+                ", points=" + points +
                 '}';
     }
 }

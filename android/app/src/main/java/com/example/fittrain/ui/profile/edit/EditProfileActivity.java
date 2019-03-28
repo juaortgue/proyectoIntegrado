@@ -219,7 +219,7 @@ public class EditProfileActivity extends AppCompatActivity {
         userToEdit.setName(editTextName.getText().toString());
         userToEdit.setTrainingYears(Integer.parseInt(editTextTrainingYears.getText().toString()));
         userToEdit.setWeight(Integer.parseInt(editTextWeight.getText().toString()));
-
+        userToEdit.setPoints(myUser.getPoints());
         //gender
         if (spinnerGender.getSelectedItem().toString().equals(female)){
             userToEdit.setGender(false);
