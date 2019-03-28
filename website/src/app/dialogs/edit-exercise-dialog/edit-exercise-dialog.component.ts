@@ -33,7 +33,6 @@ export class EditExerciseDialogComponent implements OnInit {
   exercise:ExerciseOneResponse;
   categoryExercise: CategoryResponse;
   ngOnInit() {
-    console.log(this.data.exercise.id)
     this.getOneExercise();
     this.createFormEmpty();
   }
@@ -44,7 +43,7 @@ export class EditExerciseDialogComponent implements OnInit {
        repetitions: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        finishTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        restTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
-       categories: [null, Validators.compose ([ Validators.required ])],
+       categoryId: [null, Validators.compose ([ Validators.required ])],
        description: [null, Validators.compose ([ Validators.required ])],
        gif: [null, Validators.compose ([ Validators.required ])]
 
@@ -59,7 +58,7 @@ export class EditExerciseDialogComponent implements OnInit {
      repetitions: [this.exercise.repetitions, Validators.compose ([ Validators.required, Validators.min(1) ])],
      finishTime: [this.exercise.finishTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
      restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     categories: [this.exercise.categoryId.id, Validators.compose ([ Validators.required ])],
+     categoryId: [this.exercise.categoryId.id, Validators.compose ([ Validators.required ])],
      description: [this.exercise.description, Validators.compose ([ Validators.required ])],
      gif: [null, Validators.compose ([ Validators.required ])]
 
@@ -73,17 +72,14 @@ export class EditExerciseDialogComponent implements OnInit {
       //SOLUCION TEMPORAL FOTO
       //editExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
 
-      console.log('EDITADO EJERCICIO')
-      console.log(editExercise)
+     
       this.exerciseService.update(this.data.exercise.id, editExercise).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
     
   }
   getOneCategory(){
-    console.log(this.exercise)
     this.categoryService.getOne(this.exercise.categoryId.id).subscribe(one => {
       this.categoryExercise=one;
-     console.log('se obtiene la categoria')
     }, error => {
       this.snackBar.open('Error obtaining one category', 'Close', {
         duration: 3000,
@@ -106,8 +102,7 @@ export class EditExerciseDialogComponent implements OnInit {
     this.exerciseService.getOne(this.data.exercise.id).subscribe(one => {
       this.exercise=one;
       this.getAllCategories();
-      console.log('LOLAZO')
-      console.log(this.exercise)
+      
       this.createFormFilled();
       
     }, error => {
@@ -142,8 +137,8 @@ export class EditExerciseDialogComponent implements OnInit {
 
     // start the upload and save the progress map
     const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
-    console.log('MIRA AQUI SINO')
-    console.log(this.data)
+    console.log('HERE')
+    console.log(newExercise)
     this.progress = this.uploadExerciseService.editWithPhoto(this.files, newExercise, this.data.exercise.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {

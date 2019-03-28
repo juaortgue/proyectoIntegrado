@@ -50,12 +50,12 @@ export class CreateGymDialogComponent implements OnInit {
     const newForm: FormGroup = this.fb.group ({
       name: [null, Validators.compose ([ Validators.required ])],
       address: [null, Validators.compose ([ Validators.required ])],
-      zipcode: [null, Validators.compose ([ Validators.required ])],
-      province: [null, Validators.compose ([ Validators.required ])],
-      city: [null, Validators.compose ([ Validators.required ])],
+      zipcode: [null, Validators.compose ([ Validators.required, Validators.pattern(/^[0-9]{4,10}$/)])],
+      province: [null, Validators.compose ([ Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)  ])],
+      city: [null, Validators.compose ([ Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)  ])],
       price: [null, Validators.compose ([ Validators.required ])],
       description: [null, Validators.compose ([ Validators.required ])],
-      picture: [null, Validators.compose ([ Validators.required ])]
+      picture: [null, Validators.compose ([ Validators.required])]
 
     });
     this.form = newForm;

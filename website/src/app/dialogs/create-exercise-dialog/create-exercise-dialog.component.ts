@@ -38,7 +38,7 @@ export class CreateExerciseDialogComponent implements OnInit {
        repetitions: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        finishTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
        restTime: [null, Validators.compose ([ Validators.required, Validators.min(1) ])],
-       categories: [null, Validators.compose ([ Validators.required ])],
+       categoryId: [null, Validators.compose ([ Validators.required ])],
        description: [null, Validators.compose ([ Validators.required ])],
        gif: [null, Validators.compose ([ Validators.required ])]
       

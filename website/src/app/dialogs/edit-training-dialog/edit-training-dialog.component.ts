@@ -32,11 +32,16 @@ export class EditTrainingDialogComponent implements OnInit {
   training: TrainingOneResponse;
   selected=false
   optionSelected:string[]=[];
+  myExercises:ExerciseResponse[];
   t =['5c8dfa0562274718e10cdac1', '5c8c13baf51ba626edb5a2e8'];
+    
   ngOnInit() {
     console.log(this.data.training.id)
     this.getOneTraining();
     this.createFormEmpty();
+
+
+  
   }
   createFormEmpty() {
        const newForm: FormGroup = this.fb.group ({
@@ -73,8 +78,7 @@ export class EditTrainingDialogComponent implements OnInit {
       //SOLUCION TEMPORAL FOTO
 
      // editTraining.picture = 'https://s.imgur.com/images/logo-1200-630.jpg?2';
-      console.log('EDITADO ENTRENAMIENTO')
-      console.log(editTraining)
+      
       this.trainingService.update(this.data.training.id, editTraining).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
     
@@ -82,6 +86,7 @@ export class EditTrainingDialogComponent implements OnInit {
   getAllExercises() {
     this.exerciseService.getAll().subscribe(list => {
       this.exercises=list.rows;
+     
      
     }, error => {
       this.snackBar.open('Error obtaining training', 'Close', {
@@ -93,8 +98,11 @@ export class EditTrainingDialogComponent implements OnInit {
   getOneTraining() {
     this.trainingService.getOne(this.data.training.id).subscribe(one => {
       this.training=one;
+      this.exercises = this.training.exercises;
+      
       this.getAllExercises();
       this.createFormFilled();
+      
       
       
     }, error => {

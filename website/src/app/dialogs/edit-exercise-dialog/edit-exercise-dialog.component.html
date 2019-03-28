@@ -21,7 +21,7 @@
         [formControl]="form.controls['finishTime']" required>
     </mat-form-field>
     <mat-form-field class="w-100">
-      <mat-select placeholder="Categories" [formControl]="form.controls['categories']">
+      <mat-select placeholder="Categories" [formControl]="form.controls['categoryId']">
         <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
       </mat-select>
     </mat-form-field>

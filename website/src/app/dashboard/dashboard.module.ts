@@ -13,7 +13,8 @@ import { GymsComponent } from './gyms/gyms.component';
 import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { CategoryComponent } from './category/category.component';
-
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { FormsModule } from '@angular/forms';
 
 import {MatSelectModule} from '@angular/material/select'; 
 @NgModule({
@@ -31,7 +32,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatTableModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AngularMultiSelectModule,
+    FormsModule
   ],
   declarations: [ DashboardComponent, TrainingComponent, ExercisesComponent, GymsComponent, CategoryComponent ]
 })

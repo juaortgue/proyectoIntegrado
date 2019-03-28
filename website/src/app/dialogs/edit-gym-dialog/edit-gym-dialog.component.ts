@@ -43,9 +43,9 @@ export class EditGymDialogComponent implements OnInit {
     this.form = this.fb.group({
       name: [this.gym.name, Validators.compose ([ Validators.required ])],
       address: [this.gym.address, Validators.compose ([ Validators.required ])],
-      zipcode: [this.gym.zipcode, Validators.compose ([ Validators.required ])],
-      province: [this.gym.province, Validators.compose ([ Validators.required ])],
-      city: [this.gym.city, Validators.compose ([ Validators.required ])],
+      zipcode: [this.gym.zipcode, Validators.compose ([ Validators.required, Validators.pattern(/^[0-9]{4,10}$/) ])],
+      province: [this.gym.province, Validators.compose ([ Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/) ])],
+      city: [this.gym.city, Validators.compose ([ Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/) ])],
       price: [this.gym.price, Validators.compose ([ Validators.required ])],
       description: [this.gym.description, Validators.compose ([ Validators.required ])],
       picture: [null, Validators.compose ([ Validators.required ])]
@@ -56,9 +56,9 @@ export class EditGymDialogComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.compose ([ Validators.required ])],
       address: [null, Validators.compose ([ Validators.required ])],
-      zipcode: [null, Validators.compose ([ Validators.required ])],
-      province: [null, Validators.compose ([ Validators.required ])],
-      city: [null, Validators.compose ([ Validators.required ])],
+      zipcode: [null, Validators.compose ([ Validators.required, Validators.pattern(/^[0-9]{4,10}$/) ])],
+      province: [null, Validators.compose ([ Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)  ])],
+      city: [null, Validators.compose ([ Validators.required,Validators.pattern(/^[a-zA-Z\s]*$/)  ])],
       price: [null, Validators.compose ([ Validators.required ])],
       description: [null, Validators.compose ([ Validators.required ])],
       picture: [null, Validators.compose ([ Validators.required ])]

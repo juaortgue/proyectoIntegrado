@@ -78,6 +78,7 @@ export const updateWithPhoto = (req, res, next) => {
       exercise.finishTime=req.body.finishTime;
       exercise.restTime=req.body.restTime;
       exercise.description=req.body.description;
+      exercise.categoryId=req.body.categoryId;
       exercise
         .save()// guardamos el ejercicio
         .then(() => {
