@@ -144,6 +144,8 @@ export class EditTrainingDialogComponent implements OnInit {
 
     // start the upload and save the progress map
     const newTraining :TrainingPhotoCreateDto = <TrainingPhotoCreateDto>this.form.value;
+    console.log('haber que pasa')
+    console.log(newTraining)
     this.progress = this.uploadService.editWithPhoto(this.files, newTraining, this.data.training.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {

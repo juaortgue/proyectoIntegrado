@@ -103,7 +103,7 @@ public class TrainingDetailsActivity extends AppCompatActivity {
 
 
                     } else {
-                        Log.e("successful response", "code error");
+                        Log.e("successful response", "code success");
 
                         trainingSearched = response.body();
                         setItems();

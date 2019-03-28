@@ -6,49 +6,39 @@ import android.support.annotation.RequiresApi;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ExerciseResponse implements Serializable {
-/*"name": "222",
-            "series": 2,
-            "repetitions": 2,
-            "finishTime": "22",
-            "restTime": "22",
-            "gif": "https://i.imgur.com/PXbxVOr.gif",
-            "deletehash": "ll1cet1LiweFz6g",
-            "categoryId": "5c8937b766204c3eb44dda97",
-            "description": "222",
-            "createdAt": "2019-03-28T15:00:50.620Z",
-            "updatedAt": "2019-03-28T15:00:50.620Z",
-            "__v": 0,
-            "id": "5c9ce1a26fa7990017c37809"*/
-    private String id;
+public class ExerciseOneResponse implements Serializable {
+
     private String name;
     private int series;
     private int repetitions;
     private String finishTime;
     private String restTime;
     private String gif;
+    private String deletehash;
+    private String categoryId;
     private String description;
+    private String createdAt;
+    private String updatedAt;
+    private String id;
+    private String __v;
 
-    public ExerciseResponse() {
+    public ExerciseOneResponse() {
     }
 
-    public ExerciseResponse(String id, String name, int series, int repetitions, String finishTime, String restTime, String gif, String description) {
-        this.id = id;
+    public ExerciseOneResponse(String name, int series, int repetitions, String finishTime, String restTime, String gif, String deletehash, String categoryId, String description, String createdAt, String updatedAt, String id, String __v) {
         this.name = name;
         this.series = series;
         this.repetitions = repetitions;
         this.finishTime = finishTime;
         this.restTime = restTime;
         this.gif = gif;
+        this.deletehash = deletehash;
+        this.categoryId = categoryId;
         this.description = description;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
         this.id = id;
+        this.__v = __v;
     }
 
     public String getName() {
@@ -99,6 +89,22 @@ public class ExerciseResponse implements Serializable {
         this.gif = gif;
     }
 
+    public String getDeletehash() {
+        return deletehash;
+    }
+
+    public void setDeletehash(String deletehash) {
+        this.deletehash = deletehash;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -107,39 +113,81 @@ public class ExerciseResponse implements Serializable {
         this.description = description;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String get__v() {
+        return __v;
+    }
+
+    public void set__v(String __v) {
+        this.__v = __v;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ExerciseResponse that = (ExerciseResponse) o;
+        ExerciseOneResponse that = (ExerciseOneResponse) o;
         return getSeries() == that.getSeries() &&
                 getRepetitions() == that.getRepetitions() &&
-                Objects.equals(getId(), that.getId()) &&
                 Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getFinishTime(), that.getFinishTime()) &&
                 Objects.equals(getRestTime(), that.getRestTime()) &&
                 Objects.equals(getGif(), that.getGif()) &&
-                Objects.equals(getDescription(), that.getDescription());
+                Objects.equals(getDeletehash(), that.getDeletehash()) &&
+                Objects.equals(getCategoryId(), that.getCategoryId()) &&
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
+                Objects.equals(getUpdatedAt(), that.getUpdatedAt()) &&
+                Objects.equals(getId(), that.getId()) &&
+                Objects.equals(get__v(), that.get__v());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSeries(), getRepetitions(), getFinishTime(), getRestTime(), getGif(), getDescription());
+        return Objects.hash(getName(), getSeries(), getRepetitions(), getFinishTime(), getRestTime(), getGif(), getDeletehash(), getCategoryId(), getDescription(), getCreatedAt(), getUpdatedAt(), getId(), get__v());
     }
 
     @Override
     public String toString() {
-        return "ExerciseResponse{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+        return "ExerciseOneResponse{" +
+                "name='" + name + '\'' +
                 ", series=" + series +
                 ", repetitions=" + repetitions +
                 ", finishTime='" + finishTime + '\'' +
                 ", restTime='" + restTime + '\'' +
                 ", gif='" + gif + '\'' +
+                ", deletehash='" + deletehash + '\'' +
+                ", categoryId='" + categoryId + '\'' +
                 ", description='" + description + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", id='" + id + '\'' +
+                ", __v='" + __v + '\'' +
                 '}';
     }
 }

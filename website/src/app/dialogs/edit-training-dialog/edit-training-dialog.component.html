@@ -21,7 +21,7 @@
     </mat-form-field>
     <mat-form-field class="w-100" >
       <mat-select placeholder="Exercises"   multiple [formControl]="form.controls['exercises']" [(ngModel)]="myExercises">
-        <mat-option *ngFor="let exercise of exercises" [value]="exercise" >{{exercise.name}}</mat-option>
+        <mat-option *ngFor="let exercise of exercises" [value]="exercise.id" >{{exercise.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="w-100">
