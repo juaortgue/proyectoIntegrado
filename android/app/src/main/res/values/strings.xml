@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitTrain</string>
+    <string name="app_name" translatable="false">FitTrain</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -95,7 +95,7 @@
     <string name="newPass">New password</string>
     <string name="oldPass">Old password</string>
     <string name="saveChanges">Save changes</string>
-    <string name="Centimeters" />
+
     <string name="centimeters">Centimeters</string>
     <string name="timeTraining">Time training</string>
     <string name="empty">Empty</string>
@@ -116,4 +116,6 @@
     <string name="province_dialog">Province: </string>
     <string name="city_dialog">City: </string>
     <string name="selectDirection">Select direction</string>
+    <string name="trainingFilter">Training filter</string>
+    <string name="gymFilter">Filter gym</string>
 </resources>

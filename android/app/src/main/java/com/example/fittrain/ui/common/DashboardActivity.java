@@ -237,7 +237,7 @@ public class DashboardActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         dialogLayout = inflater.inflate(R.layout.activity_gym_search, null);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setTitle("Gym filter");
+        builder.setTitle(R.string.gymFilter);
 
         builder.setView(dialogLayout);
         //find items
@@ -290,7 +290,7 @@ public class DashboardActivity extends AppCompatActivity {
         @SuppressLint("ResourceType")
         View dialogLayout = inflater.inflate(R.layout.activity_search, null);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setTitle("Training filter");
+        builder.setTitle(R.string.trainingFilter);
 
         builder.setView(dialogLayout);
         //find items
