@@ -4,6 +4,7 @@ import randtoken from 'rand-token'
 import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
+const uploadService = require('../../services/upload/')
 
 const roles = ['user', 'admin']
 
@@ -38,6 +39,9 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
+  },
+  deletehash: {
+    type: String
   },
   age: {
     type: Number
@@ -85,11 +89,15 @@ userSchema.pre('save', function (next) {
     next()
   }).catch(next)
 })
-
+userSchema.pre('remove', {query: true }, function(next){
+  console.log('ELIMINANDO IMAGEN USUARIO' + this.picture)
+  uploadService.deleteImage(this.deletehash)
+  return next();
+})
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'name', 'picture', 'email', ]
+    let fields = ['id', 'name', 'picture', 'email', 'deletehash', ]
 
     if (full) {
       fields = [...fields, 'email', 'createdAt', 'age', 'gender', 'weight', 'height', 'role', 'trainingYears', 'points']

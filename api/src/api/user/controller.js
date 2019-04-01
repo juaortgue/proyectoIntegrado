@@ -1,6 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 import { sign } from '../../services/jwt'
+const uploadService = require('../../services/upload/')
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   User.count(query)
@@ -91,3 +92,26 @@ export const destroy = ({ params }, res, next) =>
     .then((user) => user ? user.remove() : null)
     .then(success(res, 204))
     .catch(next)
+//photo methods
+export const changePhoto = (req, res, next) => {
+  
+  uploadService.uploadFromBinary(req.file.buffer)
+  User.findById(req.params.id)
+  .then(user=>{
+    uploadService.uploadFromBinary(req.file.buffer)
+    .then(json=>{//seteamos campos junto al a foto subida
+      user.picture=json.data.link;
+      user.deletehash=json.data.deletehash;
+      
+      
+      user
+        .save()// guardamos el usuario
+        .then(() => {
+          res.jsonp({ user }); // enviamos el usuario de vuelta
+        });
+    })
+
+  }
+  )
+ 
+}

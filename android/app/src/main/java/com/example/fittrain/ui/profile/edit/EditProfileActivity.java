@@ -2,6 +2,7 @@ package com.example.fittrain.ui.profile.edit;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,15 @@ import com.example.fittrain.util.Validator;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +50,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private UserService userService;
     private String jwt;
     private Button btn_save_profile;
+    Uri uriSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +101,64 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     }
+    /*public void uploadPhoto(){
+        if (uriSelected != null) {
+
+            LoginService service = ServiceGenerator.createService(LoginService.class);
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uriSelected);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                int cantBytes;
+                byte[] buffer = new byte[1024*4];
+
+                while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
+                    baos.write(buffer,0,cantBytes);
+                }
+
+
+                RequestBody requestFile =
+                        RequestBody.create(
+                                MediaType.parse(getContentResolver().getType(uriSelected)), baos.toByteArray());
+
+
+                MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
+
+
+                RequestBody email = RequestBody.create(MultipartBody.FORM, "luismi.lopez@salesianos.es");
+                RequestBody password = RequestBody.create(MultipartBody.FORM, "12345678");
+
+                Call<LoginResponse> callRegister = service.doRegister(body, email, password);
+
+                callRegister.enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("Uploaded", "Éxito");
+                            Log.d("Uploaded", response.body().toString());
+                        } else {
+                            Log.e("Upload error", response.errorBody().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        Log.e("Upload error", t.getMessage());
+                    }
+                });
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }*/
 
     public void setItems(){
         String gender= selectAGender(),male="Male",female="Female";

@@ -2,12 +2,14 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, changePhoto } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
-
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage})
 const router = new Router()
-const { email, password, name, picture, role, age, weight, height, gender, trainingYears, points } = schema.tree
+const { email, password, name, picture, role, age, weight, height, gender, trainingYears, points, deletehash } = schema.tree
 
 /**
  * @api {get} /users Retrieve users
@@ -121,6 +123,10 @@ router.put('/:id/password',
   body({ password }),
   updatePassword)
 
+router.put('/:id/photo',
+token({ required: true, roles: ['admin', 'user'] }),
+upload.single('photo'),
+  changePhoto)
 /**
  * @api {delete} /users/:id Delete user
  * @apiName DeleteUser

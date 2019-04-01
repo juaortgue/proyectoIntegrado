@@ -6,11 +6,16 @@ import com.example.fittrain.dto.UserEditDto;
 import com.example.fittrain.model.ResponseContainer;
 import com.example.fittrain.model.UserResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface UserService {
@@ -27,6 +32,9 @@ public interface UserService {
     @PUT(BASE_URL + "/{id}/password")
     Call<UserResponse> editPassword(@Header("Authorization") String authorization, @Path("id") String id, @Body PasswordDto passwordDto);
 
+    @Multipart
+    @PUT("/users/{id}/photo")
+    Call<UserResponse> changePhoto(@Part MultipartBody.Part avatar, @Path("id") String id);
 
     /* @GET(BASE_URL)
 
