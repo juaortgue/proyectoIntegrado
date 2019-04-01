@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTimeTitle2" />
 
     <TextView
-        android:id="@+id/textViewTimeWritten2"
+        android:id="@+id/textViewTimeWritten"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -50,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/btn_green_round"
         android:drawableRight="@drawable/registro"
         android:enabled="false"
@@ -60,10 +60,10 @@
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTimeWritten2"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeWritten"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewTimeWritten2"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeWritten"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeWritten" />
 
     <FrameLayout
         android:id="@+id/frameListExercises"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonStop"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimeWritten2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeWritten" />
 
     <Button
         android:id="@+id/buttonStop"

@@ -96,7 +96,8 @@
     <string name="selectDirection">Seleccionar dirección</string>
     <string name="trainingFilter">Filtro entrenamiento</string>
     <string name="gymFilter">Filtro gym</string>
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
+    <string name="start">Empezar</string>
+    <string name="stop">Parar</string>
+    <string name="minutes">Minutos</string>
 
 </resources>

@@ -214,6 +214,7 @@ public class TrainingDetailsActivity extends AppCompatActivity {
                 //IR A ACTIVITY CON LISTA DE ENTRENAMIENTOS
                 Intent iListExercises = new Intent(getApplicationContext(), ListExercisesActivity.class);
                 iListExercises.putExtra("exercisesList", (Serializable) trainingSearched.getExercises());
+                iListExercises.putExtra("training", (Serializable) trainingSearched);
                 startActivity(iListExercises);
                 /*Pasarme del list training al listexercisesactivity los ejercicios
                 * crear fragmento con la lista

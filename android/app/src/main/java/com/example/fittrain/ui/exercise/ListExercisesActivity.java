@@ -4,25 +4,44 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fittrain.R;
+import com.example.fittrain.dto.UserEditDto;
 import com.example.fittrain.model.ExerciseResponse;
+import com.example.fittrain.model.TrainingOneResponse;
+import com.example.fittrain.model.UserResponse;
+import com.example.fittrain.retrofit.generator.AuthType;
+import com.example.fittrain.retrofit.generator.ServiceGenerator;
+import com.example.fittrain.retrofit.services.UserService;
+import com.example.fittrain.util.UtilToken;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.internal.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListExercisesActivity extends AppCompatActivity {
     FrameLayout frameLayoutListExercises;
     ExerciseFragment eFrament;
     private Button btnStart, btnStop, btnObtainPoints;
     private TextView textViewTrainingTotalTime, textViewTimeWritten;
-
+    private UserService userService;
+    private String jwt;
+    private int points;
     boolean isOn=false;
+    private UserResponse myUser;
     int mili=0, seg=0, minutos=0;
     Handler h =new Handler();
+    private TrainingOneResponse training;
     private String totalTimeTraining;
     Thread cronos;
     private List<ExerciseResponse> list = new ArrayList<>();
@@ -33,20 +52,26 @@ public class ListExercisesActivity extends AppCompatActivity {
         frameLayoutListExercises = findViewById(R.id.frameListExercises);
 
         list=(List<ExerciseResponse>)getIntent().getExtras().getSerializable("exercisesList");
-
+        training = (TrainingOneResponse) getIntent().getExtras().getSerializable("training");
         eFrament = new ExerciseFragment(list);
         goToFragment(eFrament);
         loadItems();
+        setItems();
+        loadCronos();
+        getMe();
     }
     public void loadItems(){
+        jwt=UtilToken.getToken(this);
         btnObtainPoints = findViewById(R.id.buttonObtainPoints);
         btnStart = findViewById(R.id.buttonStart);
         btnStop = findViewById(R.id.buttonStop);
         textViewTimeWritten=findViewById(R.id.textViewTimeWritten);
         textViewTrainingTotalTime = findViewById(R.id.textViewTrainingTimeTotal);
+        btnObtainPoints.setVisibility(View.INVISIBLE);
+
 
     }
-    //pasar el entrenamiento por put
+
     //cojo el tiempo total del entreno
     //onclick evento al empezar se empieza al stop se detiene
     //si el tiempo a llegado al total del entrenamiento el boton obtener puntos pasa de desabilitado a habilitado
@@ -54,7 +79,108 @@ public class ListExercisesActivity extends AppCompatActivity {
     //el algoritmo sera puntos * nivel de entrenamiento
     //limpiar el detail de entrenamiento de codigo y diseño cronometro
     public void setItems(){
+        textViewTrainingTotalTime.setText(training.getTime()+" "+getString(R.string.minutes));
 
+        //eventos
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isOn=true;
+            }
+        });
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isOn=false;
+            }
+        });
+        btnObtainPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "PULSADOOOOOOOO", Toast.LENGTH_SHORT).show();
+                //TODO CALCULAR PUNTOS Y GUARDARSELOS AL USUARIO
+                calculatePoints();
+                updateUserPoints();
+
+            }
+        });
+
+    }
+    private void calculatePoints(){
+        int pointsPerLevel=10;
+        points = training.getLevel()*pointsPerLevel;
+        points = points + myUser.getPoints();
+    }
+    public UserEditDto reformatMyUserDto(){
+        UserEditDto userToEdit= new UserEditDto();
+        userToEdit.setAge(Integer.parseInt(String.valueOf(myUser.getAge())));
+        userToEdit.setHeight(myUser.getHeight());
+        userToEdit.setName(myUser.getName());
+        userToEdit.setTrainingYears(myUser.getTrainingYears());
+        userToEdit.setWeight(myUser.getWeight());
+        userToEdit.setPoints(points);
+        //gender
+        if (myUser.isGender()){
+            userToEdit.setGender(true);
+        }else {
+            userToEdit.setGender(false);
+        }
+        //gender
+        return userToEdit;
+
+    }
+    public void getMe(){
+
+        userService = ServiceGenerator.createService(UserService.class, jwt , AuthType.JWT);
+        Call<UserResponse> call = userService.getMe();
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (!response.isSuccessful()) {
+                    Log.e("error response", "code error");
+                    Toast.makeText(getBaseContext(), "Error in request", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("successful response", "code error");
+                    myUser = response.body();
+                    setItems();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("failure", "failure in petition");
+
+            }
+        });
+
+
+
+    }
+    public void updateUserPoints(){
+        Call<UserResponse> callEdit = userService.edit(UtilToken.getId(this), reformatMyUserDto());
+        callEdit.enqueue(new Callback<UserResponse>() {
+
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getBaseContext(), "User edited", Toast.LENGTH_SHORT).show();
+                    //refresh();
+                    UtilToken.setTrainingYears(getBaseContext(), response.body().getTrainingYears());
+                    UtilToken.setHeight(getBaseContext(), response.body().getHeight());
+                    UtilToken.setWeight(getBaseContext(), response.body().getWeight());
+
+                } else {
+                    Toast.makeText(getBaseContext(), "Error updating user", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     public void goToFragment(Fragment f){
         getSupportFragmentManager()
@@ -66,6 +192,7 @@ public class ListExercisesActivity extends AppCompatActivity {
         minutos=0;
         mili=0;
         seg=0;
+        points=0;
     }
     public void loadCronos(){
         cronos= new Thread(new Runnable() {
@@ -118,9 +245,22 @@ public class ListExercisesActivity extends AppCompatActivity {
                                 textViewTimeWritten.setText(mi+":"+s+":"+m);
                             }
                         });
+
                         if (1==1){
                             isOn=false;
-                            btnObtainPoints.setEnabled(true);
+
+                            formatTime();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    btnStart.setVisibility(View.INVISIBLE);
+                                    btnStop.setVisibility(View.INVISIBLE);
+                                    btnObtainPoints.setEnabled(true);
+                                    btnObtainPoints.setVisibility(View.VISIBLE);
+
+                                }
+                            });
+
                         }
                     }
                 }

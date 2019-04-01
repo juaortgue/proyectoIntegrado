@@ -3,10 +3,11 @@ package com.example.fittrain.model;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class TrainingOneResponse {
+public class TrainingOneResponse implements Serializable {
 
     private String id;
     private String name;
@@ -15,11 +16,12 @@ public class TrainingOneResponse {
     private String description;
     private String picture;
     private List<ExerciseResponse> exercises;
+    private int level;
 
     public TrainingOneResponse() {
     }
 
-    public TrainingOneResponse(String id, String name, String target, String time, String description, String picture, List<ExerciseResponse> exercises) {
+    public TrainingOneResponse(String id, String name, String target, String time, String description, String picture, List<ExerciseResponse> exercises, int level) {
         this.id = id;
         this.name = name;
         this.target = target;
@@ -27,6 +29,7 @@ public class TrainingOneResponse {
         this.description = description;
         this.picture = picture;
         this.exercises = exercises;
+        this.level = level;
     }
 
     public String getId() {
@@ -85,24 +88,33 @@ public class TrainingOneResponse {
         this.exercises = exercises;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TrainingOneResponse that = (TrainingOneResponse) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(target, that.target) &&
-                Objects.equals(time, that.time) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(picture, that.picture);
+        return getLevel() == that.getLevel() &&
+                Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getTarget(), that.getTarget()) &&
+                Objects.equals(getTime(), that.getTime()) &&
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getPicture(), that.getPicture());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, target, time, description, picture);
+        return Objects.hash(getId(), getName(), getTarget(), getTime(), getDescription(), getPicture(), getLevel());
     }
 
     @Override
@@ -114,6 +126,8 @@ public class TrainingOneResponse {
                 ", time='" + time + '\'' +
                 ", description='" + description + '\'' +
                 ", picture='" + picture + '\'' +
+                ", exercises=" + exercises +
+                ", level=" + level +
                 '}';
     }
 }
