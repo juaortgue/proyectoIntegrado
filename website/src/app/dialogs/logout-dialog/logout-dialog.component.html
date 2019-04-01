@@ -1,12 +1,12 @@
 <div fxFlex>
-  <h2 mat-dialog-title>Logout.</h2>
+  <h2 mat-dialog-title i18n="Desloguearse">Logout.</h2>
   <mat-dialog-content class="mat-typography">
-    <h3>¿Do you want to logout?</h3>
+    <h3 i18n="Preguntar desloguearse">¿Do you want to logout?</h3>
   </mat-dialog-content>
   <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
     <mat-dialog-actions align="end">
-      <button mat-button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
-      <button mat-button mat-raised-button color="warn" mat-dialog-close (click)="logout()" >Accept</button>
+      <button mat-button mat-raised-button color="primary" mat-dialog-close i18n="cancelar">Cancel </button>
+      <button mat-button mat-raised-button color="warn" mat-dialog-close (click)="logout()"  i18n="aceptar">Accept</button>
     </mat-dialog-actions>
   </div>
 </div>

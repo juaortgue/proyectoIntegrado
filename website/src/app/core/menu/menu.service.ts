@@ -23,7 +23,7 @@ export interface Menu {
 const MENUITEMS = [
   {
     state: 'dashboard',
-    name: 'USUARIOS',
+    name: 'USERS',
     type: 'link',
     icon: 'supervised_user_circle'
   },

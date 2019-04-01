@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4f0e6d1c4f97ceaa615fa96de65e4222f8a8a33c" datatype="html">
+        <source>Logout.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dialogs/logout-dialog/logout-dialog.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Desloguearse</note>
+      </trans-unit>
+      <trans-unit id="17fc6b75d069ff1cebf427e450a1778e0e57ef59" datatype="html">
+        <source>¿Do you want to logout?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dialogs/logout-dialog/logout-dialog.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Preguntar desloguearse</note>
+      </trans-unit>
+      <trans-unit id="f07da8c4cd77e24c6118f82eaf04606eb7b3abf2" datatype="html">
+        <source>Cancel </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dialogs/logout-dialog/logout-dialog.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">cancelar</note>
+      </trans-unit>
+      <trans-unit id="6fc5e65900ae1415d3170d5d2842f0dcae1b6645" datatype="html">
+        <source>Accept</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dialogs/logout-dialog/logout-dialog.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">aceptar</note>
+      </trans-unit>
+      <trans-unit id="dda218e01f4240ced255495a90c4fbe5959c60e6" datatype="html">
+        <source>Sign in with your email to continue.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/session/signin/signin.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

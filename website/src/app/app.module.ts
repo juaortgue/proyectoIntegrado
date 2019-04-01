@@ -21,7 +21,6 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
 import { AgmCoreModule } from '@agm/core';
 
 import {
