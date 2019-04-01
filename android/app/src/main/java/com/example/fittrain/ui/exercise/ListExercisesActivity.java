@@ -256,7 +256,7 @@ public class ListExercisesActivity extends AppCompatActivity {
                         });
 
                         //PARA PRUEBAS
-                        if (1==1){
+                        if (String.valueOf(seg).equals("10")){
                             isOn=false;
 
                             formatTime();

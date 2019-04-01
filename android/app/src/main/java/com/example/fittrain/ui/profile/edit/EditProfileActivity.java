@@ -132,6 +132,12 @@ public class EditProfileActivity extends AppCompatActivity {
                     updateMyProfile();
             }
         });
+        imageViewPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
     public String selectAGender(){
         boolean isMale=myUser.isGender();
