@@ -6,14 +6,106 @@
     android:layout_height="match_parent"
     tools:context=".ui.exercise.ListExercisesActivity">
 
+    <TextView
+        android:id="@+id/textViewTimeTitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/trainingTime"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTrainingTimeTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeTitle2"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeTitle2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeTitle2" />
+
+    <TextView
+        android:id="@+id/textViewTimeWritten2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/cronoStart"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTrainingTimeTotal"
+        app:layout_constraintStart_toStartOf="@+id/textViewTrainingTimeTotal"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrainingTimeTotal" />
+
+    <Button
+        android:id="@+id/buttonObtainPoints"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_green_round"
+        android:drawableRight="@drawable/registro"
+        android:enabled="false"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/obPoints"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTimeWritten2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeWritten2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+
     <FrameLayout
         android:id="@+id/frameListExercises"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/buttonObtainPoints" />
 
-    </FrameLayout>
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:background="@drawable/buttonroundoscuro"
+        android:drawableRight="@drawable/ic_clock"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/start"
+        app:layout_constraintEnd_toStartOf="@+id/buttonStop"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeWritten2" />
+
+    <Button
+        android:id="@+id/buttonStop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/buttonround"
+        android:drawableRight="@drawable/ic_stopwatch"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonStart"
+        app:layout_constraintTop_toTopOf="@+id/buttonStart" />
 </android.support.constraint.ConstraintLayout>

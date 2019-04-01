@@ -118,4 +118,6 @@
     <string name="selectDirection">Select direction</string>
     <string name="trainingFilter">Training filter</string>
     <string name="gymFilter">Filter gym</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
 </resources>
