@@ -2,6 +2,7 @@ package com.example.fittrain.ui.exercise;
 
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,12 +73,7 @@ public class ListExercisesActivity extends AppCompatActivity {
 
     }
 
-    //cojo el tiempo total del entreno
-    //onclick evento al empezar se empieza al stop se detiene
-    //si el tiempo a llegado al total del entrenamiento el boton obtener puntos pasa de desabilitado a habilitado
-    //al pulsar obtener puntos se hace una peticion a la api editando el usuario de forma que se le sumen los puntos obtenidos
-    //el algoritmo sera puntos * nivel de entrenamiento
-    //limpiar el detail de entrenamiento de codigo y diseño cronometro
+
     public void setItems(){
         textViewTrainingTotalTime.setText(training.getTime()+" "+getString(R.string.minutes));
 
@@ -97,8 +93,7 @@ public class ListExercisesActivity extends AppCompatActivity {
         btnObtainPoints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "PULSADOOOOOOOO", Toast.LENGTH_SHORT).show();
-                //TODO CALCULAR PUNTOS Y GUARDARSELOS AL USUARIO
+                //se calculan los puntos obtenidos y se le añaden al usuario
                 calculatePoints();
                 updateUserPoints();
 
@@ -106,10 +101,20 @@ public class ListExercisesActivity extends AppCompatActivity {
         });
 
     }
+    public void dialogPoints(){
+        // Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.titleDialogPoints);
+        builder.setMessage(training.getLevel()*10+" "+this.getString(R.string.points));
+        builder.create();
+        builder.show();
+
+    }
     private void calculatePoints(){
         int pointsPerLevel=10;
         points = training.getLevel()*pointsPerLevel;
         points = points + myUser.getPoints();
+
     }
     public UserEditDto reformatMyUserDto(){
         UserEditDto userToEdit= new UserEditDto();
@@ -138,7 +143,7 @@ public class ListExercisesActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (!response.isSuccessful()) {
                     Log.e("error response", "code error");
-                    Toast.makeText(getBaseContext(), "Error in request", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "¡Error in petition!", Toast.LENGTH_LONG).show();
                 } else {
                     Log.e("successful response", "code error");
                     myUser = response.body();
@@ -165,12 +170,16 @@ public class ListExercisesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getBaseContext(), "User edited", Toast.LENGTH_SHORT).show();
-                    //refresh();
                     UtilToken.setTrainingYears(getBaseContext(), response.body().getTrainingYears());
                     UtilToken.setHeight(getBaseContext(), response.body().getHeight());
                     UtilToken.setWeight(getBaseContext(), response.body().getWeight());
+                    dialogPoints();
 
+                    //se colocan los botones por defecto como estaban
+                    btnObtainPoints.setEnabled(false);
+                    btnObtainPoints.setVisibility(View.INVISIBLE);
+                    btnStart.setVisibility(View.VISIBLE);
+                    btnStop.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(getBaseContext(), "Error updating user", Toast.LENGTH_SHORT).show();
                 }
@@ -246,7 +255,25 @@ public class ListExercisesActivity extends AppCompatActivity {
                             }
                         });
 
+                        //PARA PRUEBAS
                         if (1==1){
+                            isOn=false;
+
+                            formatTime();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    btnStart.setVisibility(View.INVISIBLE);
+                                    btnStop.setVisibility(View.INVISIBLE);
+                                    btnObtainPoints.setEnabled(true);
+                                    btnObtainPoints.setVisibility(View.VISIBLE);
+
+                                }
+                            });
+                        }
+                        //PARA PRUEBAS
+
+                        if (String.valueOf(minutos).equals(training.getTime())){
                             isOn=false;
 
                             formatTime();

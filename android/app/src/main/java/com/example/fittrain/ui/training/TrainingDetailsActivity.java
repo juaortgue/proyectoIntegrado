@@ -1,6 +1,5 @@
 package com.example.fittrain.ui.training;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -20,10 +19,8 @@ import com.example.fittrain.model.TrainingOneResponse;
 import com.example.fittrain.retrofit.generator.ServiceGenerator;
 import com.example.fittrain.retrofit.services.TrainingService;
 import com.example.fittrain.ui.exercise.ListExercisesActivity;
-import com.example.fittrain.ui.gym.GymFragment;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,21 +28,16 @@ import retrofit2.Response;
 
 
 public class TrainingDetailsActivity extends AppCompatActivity {
-    private TextView textViewName, textViewMinutes, textViewTarget, textViewTotalExercises, textViewDescription, textViewTimeExercise,
-    textViewTime;
+    private TextView textViewName, textViewMinutes, textViewTarget, textViewTotalExercises, textViewDescription, textViewTimeExercise;
     android.support.v7.app.AlertDialog dialog;
     LayoutInflater inflater;
     View dialogLayout;
     private ImageView imageViewPicture;
     private TrainingOneResponse trainingSearched;
     private TrainingService trainingService;
-    private Button btn_go_exercises, btnCronometer, btnObtainPoints;
-    boolean isOn=false;
-    int mili=0, seg=0, minutos=0;
-    Handler h =new Handler();
+    private Button btn_go_exercises;
     Intent intent;
     private String idTraining;
-    Thread cronos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +60,6 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         textViewMinutes=findViewById(R.id.textViewMinutes);
         textViewTarget=findViewById(R.id.textViewNamePriceGymDetail);
         textViewTotalExercises=findViewById(R.id.textViewTotalExercises);
-        btnCronometer=findViewById(R.id.buttonCronometro);
         intent = getIntent();
         if (intent.hasExtra("id"))
             idTraining = intent.getStringExtra("id");
@@ -76,19 +67,12 @@ public class TrainingDetailsActivity extends AppCompatActivity {
         btn_go_exercises = findViewById(R.id.buttonWatchExercises);
         inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         dialogLayout = inflater.inflate(R.layout.activity_cronometer, null);
-        textViewTime = dialogLayout.findViewById(R.id.textViewTimeWritten);
         textViewTimeExercise = dialogLayout.findViewById(R.id.textViewTrainingTime);
-        btnObtainPoints = dialogLayout.findViewById(R.id.buttonObtainPoints);
-        loadCronos();
+
 
 
     }
-    public void goToFragment(Fragment f){
-        /*getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentExercises, f)
-                .commit();*/
-    }
+
     public void loadTraining(){
 
             trainingService= ServiceGenerator.createService(TrainingService.class);
@@ -123,67 +107,7 @@ public class TrainingDetailsActivity extends AppCompatActivity {
 
 
     }
-    public void loadCronos(){
-        cronos= new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                while (true){
-                    if (isOn){
-                        try {
-                            Thread.sleep(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        mili++;
-                        if (mili==999){
-                            seg++;
-                            mili=0;
-                        }
-                        if (seg==59){
-                            minutos++;
-                            seg=0;
-                        }
-                        h.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                String m="", s="", mi="";
-                                if (mili<10){
-                                    m="00"+mili;
-                                }else if (mili<100){
-                                    m="0"+mili;
-                                }else{
-                                    m=""+mili;
-                                }
-                                if (seg<10){
-                                    s="0"+seg;
-                                }else{
-                                    s=""+seg;
-                                }
-                                if (minutos<10){
-                                    mi="0"+minutos;
-                                }else{
-                                    mi=""+minutos;
-                                }
-                                // crono.setText(mi+":"+s+":"+m);
-                                textViewTime.setText(mi+":"+s+":"+m);
-                            }
-                        });
-                        if (1==1){
-                            isOn=false;
-                            btnCronometer.setEnabled(true);
-                        }
-                    }
-                }
-            }
-        });
-        cronos.start();
-    }
 
 
     public void setItems(){
@@ -221,57 +145,10 @@ public class TrainingDetailsActivity extends AppCompatActivity {
                 * pasarle la lista de ejercicios al listexercise activity*/
             }
         });
-        btnCronometer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogCronoOpen();
-                isOn=true;
-            }
-        });
-        btnObtainPoints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "PULSADOOOOOOOO", Toast.LENGTH_SHORT).show();
-
-                //TODO CALCULAR PUNTOS Y GUARDARSELOS AL USUARIO
-                dialog.dismiss();
-
-            }
-        });
-
-    }
-    public void dialogCronoOpen () {
-        inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        dialogLayout = inflater.inflate(R.layout.activity_cronometer, null);
-        btnObtainPoints = dialogLayout.findViewById(R.id.buttonObtainPoints);
-        textViewTime = dialogLayout.findViewById(R.id.textViewTimeWritten);
-        textViewTimeExercise = dialogLayout.findViewById(R.id.textViewTrainingTime);
-        textViewTimeExercise.setText(String.valueOf(trainingSearched.getTime())+" minutes");
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setTitle("Cronometer");
-        builder.setView(dialogLayout);
-        btnObtainPoints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "PULSADOOOOOOOO", Toast.LENGTH_SHORT).show();
-
-                //TODO CALCULAR PUNTOS Y GUARDARSELOS AL USUARIO
-                dialog.dismiss();
-
-            }
-        });
-        dialog = builder.create();
-        dialog.show();
-
-
-
 
 
     }
-    public void formatTime(){
-        minutos=0;
-        mili=0;
-        seg=0;
-    }
+
+
 
 }

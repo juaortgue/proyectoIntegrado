@@ -99,5 +99,8 @@
     <string name="start">Empezar</string>
     <string name="stop">Parar</string>
     <string name="minutes">Minutos</string>
+    <string name="titleDialogPoints">Puntos obtenidos</string>
+
+
 
 </resources>
