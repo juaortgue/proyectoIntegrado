@@ -54,11 +54,7 @@ export class CreateTrainingDialogComponent implements OnInit {
    onSubmit() {
     
       const newTraining :TrainingCreateDto = <TrainingCreateDto>this.form.value;
-      //SOLUCION TEMPORAL FOTO
-
-      //newTraining.picture = 'https://s.imgur.com/images/logo-1200-630.jpg?2';
-      console.log('NUEVO ENTRENAMIENTO')
-      console.log(newTraining)
+      
       this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
     
@@ -89,8 +85,6 @@ export class CreateTrainingDialogComponent implements OnInit {
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
 
-      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
     }
 
     // set the component state to "uploading"

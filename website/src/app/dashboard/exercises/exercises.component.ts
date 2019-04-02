@@ -38,10 +38,8 @@ applyFilter(filterValue: string) {
 }
 getAll() {
   this.exerciseService.getAll().subscribe(list => {
-    console.log('aqui')
     this.dataSource = new MatTableDataSource(list.rows);
     this.dataSource.paginator = this.paginator;
-    console.log(list.rows);
   }, error => {
     this.snackBar.open('Error obtaining exercises', 'Close', {
       duration: 3000,

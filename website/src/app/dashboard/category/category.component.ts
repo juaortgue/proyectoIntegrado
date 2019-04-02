@@ -38,7 +38,6 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(categoryList => {
       this.dataSource = new MatTableDataSource(categoryList.rows);
       this.dataSource.paginator = this.paginator;
-      console.log(categoryList.rows);
     }, error => {
       this.snackBar.open('Error obtaining categories', 'Close', {
         duration: 3000,
@@ -63,23 +62,6 @@ export class CategoryComponent implements OnInit {
       this.getAllCategories();
     });
   }
-  /*openDialogDeleteUser(u: UserResponse) {
-    const dialogDeleteUser = this.dialog.open(DialogDeleteUserComponent, { data: { user: u } });
-    dialogDeleteUser.afterClosed().subscribe(result => {
-      this.getAll();
-    });
-  }
-  openDialogNewUser() {
-    const dialogNewUser = this.dialog.open(DialogCreateUserComponent, { width: '500px' });
-    dialogNewUser.afterClosed().subscribe(result => {
-      this.getAll();
-    });
-  }
-  openDialogUpdateUser(userResponse: UserResponse) {
-    const dialogUpdateUser = this.dialog.open(DialogEditUserComponent, { width: '500px', data: { user: userResponse } });
-    dialogUpdateUser.afterClosed().subscribe(result => {
-      this.getAll();
-    });
-  }*/
+  
 
 }

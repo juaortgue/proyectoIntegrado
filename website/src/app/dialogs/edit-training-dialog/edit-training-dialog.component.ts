@@ -33,10 +33,8 @@ export class EditTrainingDialogComponent implements OnInit {
   selected=false
   optionSelected:string[]=[];
   myExercises:ExerciseResponse[];
-  t =['5c8dfa0562274718e10cdac1', '5c8c13baf51ba626edb5a2e8'];
     
   ngOnInit() {
-    console.log(this.data.training.id)
     this.getOneTraining();
     this.createFormEmpty();
 
@@ -75,9 +73,7 @@ export class EditTrainingDialogComponent implements OnInit {
    onSubmit() {
     
       const editTraining :TrainingCreateDto = <TrainingCreateDto>this.form.value;
-      //SOLUCION TEMPORAL FOTO
-
-     // editTraining.picture = 'https://s.imgur.com/images/logo-1200-630.jpg?2';
+      
       
       this.trainingService.update(this.data.training.id, editTraining).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
@@ -135,8 +131,6 @@ export class EditTrainingDialogComponent implements OnInit {
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
 
-      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
     }
 
     // set the component state to "uploading"
@@ -144,8 +138,7 @@ export class EditTrainingDialogComponent implements OnInit {
 
     // start the upload and save the progress map
     const newTraining :TrainingPhotoCreateDto = <TrainingPhotoCreateDto>this.form.value;
-    console.log('haber que pasa')
-    console.log(newTraining)
+   
     this.progress = this.uploadService.editWithPhoto(this.files, newTraining, this.data.training.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {

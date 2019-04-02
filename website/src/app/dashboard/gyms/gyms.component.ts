@@ -78,7 +78,7 @@ export class GymsComponent implements OnInit {
     });
   }
   openDialogEditGym(gymResponse: GymResponse) {
-    console.log(gymResponse)
+
     const dialogUpdateGym = this.dialog.open(EditGymDialogComponent, { width: '500px', data: { gym: gymResponse } });
     dialogUpdateGym.afterClosed().subscribe(result => {
 

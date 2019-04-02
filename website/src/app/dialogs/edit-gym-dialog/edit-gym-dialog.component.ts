@@ -34,7 +34,6 @@ export class EditGymDialogComponent implements OnInit {
   ngOnInit() {
     this.gym = this.data.gym;
     this.createFormEmpty();
-    console.log(this.data)
     this.getOne();
     
     
@@ -81,8 +80,7 @@ export class EditGymDialogComponent implements OnInit {
     const gymDto: GymCreateDto = this.form.value;
     let position = '';
     this.geoService.getLocation(gymDto.address).subscribe(r => {
-      console.log('MIRA')
-      console.log(gymDto)
+      
       position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
       position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
       gymDto.position = position;
@@ -91,14 +89,7 @@ export class EditGymDialogComponent implements OnInit {
     e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
 
     })
-    //SOLUCION TEMPORAL A IMAGENES
-    /*if(this.gym.picture!=null){
-      gymDto.picture = this.gym.picture;
-
-    }else{
-      gymDto.picture= 'https://s.imgur.com/images/logo-1200-630.jpg?2'
-    }*/
-    //SOLUCION TEMPORAL A IMAGENES
+    
     gymDto.position = this.gym.position
    
     this.gymService.updateGym(this.data.gym.id, gymDto).subscribe(gymEdited=>{
@@ -140,8 +131,7 @@ export class EditGymDialogComponent implements OnInit {
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
 
-      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
+  
     }
 
     // set the component state to "uploading"

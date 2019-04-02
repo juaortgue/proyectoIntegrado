@@ -51,11 +51,8 @@ export class CreateExerciseDialogComponent implements OnInit {
    onSubmit() {
     
       const newExercise :ExerciseCreateDto = <ExerciseCreateDto>this.form.value;
-      //SOLUCION TEMPORAL FOTO
-
-      //newExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
-      console.log('NUEVO EJERCICIO')
-      console.log(newExercise)
+      
+      
       this.exerciseService.create(newExercise).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));
     

@@ -69,8 +69,7 @@ export class EditExerciseDialogComponent implements OnInit {
    onSubmit() {
     
       const editExercise :ExerciseCreateDto = <ExerciseCreateDto>this.form.value;
-      //SOLUCION TEMPORAL FOTO
-      //editExercise.gif = 'https://media1.giphy.com/media/vR4YHeOn5TUEU/giphy.gif?cid=3640f6095c8e1c0a6343312f6f283441';
+      
 
      
       this.exerciseService.update(this.data.exercise.id, editExercise).subscribe(r => this.dialogRef.close('confirm'),
@@ -128,8 +127,7 @@ export class EditExerciseDialogComponent implements OnInit {
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
 
-      /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-      e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
+     
     }
 
     // set the component state to "uploading"
@@ -137,8 +135,7 @@ export class EditExerciseDialogComponent implements OnInit {
 
     // start the upload and save the progress map
     const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
-    console.log('HERE')
-    console.log(newExercise)
+    
     this.progress = this.uploadExerciseService.editWithPhoto(this.files, newExercise, this.data.exercise.id);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {

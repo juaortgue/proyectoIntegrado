@@ -166,11 +166,16 @@ export class CreateGymDialogComponent implements OnInit {
 
      //obtain geolocation
      this.geoService.getLocation(newGym.address).subscribe(r => {
-     
-       position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
-       position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
-       newGym.position = position;
-       this.uploadImage(newGym);
+        if(r.Response.View[0]!=undefined){
+          position = r.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
+          position = position+','+r.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
+          newGym.position = position;
+          this.uploadImage(newGym);
+          
+        }else{
+          this.snackBar.open('Repeat address.', 'Close', { duration: 3000 });
+        }
+      
      
        
       

@@ -89,9 +89,7 @@ export class UploadGymService {
       formData.append('price', gymDto.price.toString());
       formData.append('description', gymDto.description);
       formData.append('position', gymDto.position);
-      console.log('FIJATE AQUI')
-      console.log(gymDto)
-      console.log(id)
+     
       // create a http-post request and pass the form
       // tell it to report the upload progress
       const req = new HttpRequest('PUT', this.uploadUrl, formData, {
