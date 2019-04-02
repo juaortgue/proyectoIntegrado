@@ -104,7 +104,7 @@ public class GymFragment extends Fragment {
                     Log.e("error response", "code error");
                     Toast.makeText(ctx, "Error in request", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.e("successful response", "code error");
+                    Log.d("successful response", "code success");
 
                     gymsList = response.body().getRows();
 

@@ -110,8 +110,7 @@ export class CreateGymDialogComponent implements OnInit {
        if (this.uploadSuccessful) {
         return this.dialogRef.close('confirm');
   
-        /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
-        e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
+        
       }
   
       // set the component state to "uploading"

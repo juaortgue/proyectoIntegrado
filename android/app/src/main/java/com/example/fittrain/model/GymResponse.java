@@ -9,7 +9,7 @@ public class GymResponse {
     private String id;
     private String name;
     private String address;
-    private int price;
+    private double price;
     private String picture;
     private String province;
     private String city;
@@ -44,11 +44,11 @@ public class GymResponse {
         this.address = address;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -66,19 +66,14 @@ export class GymsComponent implements OnInit {
         data: { id: 1 }
       });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.snackBar.open(
-        'The file has been upload successfully', 'Cerrar', {
-        duration: 3000,
-        verticalPosition: 'top'
-      });
-      this.getAllGyms();
-    });
+      dialogRef.afterClosed().subscribe(res => (res === 'confirm') ? this.getAllGyms() : null,
+      err => this.snackBar.open('There was an error when we were creating a new gym.', 'Close', { duration: 3000 }));
+
+    
   }
   openDialogNewGym() {
     const dialogNewGym = this.dialog.open(CreateGymDialogComponent, { width: '500px' });
     dialogNewGym.afterClosed().subscribe(result =>{
-      console.log('SE CIERRA')
       this.getAllGyms();
     });
   }
