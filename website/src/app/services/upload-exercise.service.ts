@@ -58,6 +58,9 @@ export class UploadExerciseService {
           // The upload is complete
           progress.complete();
         }
+      }, error=>{
+        console.log('ERROR SERVICIO' + error)
+        //return 'nameError';
       });
 
       // Save every progress-observable in a map of all observables

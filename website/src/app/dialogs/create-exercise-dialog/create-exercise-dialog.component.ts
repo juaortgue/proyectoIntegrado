@@ -98,6 +98,14 @@ export class CreateExerciseDialogComponent implements OnInit {
     this.progress = this.uploadExerciseService.upload(this.files, newExercise);
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
+      /* this.categoryService.getAllCategories().subscribe(list => {
+      this.categories=list.rows;
+    }, error => {
+      this.snackBar.open('Error obtaining categories', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+    });*/
       this.progress[key].progress.subscribe(val => console.log(val));
     }
 

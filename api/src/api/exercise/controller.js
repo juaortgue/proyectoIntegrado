@@ -28,9 +28,20 @@ export const createWithPhoto = (req, res, next) => {
       .then((exerciseCreated) => exerciseCreated.view(true))
       .then(success(res, 201))
       .catch(err => {
-        console.log(err)
-        next(err)
+        /*console.log(err)
+        next(err)*/
+        if (err.name === 'MongoError' && err.code === 11000) {
+          res.status(409).json({
+            valid: false,
+            param: 'name',
+            message: 'exercise already registered'
+          })
+        } else {
+          next(err)
+        }
+      
       })
+      
     }
 
     
