@@ -33,8 +33,8 @@ public interface UserService {
     Call<UserResponse> editPassword(@Header("Authorization") String authorization, @Path("id") String id, @Body PasswordDto passwordDto);
 
     @Multipart
-    @PUT("/users/{id}/photo")
-    Call<UserResponse> changePhoto(@Part MultipartBody.Part avatar, @Path("id") String id);
+    @PUT(BASE_URL + "/{id}/photo")
+    Call<UserResponse> changePhoto(@Part MultipartBody.Part photo, @Path("id") String id);
 
     /* @GET(BASE_URL)
 

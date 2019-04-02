@@ -1,5 +1,6 @@
 package com.example.fittrain.ui.profile.edit;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -7,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +53,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private UserService userService;
     private String jwt;
     private Button btn_save_profile;
+    private ProgressBar progressBarFoto;
     Uri uriSelected;
+    private static final int READ_REQUEST_CODE = 42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class EditProfileActivity extends AppCompatActivity {
         spinnerGender=findViewById(R.id.spinnerSex);
         editTextName=findViewById(R.id.editTextName);
         btn_save_profile=findViewById(R.id.btn_save_profile);
+        progressBarFoto = findViewById(R.id.progressBarFoto);
     }
     public void getMe(){
 
@@ -101,10 +107,21 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     }
-    /*public void uploadPhoto(){
+    public void activateProgressBar(){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBarFoto.setVisibility(View.VISIBLE);
+    }
+    public void desactivateProgressBar(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBarFoto.setVisibility(View.GONE);
+    }
+    public void uploadPhoto(){
         if (uriSelected != null) {
 
-            LoginService service = ServiceGenerator.createService(LoginService.class);
+
+            activateProgressBar();
+            //progressBarFoto.setProgress(0);
+            userService = ServiceGenerator.createService(UserService.class, jwt , AuthType.JWT);
 
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uriSelected);
@@ -124,19 +141,18 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
                 MultipartBody.Part body =
-                        MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
+                        MultipartBody.Part.createFormData("photo", "photo", requestFile);
 
 
-                RequestBody email = RequestBody.create(MultipartBody.FORM, "luismi.lopez@salesianos.es");
-                RequestBody password = RequestBody.create(MultipartBody.FORM, "12345678");
 
-                Call<LoginResponse> callRegister = service.doRegister(body, email, password);
+                Call<UserResponse> callRegister = userService.changePhoto(body, UtilToken.getId(this));
 
-                callRegister.enqueue(new Callback<LoginResponse>() {
+                callRegister.enqueue(new Callback<UserResponse>() {
                     @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        desactivateProgressBar();
                         if (response.isSuccessful()) {
-                            Log.d("Uploaded", "Éxito");
+                            Log.d("Photo changed", "Éxito");
                             Log.d("Uploaded", response.body().toString());
                         } else {
                             Log.e("Upload error", response.errorBody().toString());
@@ -144,8 +160,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
                         Log.e("Upload error", t.getMessage());
+                        progressBarFoto.setVisibility(View.GONE);
+
                     }
                 });
 
@@ -158,7 +176,47 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         }
-    }*/
+    }
+    public void performFileSearch() {
+
+
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+
+        intent.setType("image/*");
+
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,
+                                 Intent resultData) {
+
+        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
+        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
+        // response to some other intent, and the code below shouldn't run at all.
+
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // The document selected by the user won't be returned in the intent.
+            // Instead, a URI to that document will be contained in the return intent
+            // provided to this method as a parameter.
+            // Pull that URI using resultData.getData().
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                Log.i("Filechooser URI", "Uri: " + uri.toString());
+                //showImage(uri);
+                Glide
+                        .with(this)
+                        .load(uri)
+                        .into(imageViewPicture);
+                uriSelected = uri;
+               uploadPhoto();
+            }
+        }
+    }
 
     public void setItems(){
         String gender= selectAGender(),male="Male",female="Female";
@@ -204,7 +262,7 @@ public class EditProfileActivity extends AppCompatActivity {
         imageViewPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            performFileSearch();
             }
         });
     }
