@@ -20,6 +20,7 @@ const { name } = schema.tree
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Category not found.
  * @apiError 401 admin access only.
+ * @apiError 409 duplicated name.
  */
 router.post('/',
 token({ required: true, roles: ['admin'] }),

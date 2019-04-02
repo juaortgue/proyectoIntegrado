@@ -250,6 +250,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -685,6 +691,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -809,6 +821,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -1411,6 +1429,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -1542,6 +1566,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -2158,6 +2188,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -2275,6 +2311,12 @@
             "optional": false,
             "field": "401",
             "description": "<p>admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "409",
+            "description": "<p>duplicated name.</p>"
           }
         ]
       }
@@ -3312,6 +3354,79 @@
             "optional": false,
             "field": "404",
             "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/user/index.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "put",
+    "url": "/users/:id/photo",
+    "title": "Update user's photo",
+    "name": "UpdateUserPhoto",
+    "group": "User",
+    "permission": [
+      {
+        "name": "admin, user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>admin, user access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "photo",
+            "description": "<p>User's picture.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>token not valid access only.</p>"
           }
         ]
       }

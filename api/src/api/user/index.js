@@ -123,6 +123,18 @@ router.put('/:id/password',
   body({ password }),
   updatePassword)
 
+/**
+ * @api {put} /users/:id/photo Update user's photo
+ * @apiName UpdateUserPhoto
+ * @apiGroup User
+ * @apiPermission admin, user
+ * @apiParam {String} access_token admin, user access token.
+ * @apiParam {File} photo User's picture.
+ * @apiSuccess {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 User not found.
+ * @apiError 401 token not valid access only.
+ */
 router.put('/:id/photo',
 token({ required: true, roles: ['admin', 'user'] }),
 upload.single('photo'),

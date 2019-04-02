@@ -64,6 +64,7 @@ const gymsSchema = new Schema({
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Gym not found.
  * @apiError 401 admin access only.
+ * @apiError 409 duplicated name.
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
@@ -88,6 +89,7 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Gym not found.
  * @apiError 401 admin access only.
+ * @apiError 409 duplicated name.
  */
 router.post('/photo',
   token({ required: true, roles: ['admin'] }),

@@ -49,6 +49,7 @@
 	- [Retrieve users](#retrieve-users)
 	- [Update password](#update-password)
 	- [Update user](#update-user)
+	- [Update user&#39;s photo](#update-user&#39;s-photo)
 	
 
 
@@ -675,5 +676,19 @@
 | gender			| Boolean			|  <p>User's gender, true (male), false (female).</p>							|
 | age			| Number			|  <p>User's age.</p>							|
 | trainingYears			| Number			|  <p>User's trainingYears.</p>							|
+
+## Update user&#39;s photo
+
+
+
+	PUT /users/:id/photo
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin, user access token.</p>							|
+| photo			| File			|  <p>User's picture.</p>							|
 
 
