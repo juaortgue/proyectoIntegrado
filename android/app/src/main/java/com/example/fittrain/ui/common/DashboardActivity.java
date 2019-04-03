@@ -172,10 +172,14 @@ public class DashboardActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+    //cleaning all shared data
+    //if the user press back in login the app closes itself.
     public  void logout(){
         UtilToken.clearAll(this);
         Intent iLogin = new Intent(this, LoginActivity.class);
+        iLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(iLogin);
+        finish();
     }
 
     @Override
@@ -232,6 +236,7 @@ public class DashboardActivity extends AppCompatActivity {
         return true;
 
     }
+
 
     public void searchGymOptions () {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);

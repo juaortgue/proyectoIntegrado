@@ -43,14 +43,14 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
             Glide
                     .with(ctx)
                     .load(holder.mItem.getGif())
-                    .centerCrop()
+                    //.centerCrop()
                     .into(holder.imageViewGif);
         }else{
             Glide
                     .with(ctx)
 
                     .load("https://www.eecs.utk.edu/wp-content/uploads/2016/02/Symonds_EECS.jpg")
-                    .centerCrop()
+                    //.centerCrop()
                     .into(holder.imageViewGif);
         }
         String seriesRepetitions = String.valueOf(holder.mItem.getSeries());
@@ -58,34 +58,7 @@ public class MyExerciseRecyclerViewAdapter extends RecyclerView.Adapter<MyExerci
         seriesRepetitions = seriesRepetitions+String.valueOf(holder.mItem.getRepetitions());
         holder.textViewSeriesRepetitions.setText(seriesRepetitions);
         holder.textViewTitle.setText(holder.mItem.getName());
-        /* holder.mItem = mValues.get(position);
-        jwt = UtilToken.getToken(ctx);
-        if (holder.mItem.getPicture()!=null){
-            Glide
-                    .with(ctx)
-                    .load(holder.mItem.getPicture())
-                    .centerCrop()
-                    .into(holder.imageViewPicture);
-        }else{
-            Glide
-                    .with(ctx)
 
-                    .load("https://www.eecs.utk.edu/wp-content/uploads/2016/02/Symonds_EECS.jpg")
-                    .centerCrop()
-                    .into(holder.imageViewPicture);
-        }
-        String size = String.valueOf(holder.mItem.getExercises().size());
-        holder.textViewTotalExercises.setText(String.valueOf(holder.mItem.getExercises().size()));
-        holder.textViewTitle.setText(holder.mItem.getName().toUpperCase());
-        holder.textViewTarget.setText(holder.mItem.getTarget().toUpperCase());
-        holder.contraintProperty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent details = new Intent(ctx, TrainingDetailsActivity.class);
-                details.putExtra("id", holder.mItem.getId());
-                ctx.startActivity(details);
-            }
-        });*/
     }
 
     @Override
