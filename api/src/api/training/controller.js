@@ -84,12 +84,12 @@ export const updateWithPhoto = (req, res, next) => {
       training.picture=json.data.link;
       training.deletehash=json.data.deletehash;
       training.name=req.body.name;
-      training.series=req.body.series;
-      training.repetitions=req.body.repetitions;
-      training.finishTime=req.body.finishTime;
-      training.restTime=req.body.restTime;
+      training.time=req.body.time;
+
       training.description=req.body.description;
       training.exercises=req.body.exercises;
+      training.level=req.body.level;
+      
       training
         .save()// guardamos el ejercicio
         .then(() => {
