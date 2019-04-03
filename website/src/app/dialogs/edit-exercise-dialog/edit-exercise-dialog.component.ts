@@ -52,17 +52,40 @@ export class EditExerciseDialogComponent implements OnInit {
      
    }
    createFormFilled() {
-    const newForm: FormGroup = this.fb.group ({
-     name: [this.exercise.name, Validators.compose ([ Validators.required ])],
-     series: [this.exercise.series, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     repetitions: [this.exercise.repetitions, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     finishTime: [this.exercise.finishTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
-     categoryId: [this.exercise.categoryId.id, Validators.compose ([ Validators.required ])],
-     description: [this.exercise.description, Validators.compose ([ Validators.required ])],
-     gif: [null, Validators.compose ([ Validators.required ])]
+    let newForm: FormGroup;
+     if (this.exercise.categoryId!=null) {
+      newForm = this.fb.group ({
+        name: [this.exercise.name, Validators.compose ([ Validators.required ])],
+        series: [this.exercise.series, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        repetitions: [this.exercise.repetitions, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        finishTime: [this.exercise.finishTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        
+        categoryId: [this.exercise.categoryId.id, Validators.compose ([ Validators.required ])],
+        description: [this.exercise.description, Validators.compose ([ Validators.required ])],
+        gif: [null, Validators.compose ([ Validators.required ])]
+   
+       });
+       
+     }
+     else{
+       // If a category has been deleted this advise the user add one
+      this.snackBar.open('One category is needed.', 'Close', {duration: 3000});
+      newForm = this.fb.group ({
+        name: [this.exercise.name, Validators.compose ([ Validators.required ])],
+        series: [this.exercise.series, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        repetitions: [this.exercise.repetitions, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        finishTime: [this.exercise.finishTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        restTime: [this.exercise.restTime, Validators.compose ([ Validators.required, Validators.min(1) ])],
+        categoryId: [null, Validators.compose ([ Validators.required ])],
+        description: [this.exercise.description, Validators.compose ([ Validators.required ])],
+        gif: [null, Validators.compose ([ Validators.required ])]
+   
+       });
+       
+     }
+    
 
-    });
     this.form = newForm;
   
 }

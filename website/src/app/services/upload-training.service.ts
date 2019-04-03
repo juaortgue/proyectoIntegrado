@@ -8,6 +8,7 @@ import { ExercisePhotoDto } from '../dto/exercise-photo-dto';
 import { GymCreateDto } from '../dto/gym-create.dto';
 import { GymCreatePhotoDto } from '../dto/gym-photo-dto';
 import { TrainingPhotoCreateDto } from '../dto/training-photo-dto';
+import { MatSnackBar } from '@angular/material';
 const trainingUrl = `${environment.apiUrl}/training/photo`;
 const trainingEditUrl= `${environment.apiUrl}/training/`;
 @Injectable({
@@ -17,7 +18,7 @@ export class UploadTrainingService {
   uploadUrl: string;
   token = `?access_token=${this.authService.getToken()}`;
   masterKey = `?access_token=${environment.masterKey}`;
-  constructor(private http: HttpClient, private authService: AuthenticationService) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService, private snackBar: MatSnackBar) { }
 
   public upload(files: Set<File>, trainingDto: TrainingPhotoCreateDto): { [key: string]: Observable<number> } {
     // this will be the our resulting map
@@ -65,6 +66,9 @@ export class UploadTrainingService {
           // The upload is complete
           progress.complete();
         }
+      }, error=>{
+        console.log('ERROR SERVICIO' + error)
+        this.snackBar.open('This name already exists.', 'Close', {duration: 3000});
       });
 
       // Save every progress-observable in a map of all observables
@@ -124,6 +128,9 @@ export class UploadTrainingService {
           // The upload is complete
           progress.complete();
         }
+      }, error=>{
+        console.log('ERROR SERVICIO' + error)
+        this.snackBar.open('This name already exists.', 'Close', {duration: 3000});
       });
 
       // Save every progress-observable in a map of all observables

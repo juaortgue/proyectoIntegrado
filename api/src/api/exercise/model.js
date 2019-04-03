@@ -6,8 +6,7 @@ const exerciseSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true,
-    lowercase: true
+    trim: true
   },
   categoryId: {
     type: Schema.Types.ObjectId,

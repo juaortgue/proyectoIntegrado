@@ -58,17 +58,7 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then((category) => category ? Object.assign(category, body).save() : null)
     .then((category) => category ? category.view(true) : null)
     .then(success(res))
-    .catch((err) => {
-      if (err.name === 'MongoError' && err.code === 11000) {
-        res.status(409).json({
-          valid: false,
-          param: 'name',
-          message: 'category already registered'
-        })
-      } else {
-        next(err)
-      }
-    })
+    .catch(next)
 
 export const destroy = ({ params }, res, next) =>
   Category.findById(params.id)
@@ -76,3 +66,23 @@ export const destroy = ({ params }, res, next) =>
     .then((category) => category ? category.remove() : null)
     .then(success(res, 204))
     .catch(next)
+/*
+export const destroy = ({ params }, res, next) =>
+  Category.findById(params.id)
+    .then(notFound(res))
+    .then((category=>{
+      Exercise.find({categoryId: category.id})
+      .then(exercisesFound=>{
+        
+        for (let i = 0; i < exercisesFound.length; i++) {
+          const element = exercisesFound[i];
+          console.log(element)
+          element.categoryId="";
+          
+        }
+      })
+      
+    }))
+    .then((category) => category ? category.remove() : null)
+    .then(success(res, 204))
+    .catch(next)*/
