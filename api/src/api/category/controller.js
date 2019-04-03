@@ -58,7 +58,17 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then((category) => category ? Object.assign(category, body).save() : null)
     .then((category) => category ? category.view(true) : null)
     .then(success(res))
-    .catch(next)
+    .catch((err) => {
+      if (err.name === 'MongoError' && err.code === 11000) {
+        res.status(409).json({
+          valid: false,
+          param: 'name',
+          message: 'category already registered'
+        })
+      } else {
+        next(err)
+      }
+    })
 
 export const destroy = ({ params }, res, next) =>
   Category.findById(params.id)

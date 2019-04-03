@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthenticationService } from './authentication.service';
 import { ExerciseCreateDto } from '../dto/exercise-create.dto';
 import { ExercisePhotoDto } from '../dto/exercise-photo-dto';
+import { MatSnackBar } from '@angular/material';
 const exercisesUrl = `${environment.apiUrl}/exercises/photo`;
 const exerciseEditUrl= `${environment.apiUrl}/exercises/`;
 @Injectable({
@@ -15,7 +16,7 @@ export class UploadExerciseService {
   uploadUrl: string;
   token = `?access_token=${this.authService.getToken()}`;
   masterKey = `?access_token=${environment.masterKey}`;
-  constructor(private http: HttpClient, private authService: AuthenticationService) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService, private snackBar: MatSnackBar) { }
 
   public upload(files: Set<File>, exercisePhotoDto: ExercisePhotoDto): { [key: string]: Observable<number> } {
     // this will be the our resulting map
@@ -44,7 +45,6 @@ export class UploadExerciseService {
       const progress = new Subject<number>();
 
       // send the http-request and subscribe for progress-updates
-
       const startTime = new Date().getTime();
       this.http.request(req).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -60,7 +60,7 @@ export class UploadExerciseService {
         }
       }, error=>{
         console.log('ERROR SERVICIO' + error)
-        //return 'nameError';
+        this.snackBar.open('This name already exists.', 'Close', {duration: 3000});
       });
 
       // Save every progress-observable in a map of all observables
@@ -113,6 +113,9 @@ export class UploadExerciseService {
           // The upload is complete
           progress.complete();
         }
+      }, error=>{
+        console.log('ERROR SERVICIO' + error)
+        this.snackBar.open('This name already exists.', 'Close', {duration: 3000});
       });
 
       // Save every progress-observable in a map of all observables

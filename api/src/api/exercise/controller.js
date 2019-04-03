@@ -94,11 +94,42 @@ export const updateWithPhoto = (req, res, next) => {
         .save()// guardamos el ejercicio
         .then(() => {
           res.jsonp({ exercise }); // enviamos el ejercicio de vuelta
-        });
+          
+        })
+        .catch(err => {
+          /*console.log(err)
+          next(err)*/
+          if (err.name === 'MongoError' && err.code === 11000) {
+            res.status(409).json({
+              valid: false,
+              param: 'name',
+              message: 'exercise already registered'
+            })
+          } else {
+            next(err)
+          }
+        
+        }) ;
     })
-
+    
+     
   }
+  
   )
+  .catch(err => {
+    /*console.log(err)
+    next(err)*/
+    if (err.name === 'MongoError' && err.code === 11000) {
+      res.status(409).json({
+        valid: false,
+        param: 'name',
+        message: 'exercise already registered'
+      })
+    } else {
+      next(err)
+    }
+  
+  })
   
  
 }

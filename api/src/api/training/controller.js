@@ -60,9 +60,16 @@ export const createWithPhoto = (req, res, next) => {
     )
     .then((trainingCreated) => trainingCreated.view(true))
     .then(success(res, 201))
-    .catch(err => {
-      console.log(err)
-      next(err)
+    .catch((err) => {
+      if (err.name === 'MongoError' && err.code === 11000) {
+        res.status(409).json({
+          valid: false,
+          param: 'name',
+          message: 'category already registered'
+        })
+      } else {
+        next(err)
+      }
     })
 }
 
@@ -87,6 +94,17 @@ export const updateWithPhoto = (req, res, next) => {
         .save()// guardamos el ejercicio
         .then(() => {
           res.jsonp({ training }); // enviamos el ejercicio de vuelta
+        })
+        .catch((err) => {
+          if (err.name === 'MongoError' && err.code === 11000) {
+            res.status(409).json({
+              valid: false,
+              param: 'name',
+              message: 'category already registered'
+            })
+          } else {
+            next(err)
+          }
         });
     })
 

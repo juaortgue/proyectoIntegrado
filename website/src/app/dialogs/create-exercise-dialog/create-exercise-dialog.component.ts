@@ -30,6 +30,7 @@ export class CreateExerciseDialogComponent implements OnInit {
   private exerciseService: ExerciseService,public dialogRef: MatDialogRef<CreateExerciseDialogComponent>, private categoryService:CategoryService) { }
   ngOnInit() {
     this.createForm();
+    
   }
   createForm() {
        const newForm: FormGroup = this.fb.group ({
@@ -81,6 +82,7 @@ export class CreateExerciseDialogComponent implements OnInit {
     }
   }
   closeDialog() {
+    let comprobacion:boolean=false;
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
       return this.dialogRef.close('confirm');
@@ -88,6 +90,7 @@ export class CreateExerciseDialogComponent implements OnInit {
       /*this.trainingService.create(newTraining).subscribe(r => this.dialogRef.close('confirm'),
       e => this.snackBar.open('Failed to create.', 'Close', {duration: 3000}));*/
     }
+    
 
     // set the component state to "uploading"
     this.uploading = true;
@@ -96,17 +99,12 @@ export class CreateExerciseDialogComponent implements OnInit {
     const newExercise :ExercisePhotoDto = <ExercisePhotoDto>this.form.value;
     
     this.progress = this.uploadExerciseService.upload(this.files, newExercise);
+   
     // tslint:disable-next-line:forin
     for (const key in this.progress) {
-      /* this.categoryService.getAllCategories().subscribe(list => {
-      this.categories=list.rows;
-    }, error => {
-      this.snackBar.open('Error obtaining categories', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top'
-      });
-    });*/
-      this.progress[key].progress.subscribe(val => console.log(val));
+      
+      this.progress[key].progress.subscribe(val =>
+        console.log(val));
     }
 
     // convert the progress map into an array
@@ -119,17 +117,20 @@ export class CreateExerciseDialogComponent implements OnInit {
     // Adjust the state variables
 
     // The OK-button should have the text "Finish" now
-    this.primaryButtonText = 'Finalizar';
+      this.primaryButtonText = 'Finalizar';
 
-    // The dialog should not be closed while uploading
-    this.canBeClosed = false;
-    this.dialogRef.disableClose = true;
-
-    // Hide the cancel-button
-    this.showCancelButton = false;
+      // The dialog should not be closed while uploading
+      this.canBeClosed = false;
+      this.dialogRef.disableClose = true;
+  
+      // Hide the cancel-button
+      //this.showCancelButton = false;
+    
+   
 
     // When all progress-observables are completed...
     forkJoin(allProgressObservables).subscribe(end => {
+      console.log(end)
       // ... the dialog can be closed again...
       this.canBeClosed = true;
       this.dialogRef.disableClose = false;
@@ -139,8 +140,10 @@ export class CreateExerciseDialogComponent implements OnInit {
 
       // ... and the component is no longer uploading
       this.uploading = false;
+      
 
     });
+    
   }
   //foto
 

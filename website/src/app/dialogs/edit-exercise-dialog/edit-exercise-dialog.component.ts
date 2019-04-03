@@ -159,7 +159,7 @@ export class EditExerciseDialogComponent implements OnInit {
     this.dialogRef.disableClose = true;
 
     // Hide the cancel-button
-    this.showCancelButton = false;
+    //this.showCancelButton = false;
 
     // When all progress-observables are completed...
     forkJoin(allProgressObservables).subscribe(end => {
