@@ -59,7 +59,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\n\t\"email\": \"admin3@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin2\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 2\n}"
+							"raw": "{\n\t\n\t\"email\": \"admin@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 2,\n\t\"points\": 10\n}"
 						},
 						"url": {
 							"raw": "{{url}}users?access_token={{MASTER_KEY}}",
@@ -83,13 +83,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "admin@gmail.com",
+									"key": "password",
+									"value": "12345678",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "12345678",
+									"key": "username",
+									"value": "admin@gmail.com",
 									"type": "string"
 								}
 							]
@@ -139,12 +139,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}users/5c876c8581b59d1f652f5797?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}users/5ca223c193f21d0017d74db3?access_token={{ACCESS_TOKEN}}",
 							"host": [
 								"{{url}}users"
 							],
 							"path": [
-								"5c876c8581b59d1f652f5797"
+								"5ca223c193f21d0017d74db3"
 							],
 							"query": [
 								{
@@ -170,15 +170,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\n\t\"email\": \"admin2@gmail.com\",\n\t\"role\": \"admin\",\n\t\"password\": \"12345678\",\n\t\"name\": \"admin3\",\n\t\"age\": 18,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": false,\n\t\"trainingYears\": 5\n}"
+							"raw": "{\n\n\t\"name\": \"administratorpower\",\n\t\"age\": 20,\n\t\"weight\": 70,\n\t\"height\": 174,\n\t\"gender\": true,\n\t\"trainingYears\": 10,\n\t\"role\": \"admin\",\n\t\"points\": 10\n}"
 						},
 						"url": {
-							"raw": "{{url}}users/5c8774a4cf8f542719675d69?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}users/5c93822a09143e0017c6d5e4?access_token={{ACCESS_TOKEN}}",
 							"host": [
 								"{{url}}users"
 							],
 							"path": [
-								"5c8774a4cf8f542719675d69"
+								"5c93822a09143e0017c6d5e4"
 							],
 							"query": [
 								{
@@ -277,6 +277,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "changePhoto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}users/5c9a42220ba9c3112720cc73/photo",
+							"host": [
+								"{{local}}users"
+							],
+							"path": [
+								"5c9a42220ba9c3112720cc73",
+								"photo"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -358,7 +391,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}gyms?=&access_token={{MASTER_KEY}}&near=-22.332113,-44.312311&max_distance=100&min_distance=100&=",
+							"raw": "{{url}}gyms?=&access_token={{MASTER_KEY}}&min=12&max_price=12&province=madrid&=",
 							"host": [
 								"{{url}}gyms"
 							],
@@ -372,16 +405,16 @@
 									"value": "{{MASTER_KEY}}"
 								},
 								{
-									"key": "near",
-									"value": "-22.332113,-44.312311"
+									"key": "min",
+									"value": "12"
 								},
 								{
-									"key": "max_distance",
-									"value": "100"
+									"key": "max_price",
+									"value": "12"
 								},
 								{
-									"key": "min_distance",
-									"value": "100"
+									"key": "province",
+									"value": "madrid"
 								},
 								{
 									"key": "",
@@ -868,7 +901,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"muscular\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Gaining muscle\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\",\n\t\"exercises\": [\n\t\t\n\t\t\"5c8c0607721bf36a26af94ab\",\"5c8b9fe75ef5b833aa1a6135\"\n\t\t],\n\t\"level\": 1\n}\n"
+							"raw": "{\n\t\"name\": \"pepe2\",\n\t\"description\": \"El entrenamiento servira para aumentar la espalda\",\n\t\"target\": \"Gaining muscle\",\n\t\"time\": \"40\",\n\t\"picture\": \"https://s.imgur.com/images/logo-1200-630.jpg?2\",\n\t\"exercises\": [\n\t\t\n\t\t\"5ca33ba8ba3c3621156bdbf1\"\n\t\t],\n\t\"level\": 2\n}\n"
 						},
 						"url": {
 							"raw": "{{url}}training?access_token={{ACCESS_TOKEN}}",
@@ -895,12 +928,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}training/5c989f2386dc9f0017a1cbff?access_token={{MASTER_KEY}}",
+							"raw": "{{url}}training/5c9cf02c1b0f430017ea112e?access_token={{MASTER_KEY}}",
 							"host": [
 								"{{url}}training"
 							],
 							"path": [
-								"5c989f2386dc9f0017a1cbff"
+								"5c9cf02c1b0f430017ea112e"
 							],
 							"query": [
 								{
@@ -956,7 +989,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "miguel",
+									"value": "pepefff",
 									"type": "text"
 								},
 								{
@@ -966,17 +999,17 @@
 								},
 								{
 									"key": "target",
-									"value": "Gaining muscle",
+									"value": "Lost weight",
 									"type": "text"
 								},
 								{
 									"key": "time",
-									"value": "12",
+									"value": "1",
 									"type": "text"
 								},
 								{
 									"key": "exercises[0]",
-									"value": "5c977f4f25180905b6554317",
+									"value": "5ca33ba8ba3c3621156bdbf1",
 									"type": "text"
 								},
 								{
@@ -990,8 +1023,8 @@
 									"src": ""
 								},
 								{
-									"key": "exercises[1]",
-									"value": "5c977f4f25180905b6554317",
+									"key": "",
+									"value": "",
 									"type": "text"
 								}
 							]
@@ -1024,22 +1057,22 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "entrenamiento perfecto2",
+									"value": "pepeqq",
 									"type": "text"
 								},
 								{
-									"key": "series",
-									"value": "1",
+									"key": "",
+									"value": "",
 									"type": "text"
 								},
 								{
-									"key": "repetitions",
-									"value": "1",
+									"key": "",
+									"value": "",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "descripcion de ejemplo",
+									"value": "descripcion de ejemplo2222",
 									"type": "text"
 								},
 								{
@@ -1049,33 +1082,78 @@
 								},
 								{
 									"key": "time",
-									"value": "12",
+									"value": "12222",
 									"type": "text"
 								},
 								{
 									"key": "level",
-									"value": "1",
+									"value": "3",
 									"type": "text"
 								},
 								{
-									"key": "exercises",
-									"value": "5c962b11c761e47ad114c624",
+									"key": "exercises[0]",
+									"value": "5c9ce1a26fa7990017c37809",
 									"type": "text"
 								},
 								{
 									"key": "photo",
 									"type": "file",
 									"src": ""
+								},
+								{
+									"key": "exercises[1]",
+									"value": "5c98b8707051475e937e5b25",
+									"type": "text"
+								},
+								{
+									"key": "exercises[2]",
+									"value": "5c98b86f7051475e937e5b24",
+									"type": "text"
+								},
+								{
+									"key": "exercises[3]",
+									"value": "5c98b849329e8c5df02b498d",
+									"type": "text"
+								},
+								{
+									"key": "exercises[4]",
+									"value": "5c98b848329e8c5df02b498c",
+									"type": "text"
+								},
+								{
+									"key": "exercises[5]",
+									"value": "5c98b7d83873c75a4a762313",
+									"type": "text"
+								},
+								{
+									"key": "exercises[6]",
+									"value": "5c98b7d73873c75a4a762312",
+									"type": "text"
+								},
+								{
+									"key": "exercises[7]",
+									"value": "5c98b7d63873c75a4a762311",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}training/5c989f2386dc9f0017a1cbff/photo?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}training/5ca49db6bd01136fffad013c/photo?access_token={{ACCESS_TOKEN}}",
 							"host": [
 								"{{url}}training"
 							],
 							"path": [
-								"5c989f2386dc9f0017a1cbff",
+								"5ca49db6bd01136fffad013c",
 								"photo"
 							],
 							"query": [
@@ -1103,12 +1181,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}exercises/5c8b9fe75ef5b833aa1a6135?access_token={{MASTER_KEY}}",
+							"raw": "{{url}}exercises/5c98b8707051475e937e5b25?access_token={{MASTER_KEY}}",
 							"host": [
 								"{{url}}exercises"
 							],
 							"path": [
-								"5c8b9fe75ef5b833aa1a6135"
+								"5c98b8707051475e937e5b25"
 							],
 							"query": [
 								{
@@ -1154,12 +1232,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Pull over francess2",
+									"value": "madre",
 									"type": "text"
 								},
 								{
 									"key": "categoryId",
-									"value": "5c895255248f8601aca7ac59",
+									"value": "5c895247248f8601aca7ac58",
 									"type": "text"
 								},
 								{
@@ -1265,7 +1343,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"puf\",\n\t\"categoryId\": \"5c89380bd94eaf4530b1fb2d\",\n\t\"series\": 1,\n\t\"repetitions\": 10,\n\t\"finishTime\": \"10\",\n\t\"restTime\": \"35\",\n\t\"gif\": \"https://media.tenor.com/images/c674ba98c40f6793eaf10a1356c1c36a/tenor.gif\",\n\t\"description\": \"descripcion del ejercicio\"\n}"
+							"raw": "{\n\t\"name\": \"madre\",\n\t\"categoryId\": \"5c895247248f8601aca7ac58\",\n\t\"series\": 1,\n\t\"repetitions\": 10,\n\t\"finishTime\": \"10\",\n\t\"restTime\": \"35\",\n\t\"gif\": \"https://media.tenor.com/images/c674ba98c40f6793eaf10a1356c1c36a/tenor.gif\",\n\t\"description\": \"descripcion del ejercicio\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}exercises?access_token={{ACCESS_TOKEN}}",
@@ -1319,7 +1397,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "pepe",
+									"value": "madre",
 									"type": "text"
 								},
 								{
@@ -1339,7 +1417,7 @@
 								},
 								{
 									"key": "categoryId",
-									"value": "5c89380bd94eaf4530b1fb2d",
+									"value": "5ca48a7a9aa3ae47a6f9378c",
 									"type": "text"
 								},
 								{
@@ -1360,12 +1438,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}exercises/5c962be17118e57cfa1cf412/photo?access_token={{ACCESS_TOKEN}}",
+							"raw": "{{url}}exercises/5ca489e7e62c7f12e91da3bf/photo?access_token={{ACCESS_TOKEN}}",
 							"host": [
 								"{{url}}exercises"
 							],
 							"path": [
-								"5c962be17118e57cfa1cf412",
+								"5ca489e7e62c7f12e91da3bf",
 								"photo"
 							],
 							"query": [
